@@ -1,0 +1,5475 @@
+{
+ "meta": {
+  "retrieved": "2026-11-14T12:44:14Z",
+  "collections": [
+   "HLSL30_VI v2.0 (C3246892554-LPCLOUD)",
+   "HLSS30_VI v2.0 (C3246894861-LPCLOUD)",
+   "HLSL30 v2.0 (C2021957657-LPCLOUD), HLSS30 v2.0 (C2021957295-LPCLOUD): B04/B03/B02 for RGB chips"
+  ],
+  "stacEndpoint": "https://cmr.earthdata.nasa.gov/stac/LPCLOUD/search",
+  "season": {
+   "start": "2024-02-01",
+   "end": "2024-11-30",
+   "label": "2024 reference season (summer harvest to the following spring)"
+  },
+  "cleanRule": "Pixel centre inside a parcel after a 30 m inward buffer; Fmask cloud, adjacent to cloud/shadow, cloud shadow, snow/ice and water bits all 0; aerosol level not 'high'; NDVI not fill (-19999).",
+  "qualityClasses": {
+   "clear": "clean fraction >= 0.8",
+   "partial": ">= 0.2",
+   "obscured": "< 0.2 (median not shown)"
+  },
+  "itemsFound": 79,
+  "itemsProcessed": 79,
+  "crs": "EPSG:32619",
+  "ndviNodata": -19999.0,
+  "ndviScale": 0.0001,
+  "chipSizePx": 30,
+  "chipSizeM": 900.0,
+  "outlinePx": [
+   [
+    13.799913272125801,
+    23.997975870252898
+   ],
+   [
+    2.26257639475322,
+    23.820825908581416
+   ],
+   [
+    8.315233287843876,
+    5.412846957302341
+   ],
+   [
+    28.449923582336243,
+    9.422924744865547
+   ],
+   [
+    25.4513420270135,
+    16.777031775998573
+   ],
+   [
+    13.799913272125801,
+    23.997975870252898
+   ]
+  ],
+  "fmaskDescriptionTag": null,
+  "parcelPixels": [
+   {
+    "label": "Parcel 1",
+    "pixels": 26
+   },
+   {
+    "label": "Parcel 2",
+    "pixels": 24
+   },
+   {
+    "label": "Parcel 3",
+    "pixels": 23
+   },
+   {
+    "label": "Parcel 4",
+    "pixels": 22
+   }
+  ],
+  "clusterPixels": 95,
+  "chipGrid": {
+   "crs": "EPSG:32619 (HLS tile grid, UTM zone 19, negative northing)",
+   "left": 620550.0,
+   "top": -4323090.0,
+   "resM": 30.0,
+   "sizePx": 30,
+   "cornersLonLat": {
+    "nw": [
+     -67.606911,
+     -39.048572
+    ],
+    "ne": [
+     -67.596513,
+     -39.048447
+    ],
+    "se": [
+     -67.596353,
+     -39.056555
+    ],
+    "sw": [
+     -67.606751,
+     -39.056679
+    ]
+   },
+   "note": "Chip corners from the tile transform. Shown on a Web Mercator map as an axis-aligned overlay; grid rotation at this longitude shifts corners by less than half a pixel."
+  }
+ },
+ "observations": [
+  {
+   "id": "HLS-VI.L30.T19HFS.2024032T141648.v2.0",
+   "date": "2024-02-01",
+   "datetime": "2024-02-01T14:16:48.053Z",
+   "sensor": "L30",
+   "tileCloudCover": 41,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.551,
+   "ndviP25": 0.405,
+   "ndviP75": 0.668,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.704,
+     "ndviP25": 0.624,
+     "ndviP75": 0.735
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.525,
+     "ndviP25": 0.501,
+     "ndviP75": 0.563
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.616,
+     "ndviP25": 0.509,
+     "ndviP75": 0.68
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.158,
+     "ndviP25": 0.133,
+     "ndviP75": 0.187
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-02-01_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-02-01_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024032T141709.v2.0",
+   "date": "2024-02-01",
+   "datetime": "2024-02-01T14:33:39.902Z",
+   "sensor": "S30",
+   "tileCloudCover": 29,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.555,
+   "ndviP25": 0.415,
+   "ndviP75": 0.682,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.711,
+     "ndviP25": 0.607,
+     "ndviP75": 0.741
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.549,
+     "ndviP25": 0.518,
+     "ndviP75": 0.592
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.58,
+     "ndviP25": 0.546,
+     "ndviP75": 0.694
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.164,
+     "ndviP25": 0.151,
+     "ndviP75": 0.179
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-02-01_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-02-01_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024037T141711.v2.0",
+   "date": "2024-02-06",
+   "datetime": "2024-02-06T14:33:39.083Z",
+   "sensor": "S30",
+   "tileCloudCover": 51,
+   "pixels": 95,
+   "cleanPixels": 79,
+   "cleanFraction": 0.832,
+   "quality": "clear",
+   "ndviMedian": 0.537,
+   "ndviP25": 0.357,
+   "ndviP75": 0.605,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 4,
+    "water": 0,
+    "aerosolHigh": 12,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 19,
+     "cleanFraction": 0.731,
+     "quality": "partial",
+     "ndviMedian": 0.695,
+     "ndviP25": 0.59,
+     "ndviP75": 0.723
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.55,
+     "ndviP25": 0.526,
+     "ndviP75": 0.581
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 16,
+     "cleanFraction": 0.696,
+     "quality": "partial",
+     "ndviMedian": 0.552,
+     "ndviP25": 0.528,
+     "ndviP75": 0.573
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 20,
+     "cleanFraction": 0.909,
+     "quality": "clear",
+     "ndviMedian": 0.175,
+     "ndviP25": 0.16,
+     "ndviP75": 0.203
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-02-06_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-02-06_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024042T141709.v2.0",
+   "date": "2024-02-11",
+   "datetime": "2024-02-11T14:33:43.943Z",
+   "sensor": "S30",
+   "tileCloudCover": 12,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.615,
+   "ndviP25": 0.455,
+   "ndviP75": 0.718,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.748,
+     "ndviP25": 0.655,
+     "ndviP75": 0.772
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.617,
+     "ndviP25": 0.597,
+     "ndviP75": 0.643
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.642,
+     "ndviP25": 0.589,
+     "ndviP75": 0.724
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.196,
+     "ndviP25": 0.175,
+     "ndviP75": 0.227
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-02-11_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-02-11_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024047T141711.v2.0",
+   "date": "2024-02-16",
+   "datetime": "2024-02-16T14:33:41.065Z",
+   "sensor": "S30",
+   "tileCloudCover": 0,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.613,
+   "ndviP25": 0.461,
+   "ndviP75": 0.698,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.716,
+     "ndviP25": 0.645,
+     "ndviP75": 0.757
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.62,
+     "ndviP25": 0.596,
+     "ndviP75": 0.649
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.631,
+     "ndviP25": 0.587,
+     "ndviP75": 0.724
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.164,
+     "ndviP25": 0.15,
+     "ndviP75": 0.188
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-02-16_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-02-16_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024048T141647.v2.0",
+   "date": "2024-02-17",
+   "datetime": "2024-02-17T14:16:47.938Z",
+   "sensor": "L30",
+   "tileCloudCover": 76,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-02-17_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-02-17_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024052T141709.v2.0",
+   "date": "2024-02-21",
+   "datetime": "2024-02-21T14:33:43.765Z",
+   "sensor": "S30",
+   "tileCloudCover": 3,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.578,
+   "ndviP25": 0.413,
+   "ndviP75": 0.663,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.655,
+     "ndviP25": 0.554,
+     "ndviP75": 0.734
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.574,
+     "ndviP25": 0.459,
+     "ndviP75": 0.647
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.633,
+     "ndviP25": 0.595,
+     "ndviP75": 0.733
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.148,
+     "ndviP25": 0.131,
+     "ndviP75": 0.165
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-02-21_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-02-21_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024057T141711.v2.0",
+   "date": "2024-02-26",
+   "datetime": "2024-02-26T14:33:42.321Z",
+   "sensor": "S30",
+   "tileCloudCover": 23,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.572,
+   "ndviP25": 0.412,
+   "ndviP75": 0.689,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.636,
+     "ndviP25": 0.507,
+     "ndviP75": 0.73
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.584,
+     "ndviP25": 0.436,
+     "ndviP75": 0.663
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.635,
+     "ndviP25": 0.597,
+     "ndviP75": 0.739
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.16,
+     "ndviP25": 0.144,
+     "ndviP75": 0.176
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-02-26_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-02-26_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024062T141709.v2.0",
+   "date": "2024-03-02",
+   "datetime": "2024-03-02T14:33:40.233Z",
+   "sensor": "S30",
+   "tileCloudCover": 0,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.557,
+   "ndviP25": 0.366,
+   "ndviP75": 0.676,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.609,
+     "ndviP25": 0.457,
+     "ndviP75": 0.724
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.567,
+     "ndviP25": 0.424,
+     "ndviP75": 0.657
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.621,
+     "ndviP25": 0.58,
+     "ndviP75": 0.74
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.136,
+     "ndviP25": 0.12,
+     "ndviP75": 0.157
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-03-02_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-03-02_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024067T141711.v2.0",
+   "date": "2024-03-07",
+   "datetime": "2024-03-07T14:33:44.056Z",
+   "sensor": "S30",
+   "tileCloudCover": 73,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 73,
+    "adjacent": 3,
+    "shadow": 26,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-03-07_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-03-07_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024072T141653.v2.0",
+   "date": "2024-03-12",
+   "datetime": "2024-03-12T14:16:53.912Z",
+   "sensor": "L30",
+   "tileCloudCover": 1,
+   "pixels": 95,
+   "cleanPixels": 81,
+   "cleanFraction": 0.853,
+   "quality": "clear",
+   "ndviMedian": 0.574,
+   "ndviP25": 0.474,
+   "ndviP75": 0.664,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 14,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 14
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.619,
+     "ndviP25": 0.506,
+     "ndviP75": 0.682
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.558,
+     "ndviP25": 0.472,
+     "ndviP75": 0.639
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.617,
+     "ndviP25": 0.538,
+     "ndviP75": 0.707
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 8,
+     "cleanFraction": 0.364,
+     "quality": "partial",
+     "ndviMedian": 0.123,
+     "ndviP25": 0.107,
+     "ndviP75": 0.173
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-03-12_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-03-12_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024072T141709.v2.0",
+   "date": "2024-03-12",
+   "datetime": "2024-03-12T14:33:40.065Z",
+   "sensor": "S30",
+   "tileCloudCover": 0,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.548,
+   "ndviP25": 0.408,
+   "ndviP75": 0.662,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.615,
+     "ndviP25": 0.531,
+     "ndviP75": 0.7
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.562,
+     "ndviP25": 0.467,
+     "ndviP75": 0.651
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.625,
+     "ndviP25": 0.557,
+     "ndviP75": 0.722
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.15,
+     "ndviP25": 0.128,
+     "ndviP75": 0.17
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-03-12_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-03-12_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024077T141711.v2.0",
+   "date": "2024-03-17",
+   "datetime": "2024-03-17T14:33:43.626Z",
+   "sensor": "S30",
+   "tileCloudCover": 25,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.577,
+   "ndviP25": 0.443,
+   "ndviP75": 0.694,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.671,
+     "ndviP25": 0.617,
+     "ndviP75": 0.737
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.603,
+     "ndviP25": 0.496,
+     "ndviP75": 0.685
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.618,
+     "ndviP25": 0.558,
+     "ndviP75": 0.708
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.134,
+     "ndviP25": 0.114,
+     "ndviP75": 0.154
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-03-17_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-03-17_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024087T142041.v2.0",
+   "date": "2024-03-27",
+   "datetime": "2024-03-27T14:33:43.650Z",
+   "sensor": "S30",
+   "tileCloudCover": 98,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-03-27_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-03-27_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024088T141644.v2.0",
+   "date": "2024-03-28",
+   "datetime": "2024-03-28T14:16:44.578Z",
+   "sensor": "L30",
+   "tileCloudCover": 1,
+   "pixels": 95,
+   "cleanPixels": 43,
+   "cleanFraction": 0.453,
+   "quality": "partial",
+   "ndviMedian": 0.652,
+   "ndviP25": 0.55,
+   "ndviP75": 0.738,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 49,
+    "shadow": 8,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 52
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.726,
+     "ndviP25": 0.651,
+     "ndviP75": 0.774
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 13,
+     "cleanFraction": 0.542,
+     "quality": "partial",
+     "ndviMedian": 0.593,
+     "ndviP25": 0.542,
+     "ndviP75": 0.647
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 4,
+     "cleanFraction": 0.182,
+     "quality": "obscured",
+     "ndviMedian": 0.177,
+     "ndviP25": 0.158,
+     "ndviP75": 0.2
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-03-28_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-03-28_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024092T141709.v2.0",
+   "date": "2024-04-01",
+   "datetime": "2024-04-01T14:33:42.117Z",
+   "sensor": "S30",
+   "tileCloudCover": 0,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.589,
+   "ndviP25": 0.447,
+   "ndviP75": 0.701,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.735,
+     "ndviP25": 0.629,
+     "ndviP75": 0.779
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.612,
+     "ndviP25": 0.57,
+     "ndviP75": 0.665
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.557,
+     "ndviP25": 0.472,
+     "ndviP75": 0.66
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.146,
+     "ndviP25": 0.127,
+     "ndviP75": 0.161
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-04-01_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-04-01_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024096T141620.v2.0",
+   "date": "2024-04-05",
+   "datetime": "2024-04-05T14:16:20.493Z",
+   "sensor": "L30",
+   "tileCloudCover": 1,
+   "pixels": 95,
+   "cleanPixels": 8,
+   "cleanFraction": 0.084,
+   "quality": "obscured",
+   "ndviMedian": 0.753,
+   "ndviP25": 0.71,
+   "ndviP75": 0.761,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 79,
+    "shadow": 17,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 87
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 8,
+     "cleanFraction": 0.308,
+     "quality": "partial",
+     "ndviMedian": 0.753,
+     "ndviP25": 0.71,
+     "ndviP75": 0.761
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-04-05_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-04-05_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024097T141711.v2.0",
+   "date": "2024-04-06",
+   "datetime": "2024-04-06T14:33:41.438Z",
+   "sensor": "S30",
+   "tileCloudCover": 0,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.596,
+   "ndviP25": 0.433,
+   "ndviP75": 0.694,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.728,
+     "ndviP25": 0.623,
+     "ndviP75": 0.773
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.61,
+     "ndviP25": 0.578,
+     "ndviP75": 0.657
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.553,
+     "ndviP25": 0.459,
+     "ndviP75": 0.658
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.143,
+     "ndviP25": 0.126,
+     "ndviP75": 0.167
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-04-06_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-04-06_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024107T141711.v2.0",
+   "date": "2024-04-16",
+   "datetime": "2024-04-16T14:33:46.108Z",
+   "sensor": "S30",
+   "tileCloudCover": 4,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.595,
+   "ndviP25": 0.424,
+   "ndviP75": 0.697,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.722,
+     "ndviP25": 0.679,
+     "ndviP75": 0.748
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.62,
+     "ndviP25": 0.583,
+     "ndviP75": 0.656
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.55,
+     "ndviP25": 0.45,
+     "ndviP75": 0.629
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.256,
+     "ndviP25": 0.239,
+     "ndviP75": 0.289
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-04-16_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-04-16_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024112T141611.v2.0",
+   "date": "2024-04-21",
+   "datetime": "2024-04-21T14:16:11.818Z",
+   "sensor": "L30",
+   "tileCloudCover": 87,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-04-21_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-04-21_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024112T141709.v2.0",
+   "date": "2024-04-21",
+   "datetime": "2024-04-21T14:33:43.543Z",
+   "sensor": "S30",
+   "tileCloudCover": 68,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 65,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-04-21_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-04-21_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024117T141711.v2.0",
+   "date": "2024-04-26",
+   "datetime": "2024-04-26T14:33:45.469Z",
+   "sensor": "S30",
+   "tileCloudCover": 13,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.527,
+   "ndviP25": 0.379,
+   "ndviP75": 0.617,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.649,
+     "ndviP25": 0.565,
+     "ndviP75": 0.692
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.573,
+     "ndviP25": 0.535,
+     "ndviP75": 0.618
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.462,
+     "ndviP25": 0.413,
+     "ndviP75": 0.532
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.154,
+     "ndviP25": 0.136,
+     "ndviP75": 0.182
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-04-26_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-04-26_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024120T141620.v2.0",
+   "date": "2024-04-29",
+   "datetime": "2024-04-29T14:16:20.956Z",
+   "sensor": "L30",
+   "tileCloudCover": 68,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.467,
+   "ndviP25": 0.334,
+   "ndviP75": 0.546,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.571,
+     "ndviP25": 0.503,
+     "ndviP75": 0.6
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.498,
+     "ndviP25": 0.469,
+     "ndviP75": 0.557
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.417,
+     "ndviP25": 0.383,
+     "ndviP75": 0.467
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.137,
+     "ndviP25": 0.122,
+     "ndviP75": 0.171
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-04-29_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-04-29_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024122T141709.v2.0",
+   "date": "2024-05-01",
+   "datetime": "2024-05-01T14:33:43.320Z",
+   "sensor": "S30",
+   "tileCloudCover": 13,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.487,
+   "ndviP25": 0.363,
+   "ndviP75": 0.572,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.583,
+     "ndviP25": 0.558,
+     "ndviP75": 0.646
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.521,
+     "ndviP25": 0.489,
+     "ndviP75": 0.585
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.415,
+     "ndviP25": 0.394,
+     "ndviP75": 0.492
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.143,
+     "ndviP25": 0.127,
+     "ndviP75": 0.155
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-05-01_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-05-01_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024127T142041.v2.0",
+   "date": "2024-05-06",
+   "datetime": "2024-05-06T14:33:45.829Z",
+   "sensor": "S30",
+   "tileCloudCover": 1,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.43,
+   "ndviP25": 0.323,
+   "ndviP75": 0.534,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.563,
+     "ndviP25": 0.521,
+     "ndviP75": 0.599
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.489,
+     "ndviP25": 0.435,
+     "ndviP75": 0.545
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.358,
+     "ndviP25": 0.335,
+     "ndviP75": 0.38
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.146,
+     "ndviP25": 0.129,
+     "ndviP75": 0.185
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-05-06_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-05-06_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024128T141601.v2.0",
+   "date": "2024-05-07",
+   "datetime": "2024-05-07T14:16:01.581Z",
+   "sensor": "L30",
+   "tileCloudCover": 86,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 93,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-05-07_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-05-07_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024132T141709.v2.0",
+   "date": "2024-05-11",
+   "datetime": "2024-05-11T14:33:43.659Z",
+   "sensor": "S30",
+   "tileCloudCover": 100,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-05-11_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-05-11_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024136T141614.v2.0",
+   "date": "2024-05-15",
+   "datetime": "2024-05-15T14:16:14.065Z",
+   "sensor": "L30",
+   "tileCloudCover": 0,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.407,
+   "ndviP25": 0.258,
+   "ndviP75": 0.514,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.535,
+     "ndviP25": 0.49,
+     "ndviP75": 0.582
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.46,
+     "ndviP25": 0.425,
+     "ndviP75": 0.53
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.283,
+     "ndviP25": 0.264,
+     "ndviP75": 0.351
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.157,
+     "ndviP25": 0.122,
+     "ndviP75": 0.224
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-05-15_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-05-15_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024137T141711.v2.0",
+   "date": "2024-05-16",
+   "datetime": "2024-05-16T14:33:45.681Z",
+   "sensor": "S30",
+   "tileCloudCover": 92,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-05-16_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-05-16_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024142T141709.v2.0",
+   "date": "2024-05-21",
+   "datetime": "2024-05-21T14:33:42.621Z",
+   "sensor": "S30",
+   "tileCloudCover": 0,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.394,
+   "ndviP25": 0.269,
+   "ndviP75": 0.497,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.532,
+     "ndviP25": 0.483,
+     "ndviP75": 0.549
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.472,
+     "ndviP25": 0.424,
+     "ndviP75": 0.497
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.281,
+     "ndviP25": 0.262,
+     "ndviP75": 0.324
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.192,
+     "ndviP25": 0.17,
+     "ndviP75": 0.265
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-05-21_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-05-21_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024144T141548.v2.0",
+   "date": "2024-05-23",
+   "datetime": "2024-05-23T14:15:48.109Z",
+   "sensor": "L30",
+   "tileCloudCover": 100,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 53,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-05-23_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-05-23_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024152T141605.v2.0",
+   "date": "2024-05-31",
+   "datetime": "2024-05-31T14:16:05.939Z",
+   "sensor": "L30",
+   "tileCloudCover": 100,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-05-31_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-05-31_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024160T141549.v2.0",
+   "date": "2024-06-08",
+   "datetime": "2024-06-08T14:15:49.337Z",
+   "sensor": "L30",
+   "tileCloudCover": 99,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-06-08_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-06-08_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024167T141721.v2.0",
+   "date": "2024-06-15",
+   "datetime": "2024-06-15T14:33:49.118Z",
+   "sensor": "S30",
+   "tileCloudCover": 8,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.368,
+   "ndviP25": 0.234,
+   "ndviP75": 0.443,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.46,
+     "ndviP25": 0.426,
+     "ndviP75": 0.484
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.436,
+     "ndviP25": 0.412,
+     "ndviP75": 0.454
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.242,
+     "ndviP25": 0.233,
+     "ndviP75": 0.28
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.16,
+     "ndviP25": 0.152,
+     "ndviP75": 0.23
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-06-15_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-06-15_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024168T141555.v2.0",
+   "date": "2024-06-16",
+   "datetime": "2024-06-16T14:15:55.588Z",
+   "sensor": "L30",
+   "tileCloudCover": 1,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.374,
+   "ndviP25": 0.224,
+   "ndviP75": 0.443,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.467,
+     "ndviP25": 0.427,
+     "ndviP75": 0.488
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.429,
+     "ndviP25": 0.404,
+     "ndviP75": 0.454
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.231,
+     "ndviP25": 0.224,
+     "ndviP75": 0.291
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.155,
+     "ndviP25": 0.116,
+     "ndviP75": 0.208
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-06-16_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-06-16_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024176T141559.v2.0",
+   "date": "2024-06-24",
+   "datetime": "2024-06-24T14:15:59.694Z",
+   "sensor": "L30",
+   "tileCloudCover": 7,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 5,
+    "shadow": 94,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-06-24_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-06-24_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024177T141711.v2.0",
+   "date": "2024-06-25",
+   "datetime": "2024-06-25T14:33:46.695Z",
+   "sensor": "S30",
+   "tileCloudCover": 36,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.366,
+   "ndviP25": 0.234,
+   "ndviP75": 0.428,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.439,
+     "ndviP25": 0.409,
+     "ndviP75": 0.466
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.42,
+     "ndviP25": 0.4,
+     "ndviP75": 0.44
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.238,
+     "ndviP25": 0.232,
+     "ndviP75": 0.28
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.165,
+     "ndviP25": 0.159,
+     "ndviP75": 0.214
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-06-25_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-06-25_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024182T141719.v2.0",
+   "date": "2024-06-30",
+   "datetime": "2024-06-30T14:33:47.096Z",
+   "sensor": "S30",
+   "tileCloudCover": 85,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.349,
+   "ndviP25": 0.21,
+   "ndviP75": 0.414,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.417,
+     "ndviP25": 0.39,
+     "ndviP75": 0.438
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.402,
+     "ndviP25": 0.379,
+     "ndviP75": 0.422
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.227,
+     "ndviP25": 0.214,
+     "ndviP75": 0.259
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.155,
+     "ndviP25": 0.138,
+     "ndviP75": 0.185
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-06-30_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-06-30_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024184T141556.v2.0",
+   "date": "2024-07-02",
+   "datetime": "2024-07-02T14:15:56.708Z",
+   "sensor": "L30",
+   "tileCloudCover": 1,
+   "pixels": 95,
+   "cleanPixels": 88,
+   "cleanFraction": 0.926,
+   "quality": "clear",
+   "ndviMedian": 0.397,
+   "ndviP25": 0.237,
+   "ndviP75": 0.448,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 7,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 7
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.454,
+     "ndviP25": 0.432,
+     "ndviP75": 0.481
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.431,
+     "ndviP25": 0.411,
+     "ndviP75": 0.454
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.245,
+     "ndviP25": 0.232,
+     "ndviP75": 0.289
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 15,
+     "cleanFraction": 0.682,
+     "quality": "partial",
+     "ndviMedian": 0.146,
+     "ndviP25": 0.114,
+     "ndviP75": 0.174
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-07-02_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-07-02_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024187T141711.v2.0",
+   "date": "2024-07-05",
+   "datetime": "2024-07-05T14:33:46.762Z",
+   "sensor": "S30",
+   "tileCloudCover": 31,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.335,
+   "ndviP25": 0.201,
+   "ndviP75": 0.394,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.396,
+     "ndviP25": 0.372,
+     "ndviP75": 0.418
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.387,
+     "ndviP25": 0.362,
+     "ndviP75": 0.404
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.22,
+     "ndviP25": 0.208,
+     "ndviP75": 0.244
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.146,
+     "ndviP25": 0.14,
+     "ndviP75": 0.188
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-07-05_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-07-05_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024192T141607.v2.0",
+   "date": "2024-07-10",
+   "datetime": "2024-07-10T14:16:07.477Z",
+   "sensor": "L30",
+   "tileCloudCover": 82,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 1,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 71,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-07-10_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-07-10_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024192T141709.v2.0",
+   "date": "2024-07-10",
+   "datetime": "2024-07-10T14:33:45.342Z",
+   "sensor": "S30",
+   "tileCloudCover": 50,
+   "pixels": 95,
+   "cleanPixels": 23,
+   "cleanFraction": 0.242,
+   "quality": "partial",
+   "ndviMedian": 0.253,
+   "ndviP25": 0.219,
+   "ndviP75": 0.263,
+   "fmask": {
+    "cloud": 28,
+    "adjacent": 47,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 3,
+    "cirrus": 0,
+    "fill": 72
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.253,
+     "ndviP25": 0.219,
+     "ndviP75": 0.263
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-07-10_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-07-10_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024197T141711.v2.0",
+   "date": "2024-07-15",
+   "datetime": "2024-07-15T14:33:44.901Z",
+   "sensor": "S30",
+   "tileCloudCover": 21,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.31,
+   "ndviP25": 0.193,
+   "ndviP75": 0.363,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.362,
+     "ndviP25": 0.335,
+     "ndviP75": 0.38
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.353,
+     "ndviP25": 0.332,
+     "ndviP75": 0.37
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.225,
+     "ndviP25": 0.206,
+     "ndviP75": 0.245
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.15,
+     "ndviP25": 0.139,
+     "ndviP75": 0.175
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-07-15_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-07-15_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024200T141611.v2.0",
+   "date": "2024-07-18",
+   "datetime": "2024-07-18T14:16:11.243Z",
+   "sensor": "L30",
+   "tileCloudCover": 97,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-07-18_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-07-18_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024208T141621.v2.0",
+   "date": "2024-07-26",
+   "datetime": "2024-07-26T14:16:21.191Z",
+   "sensor": "L30",
+   "tileCloudCover": 1,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.294,
+   "ndviP25": 0.18,
+   "ndviP75": 0.35,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.352,
+     "ndviP25": 0.33,
+     "ndviP75": 0.364
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.344,
+     "ndviP25": 0.321,
+     "ndviP75": 0.356
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.211,
+     "ndviP25": 0.193,
+     "ndviP75": 0.234
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.128,
+     "ndviP25": 0.106,
+     "ndviP75": 0.154
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-07-26_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-07-26_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024216T141614.v2.0",
+   "date": "2024-08-03",
+   "datetime": "2024-08-03T14:16:14.575Z",
+   "sensor": "L30",
+   "tileCloudCover": 1,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.29,
+   "ndviP25": 0.173,
+   "ndviP75": 0.336,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.334,
+     "ndviP25": 0.325,
+     "ndviP75": 0.348
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.335,
+     "ndviP25": 0.315,
+     "ndviP75": 0.347
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.203,
+     "ndviP25": 0.178,
+     "ndviP75": 0.236
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.126,
+     "ndviP25": 0.112,
+     "ndviP75": 0.154
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-08-03_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-08-03_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024217T141711.v2.0",
+   "date": "2024-08-04",
+   "datetime": "2024-08-04T14:33:45.402Z",
+   "sensor": "S30",
+   "tileCloudCover": 99,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-08-04_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-08-04_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024222T141719.v2.0",
+   "date": "2024-08-09",
+   "datetime": "2024-08-09T14:33:47.193Z",
+   "sensor": "S30",
+   "tileCloudCover": 10,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.286,
+   "ndviP25": 0.193,
+   "ndviP75": 0.332,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.33,
+     "ndviP25": 0.312,
+     "ndviP75": 0.353
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.332,
+     "ndviP25": 0.315,
+     "ndviP75": 0.349
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.224,
+     "ndviP25": 0.196,
+     "ndviP75": 0.244
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.146,
+     "ndviP25": 0.141,
+     "ndviP75": 0.175
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-08-09_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-08-09_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024224T141621.v2.0",
+   "date": "2024-08-11",
+   "datetime": "2024-08-11T14:16:21.257Z",
+   "sensor": "L30",
+   "tileCloudCover": 1,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.288,
+   "ndviP25": 0.169,
+   "ndviP75": 0.346,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.348,
+     "ndviP25": 0.324,
+     "ndviP75": 0.362
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.34,
+     "ndviP25": 0.324,
+     "ndviP75": 0.358
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.204,
+     "ndviP25": 0.177,
+     "ndviP75": 0.236
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.122,
+     "ndviP25": 0.112,
+     "ndviP75": 0.136
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-08-11_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-08-11_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024227T141711.v2.0",
+   "date": "2024-08-14",
+   "datetime": "2024-08-14T14:33:44.513Z",
+   "sensor": "S30",
+   "tileCloudCover": 62,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.282,
+   "ndviP25": 0.18,
+   "ndviP75": 0.335,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.329,
+     "ndviP25": 0.311,
+     "ndviP75": 0.343
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.335,
+     "ndviP25": 0.316,
+     "ndviP75": 0.347
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.226,
+     "ndviP25": 0.191,
+     "ndviP75": 0.239
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.139,
+     "ndviP25": 0.131,
+     "ndviP75": 0.159
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-08-14_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-08-14_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024232T141625.v2.0",
+   "date": "2024-08-19",
+   "datetime": "2024-08-19T14:16:25.350Z",
+   "sensor": "L30",
+   "tileCloudCover": 100,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-08-19_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-08-19_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024232T141709.v2.0",
+   "date": "2024-08-19",
+   "datetime": "2024-08-19T14:33:44.642Z",
+   "sensor": "S30",
+   "tileCloudCover": 91,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-08-19_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-08-19_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024237T141711.v2.0",
+   "date": "2024-08-24",
+   "datetime": "2024-08-24T14:33:40.905Z",
+   "sensor": "S30",
+   "tileCloudCover": 0,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.343,
+   "ndviP25": 0.23,
+   "ndviP75": 0.369,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.366,
+     "ndviP25": 0.356,
+     "ndviP75": 0.385
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.369,
+     "ndviP25": 0.352,
+     "ndviP75": 0.384
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.24,
+     "ndviP25": 0.23,
+     "ndviP75": 0.262
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.171,
+     "ndviP25": 0.161,
+     "ndviP75": 0.21
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-08-24_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-08-24_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024240T141628.v2.0",
+   "date": "2024-08-27",
+   "datetime": "2024-08-27T14:16:28.649Z",
+   "sensor": "L30",
+   "tileCloudCover": 1,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.288,
+   "ndviP25": 0.167,
+   "ndviP75": 0.342,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.346,
+     "ndviP25": 0.327,
+     "ndviP75": 0.355
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.337,
+     "ndviP25": 0.324,
+     "ndviP75": 0.357
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.215,
+     "ndviP25": 0.173,
+     "ndviP75": 0.227
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.127,
+     "ndviP25": 0.119,
+     "ndviP75": 0.144
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-08-27_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-08-27_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024242T141709.v2.0",
+   "date": "2024-08-29",
+   "datetime": "2024-08-29T14:33:45.565Z",
+   "sensor": "S30",
+   "tileCloudCover": 0,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.291,
+   "ndviP25": 0.166,
+   "ndviP75": 0.339,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.337,
+     "ndviP25": 0.311,
+     "ndviP75": 0.349
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.335,
+     "ndviP25": 0.325,
+     "ndviP75": 0.354
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.213,
+     "ndviP25": 0.17,
+     "ndviP75": 0.223
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.131,
+     "ndviP25": 0.118,
+     "ndviP75": 0.143
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-08-29_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-08-29_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024247T141711.v2.0",
+   "date": "2024-09-03",
+   "datetime": "2024-09-03T14:33:43.191Z",
+   "sensor": "S30",
+   "tileCloudCover": 30,
+   "pixels": 95,
+   "cleanPixels": 79,
+   "cleanFraction": 0.832,
+   "quality": "clear",
+   "ndviMedian": 0.212,
+   "ndviP25": 0.153,
+   "ndviP75": 0.349,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 16,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 16
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 11,
+     "cleanFraction": 0.423,
+     "quality": "partial",
+     "ndviMedian": 0.356,
+     "ndviP25": 0.33,
+     "ndviP75": 0.37
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 23,
+     "cleanFraction": 0.958,
+     "quality": "clear",
+     "ndviMedian": 0.355,
+     "ndviP25": 0.341,
+     "ndviP75": 0.377
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.194,
+     "ndviP25": 0.172,
+     "ndviP75": 0.212
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.124,
+     "ndviP25": 0.118,
+     "ndviP75": 0.139
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-09-03_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-09-03_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024248T141626.v2.0",
+   "date": "2024-09-04",
+   "datetime": "2024-09-04T14:16:26.115Z",
+   "sensor": "L30",
+   "tileCloudCover": 1,
+   "pixels": 95,
+   "cleanPixels": 55,
+   "cleanFraction": 0.579,
+   "quality": "partial",
+   "ndviMedian": 0.345,
+   "ndviP25": 0.238,
+   "ndviP75": 0.378,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 39,
+    "shadow": 5,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 40
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 23,
+     "cleanFraction": 0.885,
+     "quality": "clear",
+     "ndviMedian": 0.36,
+     "ndviP25": 0.343,
+     "ndviP75": 0.387
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 17,
+     "cleanFraction": 0.708,
+     "quality": "partial",
+     "ndviMedian": 0.371,
+     "ndviP25": 0.343,
+     "ndviP75": 0.386
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 15,
+     "cleanFraction": 0.652,
+     "quality": "partial",
+     "ndviMedian": 0.177,
+     "ndviP25": 0.154,
+     "ndviP75": 0.197
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-09-04_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-09-04_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024252T141709.v2.0",
+   "date": "2024-09-08",
+   "datetime": "2024-09-08T14:33:42.727Z",
+   "sensor": "S30",
+   "tileCloudCover": 63,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 89,
+    "adjacent": 0,
+    "shadow": 12,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 87,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-09-08_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-09-08_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024256T141637.v2.0",
+   "date": "2024-09-12",
+   "datetime": "2024-09-12T14:16:37.362Z",
+   "sensor": "L30",
+   "tileCloudCover": 1,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.314,
+   "ndviP25": 0.157,
+   "ndviP75": 0.383,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.375,
+     "ndviP25": 0.339,
+     "ndviP75": 0.396
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.389,
+     "ndviP25": 0.362,
+     "ndviP75": 0.401
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.18,
+     "ndviP25": 0.157,
+     "ndviP75": 0.206
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.113,
+     "ndviP25": 0.096,
+     "ndviP75": 0.153
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-09-12_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-09-12_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024257T141711.v2.0",
+   "date": "2024-09-13",
+   "datetime": "2024-09-13T14:33:41.331Z",
+   "sensor": "S30",
+   "tileCloudCover": 20,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 65,
+    "adjacent": 4,
+    "shadow": 40,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 13,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-09-13_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-09-13_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024264T141631.v2.0",
+   "date": "2024-09-20",
+   "datetime": "2024-09-20T14:16:31.574Z",
+   "sensor": "L30",
+   "tileCloudCover": 100,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-09-20_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-09-20_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024267T141711.v2.0",
+   "date": "2024-09-23",
+   "datetime": "2024-09-23T14:33:44.840Z",
+   "sensor": "S30",
+   "tileCloudCover": 1,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.336,
+   "ndviP25": 0.18,
+   "ndviP75": 0.413,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.392,
+     "ndviP25": 0.373,
+     "ndviP75": 0.461
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.419,
+     "ndviP25": 0.398,
+     "ndviP75": 0.439
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.234,
+     "ndviP25": 0.188,
+     "ndviP75": 0.264
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.136,
+     "ndviP25": 0.13,
+     "ndviP75": 0.156
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-09-23_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-09-23_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024277T141711.v2.0",
+   "date": "2024-10-03",
+   "datetime": "2024-10-03T14:33:44.526Z",
+   "sensor": "S30",
+   "tileCloudCover": 0,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.383,
+   "ndviP25": 0.192,
+   "ndviP75": 0.45,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.454,
+     "ndviP25": 0.426,
+     "ndviP75": 0.499
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.444,
+     "ndviP25": 0.424,
+     "ndviP75": 0.476
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.265,
+     "ndviP25": 0.2,
+     "ndviP75": 0.301
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.149,
+     "ndviP25": 0.143,
+     "ndviP75": 0.171
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-10-03_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-10-03_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024282T141709.v2.0",
+   "date": "2024-10-08",
+   "datetime": "2024-10-08T14:33:42.328Z",
+   "sensor": "S30",
+   "tileCloudCover": 83,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-10-08_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-10-08_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024287T141711.v2.0",
+   "date": "2024-10-13",
+   "datetime": "2024-10-13T14:33:41.950Z",
+   "sensor": "S30",
+   "tileCloudCover": 12,
+   "pixels": 95,
+   "cleanPixels": 53,
+   "cleanFraction": 0.558,
+   "quality": "partial",
+   "ndviMedian": 0.341,
+   "ndviP25": 0.159,
+   "ndviP75": 0.555,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 40,
+    "shadow": 0,
+    "snow": 0,
+    "water": 2,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 40
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 15,
+     "cleanFraction": 0.577,
+     "quality": "partial",
+     "ndviMedian": 0.604,
+     "ndviP25": 0.539,
+     "ndviP75": 0.654
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 11,
+     "cleanFraction": 0.458,
+     "quality": "partial",
+     "ndviMedian": 0.548,
+     "ndviP25": 0.518,
+     "ndviP75": 0.561
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 5,
+     "cleanFraction": 0.217,
+     "quality": "partial",
+     "ndviMedian": 0.227,
+     "ndviP25": 0.202,
+     "ndviP75": 0.248
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.158,
+     "ndviP25": 0.142,
+     "ndviP75": 0.174
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-10-13_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-10-13_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024288T141646.v2.0",
+   "date": "2024-10-14",
+   "datetime": "2024-10-14T14:16:46.313Z",
+   "sensor": "L30",
+   "tileCloudCover": 18,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.527,
+   "ndviP25": 0.261,
+   "ndviP75": 0.616,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.644,
+     "ndviP25": 0.577,
+     "ndviP75": 0.679
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.581,
+     "ndviP25": 0.56,
+     "ndviP75": 0.624
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.367,
+     "ndviP25": 0.282,
+     "ndviP75": 0.448
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.183,
+     "ndviP25": 0.146,
+     "ndviP75": 0.231
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-10-14_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-10-14_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024292T141709.v2.0",
+   "date": "2024-10-18",
+   "datetime": "2024-10-18T14:33:43.841Z",
+   "sensor": "S30",
+   "tileCloudCover": 100,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-10-18_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-10-18_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024296T141653.v2.0",
+   "date": "2024-10-22",
+   "datetime": "2024-10-22T14:16:53.308Z",
+   "sensor": "L30",
+   "tileCloudCover": 1,
+   "pixels": 95,
+   "cleanPixels": 88,
+   "cleanFraction": 0.926,
+   "quality": "clear",
+   "ndviMedian": 0.603,
+   "ndviP25": 0.303,
+   "ndviP75": 0.673,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 7,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 7
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.716,
+     "ndviP25": 0.645,
+     "ndviP75": 0.763
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.653,
+     "ndviP25": 0.631,
+     "ndviP75": 0.673
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.371,
+     "ndviP25": 0.261,
+     "ndviP75": 0.469
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 15,
+     "cleanFraction": 0.682,
+     "quality": "partial",
+     "ndviMedian": 0.132,
+     "ndviP25": 0.121,
+     "ndviP75": 0.157
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-10-22_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-10-22_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024297T141711.v2.0",
+   "date": "2024-10-23",
+   "datetime": "2024-10-23T14:33:42.815Z",
+   "sensor": "S30",
+   "tileCloudCover": 89,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-10-23_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-10-23_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024302T141709.v2.0",
+   "date": "2024-10-28",
+   "datetime": "2024-10-28T14:33:43.900Z",
+   "sensor": "S30",
+   "tileCloudCover": 0,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.591,
+   "ndviP25": 0.239,
+   "ndviP75": 0.693,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.728,
+     "ndviP25": 0.634,
+     "ndviP75": 0.762
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.662,
+     "ndviP25": 0.645,
+     "ndviP75": 0.694
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.402,
+     "ndviP25": 0.28,
+     "ndviP75": 0.503
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.153,
+     "ndviP25": 0.138,
+     "ndviP75": 0.172
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-10-28_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-10-28_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024304T141640.v2.0",
+   "date": "2024-10-30",
+   "datetime": "2024-10-30T14:16:40.182Z",
+   "sensor": "L30",
+   "tileCloudCover": 55,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.59,
+   "ndviP25": 0.24,
+   "ndviP75": 0.669,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.709,
+     "ndviP25": 0.651,
+     "ndviP75": 0.754
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.649,
+     "ndviP25": 0.637,
+     "ndviP75": 0.668
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.404,
+     "ndviP25": 0.271,
+     "ndviP75": 0.462
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.146,
+     "ndviP25": 0.125,
+     "ndviP75": 0.176
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-10-30_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-10-30_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024307T141711.v2.0",
+   "date": "2024-11-02",
+   "datetime": "2024-11-02T14:33:42.329Z",
+   "sensor": "S30",
+   "tileCloudCover": 0,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.592,
+   "ndviP25": 0.235,
+   "ndviP75": 0.681,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.705,
+     "ndviP25": 0.649,
+     "ndviP75": 0.756
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.661,
+     "ndviP25": 0.648,
+     "ndviP75": 0.683
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.406,
+     "ndviP25": 0.297,
+     "ndviP75": 0.519
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.148,
+     "ndviP25": 0.137,
+     "ndviP75": 0.162
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-11-02_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-11-02_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024312T141649.v2.0",
+   "date": "2024-11-07",
+   "datetime": "2024-11-07T14:16:49.736Z",
+   "sensor": "L30",
+   "tileCloudCover": 100,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-11-07_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-11-07_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024312T141659.v2.0",
+   "date": "2024-11-07",
+   "datetime": "2024-11-07T14:33:35.970Z",
+   "sensor": "S30",
+   "tileCloudCover": 95,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-11-07_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-11-07_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024317T141711.v2.0",
+   "date": "2024-11-12",
+   "datetime": "2024-11-12T14:33:41.951Z",
+   "sensor": "S30",
+   "tileCloudCover": 22,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-11-12_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-11-12_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024320T141643.v2.0",
+   "date": "2024-11-15",
+   "datetime": "2024-11-15T14:16:43.224Z",
+   "sensor": "L30",
+   "tileCloudCover": 100,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-11-15_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-11-15_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024327T141711.v2.0",
+   "date": "2024-11-22",
+   "datetime": "2024-11-22T14:33:42.423Z",
+   "sensor": "S30",
+   "tileCloudCover": 32,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.555,
+   "ndviP25": 0.299,
+   "ndviP75": 0.642,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.623,
+     "ndviP25": 0.551,
+     "ndviP75": 0.677
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.638,
+     "ndviP25": 0.619,
+     "ndviP75": 0.658
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.48,
+     "ndviP25": 0.389,
+     "ndviP75": 0.554
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.161,
+     "ndviP25": 0.145,
+     "ndviP75": 0.183
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-11-22_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-11-22_S30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.L30.T19HFS.2024328T141658.v2.0",
+   "date": "2024-11-23",
+   "datetime": "2024-11-23T14:16:58.843Z",
+   "sensor": "L30",
+   "tileCloudCover": 74,
+   "pixels": 95,
+   "cleanPixels": 0,
+   "cleanFraction": 0.0,
+   "quality": "obscured",
+   "ndviMedian": null,
+   "ndviP25": null,
+   "ndviP75": null,
+   "fmask": {
+    "cloud": 95,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 95,
+    "cirrus": 0,
+    "fill": 95
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "cleanFraction": 0.0,
+     "quality": "obscured",
+     "ndviMedian": null,
+     "ndviP25": null,
+     "ndviP75": null
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-11-23_L30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-11-23_L30_rgb.png"
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024332T141709.v2.0",
+   "date": "2024-11-27",
+   "datetime": "2024-11-27T14:33:44.847Z",
+   "sensor": "S30",
+   "tileCloudCover": 2,
+   "pixels": 95,
+   "cleanPixels": 95,
+   "cleanFraction": 1.0,
+   "quality": "clear",
+   "ndviMedian": 0.516,
+   "ndviP25": 0.286,
+   "ndviP75": 0.617,
+   "fmask": {
+    "cloud": 0,
+    "adjacent": 0,
+    "shadow": 0,
+    "snow": 0,
+    "water": 0,
+    "aerosolHigh": 0,
+    "cirrus": 0,
+    "fill": 0
+   },
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.588,
+     "ndviP25": 0.514,
+     "ndviP75": 0.647
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.615,
+     "ndviP25": 0.585,
+     "ndviP75": 0.629
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.445,
+     "ndviP25": 0.377,
+     "ndviP75": 0.54
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "cleanFraction": 1.0,
+     "quality": "clear",
+     "ndviMedian": 0.148,
+     "ndviP25": 0.133,
+     "ndviP75": 0.164
+    }
+   ],
+   "ndviChip": "data/hls/s_2024-11-27_S30_ndvi.png",
+   "rgbChip": "data/hls/s_2024-11-27_S30_rgb.png"
+  }
+ ]
+}

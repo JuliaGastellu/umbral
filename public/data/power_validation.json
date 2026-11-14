@@ -1,0 +1,400 @@
+{
+ "meta": {
+  "source": "NASA POWER daily point API, community AG",
+  "requestUrl": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CPRECTOTCORR&community=AG&longitude=-67.58&latitude=-39.03&start=19810101&end=20251231&format=JSON",
+  "retrieved": "2026-11-14T12:21:04Z",
+  "sha256": "344db1548629df16f1d17f54b77b7f5c45bc824abd17666768ebd07479b49f54",
+  "powerVersion": "v2.10.3",
+  "headerTitle": "NASA/POWER Source Native Resolution Daily Data",
+  "headerSources": [
+   "MERRA2",
+   "POWER"
+  ],
+  "point": {
+   "lat": -39.03,
+   "lon": -67.58,
+   "elevationM": 338.9
+  },
+  "grid": "MERRA-2 / GEOS-IT, 0.5 deg x 0.625 deg (about 55 km). Not plot-level.",
+  "units": {
+   "T2M": "C",
+   "T2M_MIN": "C",
+   "T2M_MAX": "C",
+   "PRECTOTCORR": "mm/day"
+  },
+  "longnames": {
+   "T2M": "Temperature at 2 Meters",
+   "T2M_MIN": "Temperature at 2 Meters Minimum",
+   "T2M_MAX": "Temperature at 2 Meters Maximum",
+   "PRECTOTCORR": "Precipitation Corrected"
+  },
+  "fillValue": -999.0,
+  "start": "1981-01-01",
+  "end": "2025-12-31",
+  "validYearRule": "T2M_MIN missing on at most 10 days between 1 Feb and 31 Dec",
+  "nValidYears": 45,
+  "issues": []
+ },
+ "years": [
+  {
+   "year": 1981,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1982,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1983,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1984,
+   "days": 366,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1985,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1986,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1987,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1988,
+   "days": 366,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1989,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1990,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1991,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1992,
+   "days": 366,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1993,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1994,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1995,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1996,
+   "days": 366,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1997,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1998,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 1999,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2000,
+   "days": 366,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2001,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2002,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2003,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2004,
+   "days": 366,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2005,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2006,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2007,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2008,
+   "days": 366,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2009,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2010,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2011,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2012,
+   "days": 366,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2013,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2014,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2015,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2016,
+   "days": 366,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2017,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2018,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2019,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2020,
+   "days": 366,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2021,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2022,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2023,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2024,
+   "days": 366,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  },
+  {
+   "year": 2025,
+   "days": 365,
+   "missingTmin": 0,
+   "missingTminFebDec": 0,
+   "missingPrecip": 0,
+   "valid": true
+  }
+ ]
+}

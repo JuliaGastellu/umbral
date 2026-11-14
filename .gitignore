@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.env
+.env.*
+.netrc
+*.log
+.DS_Store
+.vite/
+coverage/
+__pycache__/
+.venv/
+data/raw/
+.dodsrc
+.playwright-mcp/
+public/axe.tmp.js

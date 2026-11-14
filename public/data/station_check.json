@@ -1,0 +1,1100 @@
+{
+ "status": "done",
+ "scope": "Regional check of the reanalysis at one station. It does not validate POWER for a plot in General Roca. No bias correction is applied.",
+ "station": {
+  "id": "87715099999",
+  "name": "PRESIDENTE PERON, AR (Neuquén airport)",
+  "lat": -38.949,
+  "lon": -68.155711,
+  "elevationM": 272.79,
+  "source": "NOAA NCEI Global Surface Summary of the Day (GSOD)",
+  "variable": "MIN (deg F, converted to deg C); missing = 9999.9",
+  "dayDefinition": "GMT/UTC day"
+ },
+ "power": {
+  "requestUrl": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MIN&community=AG&longitude=-68.155711&latitude=-38.949&start=19810101&end=20251231&format=JSON",
+  "sha256": "e43a0ce25986776e4f4568e830cdd44cfcb314006c69b6b0fcbe94474dcfaccd",
+  "powerVersion": "v2.10.3",
+  "timeStandard": "LST",
+  "unit": "C",
+  "cellPoint": [
+   -68.156,
+   -38.949,
+   396.72
+  ],
+  "variable": "T2M_MIN",
+  "dayDefinition": "local solar time (LST)"
+ },
+ "caveats": [
+  "GSOD summarizes on the UTC day; POWER uses local solar time. The minimum of a night can fall on different dates, so same-date matches understate agreement somewhat; they are not a pure detection rate.",
+  "The station is about 50 km west of General Roca and in a different POWER cell.",
+  "A good global correlation (POWER validation) does not validate threshold crossings."
+ ],
+ "period": {
+  "months": "March-June",
+  "firstYear": 1981,
+  "lastYear": 2025,
+  "commonDays": 5336,
+  "yearsWithCommonDays": 45
+ },
+ "dailyTmin": {
+  "biasPowerMinusStationC": 0.64,
+  "rmseC": 2.94,
+  "pearsonR": 0.859
+ },
+ "thresholdDays": [
+  {
+   "T": 0.0,
+   "bothAtOrBelow": 430,
+   "powerOnly": 149,
+   "stationOnly": 505,
+   "neither": 4252,
+   "stationEventDays": 935,
+   "powerEventDays": 579,
+   "hitRate": 0.46,
+   "falseAlarmRatio": 0.257,
+   "agreement": 0.877
+  },
+  {
+   "T": -2.0,
+   "bothAtOrBelow": 154,
+   "powerOnly": 44,
+   "stationOnly": 328,
+   "neither": 4810,
+   "stationEventDays": 482,
+   "powerEventDays": 198,
+   "hitRate": 0.32,
+   "falseAlarmRatio": 0.222,
+   "agreement": 0.93
+  },
+  {
+   "T": -4.0,
+   "bothAtOrBelow": 22,
+   "powerOnly": 8,
+   "stationOnly": 155,
+   "neither": 5151,
+   "stationEventDays": 177,
+   "powerEventDays": 30,
+   "hitRate": 0.124,
+   "falseAlarmRatio": 0.267,
+   "agreement": 0.969
+  }
+ ],
+ "firstEvent": [
+  {
+   "T": 0.0,
+   "searchWindow": "1 Mar to 31 Jul",
+   "rule": "years with no missing value before the first event in either series",
+   "validYears": 34,
+   "yearsBothFound": 34,
+   "medianDiffDays": 17.5,
+   "meanDiffDays": 17.4,
+   "meanAbsDiffDays": 20.0,
+   "within7Days": 10,
+   "years": [
+    {
+     "year": 1981,
+     "powerDays": 104,
+     "stationDays": 80,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1982,
+     "powerDays": 103,
+     "stationDays": 119,
+     "stationMissing": 56,
+     "valid": false
+    },
+    {
+     "year": 1983,
+     "powerDays": 92,
+     "stationDays": 70,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1984,
+     "powerDays": 70,
+     "stationDays": 57,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1985,
+     "powerDays": 98,
+     "stationDays": 61,
+     "stationMissing": 1,
+     "valid": false
+    },
+    {
+     "year": 1986,
+     "powerDays": 73,
+     "stationDays": 72,
+     "stationMissing": 8,
+     "valid": false
+    },
+    {
+     "year": 1987,
+     "powerDays": 82,
+     "stationDays": 68,
+     "stationMissing": 25,
+     "valid": false
+    },
+    {
+     "year": 1988,
+     "powerDays": 88,
+     "stationDays": 62,
+     "stationMissing": 1,
+     "valid": false
+    },
+    {
+     "year": 1989,
+     "powerDays": 59,
+     "stationDays": 58,
+     "stationMissing": 12,
+     "valid": false
+    },
+    {
+     "year": 1990,
+     "powerDays": 47,
+     "stationDays": 41,
+     "stationMissing": 3,
+     "valid": false
+    },
+    {
+     "year": 1991,
+     "powerDays": 89,
+     "stationDays": 48,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1992,
+     "powerDays": 78,
+     "stationDays": 55,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1993,
+     "powerDays": 84,
+     "stationDays": 51,
+     "stationMissing": 1,
+     "valid": false
+    },
+    {
+     "year": 1994,
+     "powerDays": 70,
+     "stationDays": 48,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1995,
+     "powerDays": 82,
+     "stationDays": 50,
+     "stationMissing": 1,
+     "valid": false
+    },
+    {
+     "year": 1996,
+     "powerDays": 80,
+     "stationDays": 81,
+     "stationMissing": 4,
+     "valid": false
+    },
+    {
+     "year": 1997,
+     "powerDays": 82,
+     "stationDays": 81,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1998,
+     "powerDays": 121,
+     "stationDays": 53,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1999,
+     "powerDays": 46,
+     "stationDays": 46,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2000,
+     "powerDays": 106,
+     "stationDays": 64,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2001,
+     "powerDays": 58,
+     "stationDays": 56,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2002,
+     "powerDays": 88,
+     "stationDays": 51,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2003,
+     "powerDays": 77,
+     "stationDays": 42,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2004,
+     "powerDays": 64,
+     "stationDays": 66,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2005,
+     "powerDays": 55,
+     "stationDays": 32,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2006,
+     "powerDays": 79,
+     "stationDays": 60,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2007,
+     "powerDays": 66,
+     "stationDays": 51,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2008,
+     "powerDays": 87,
+     "stationDays": 44,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2009,
+     "powerDays": 73,
+     "stationDays": 51,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2010,
+     "powerDays": 75,
+     "stationDays": 53,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2011,
+     "powerDays": 61,
+     "stationDays": 46,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2012,
+     "powerDays": 56,
+     "stationDays": 56,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2013,
+     "powerDays": 74,
+     "stationDays": 73,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2014,
+     "powerDays": 43,
+     "stationDays": 83,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2015,
+     "powerDays": 101,
+     "stationDays": 83,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2016,
+     "powerDays": 94,
+     "stationDays": 57,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2017,
+     "powerDays": 80,
+     "stationDays": 83,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2018,
+     "powerDays": 82,
+     "stationDays": 81,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2019,
+     "powerDays": 105,
+     "stationDays": 75,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2020,
+     "powerDays": 82,
+     "stationDays": 66,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2021,
+     "powerDays": 71,
+     "stationDays": 64,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2022,
+     "powerDays": 75,
+     "stationDays": 59,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2023,
+     "powerDays": 80,
+     "stationDays": 63,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2024,
+     "powerDays": 63,
+     "stationDays": 62,
+     "stationMissing": 4,
+     "valid": false
+    },
+    {
+     "year": 2025,
+     "powerDays": 82,
+     "stationDays": 79,
+     "stationMissing": 0,
+     "valid": true
+    }
+   ]
+  },
+  {
+   "T": -2.0,
+   "searchWindow": "1 Mar to 31 Jul",
+   "rule": "years with no missing value before the first event in either series",
+   "validYears": 34,
+   "yearsBothFound": 33,
+   "medianDiffDays": 24,
+   "meanDiffDays": 23.5,
+   "meanAbsDiffDays": 23.5,
+   "within7Days": 10,
+   "years": [
+    {
+     "year": 1981,
+     "powerDays": 137,
+     "stationDays": 80,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1982,
+     "powerDays": 105,
+     "stationDays": 142,
+     "stationMissing": 62,
+     "valid": false
+    },
+    {
+     "year": 1983,
+     "powerDays": 95,
+     "stationDays": 78,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1984,
+     "powerDays": 72,
+     "stationDays": 70,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1985,
+     "powerDays": 125,
+     "stationDays": 61,
+     "stationMissing": 1,
+     "valid": false
+    },
+    {
+     "year": 1986,
+     "powerDays": 102,
+     "stationDays": 73,
+     "stationMissing": 8,
+     "valid": false
+    },
+    {
+     "year": 1987,
+     "powerDays": 85,
+     "stationDays": 84,
+     "stationMissing": 29,
+     "valid": false
+    },
+    {
+     "year": 1988,
+     "powerDays": 88,
+     "stationDays": 63,
+     "stationMissing": 1,
+     "valid": false
+    },
+    {
+     "year": 1989,
+     "powerDays": 122,
+     "stationDays": 59,
+     "stationMissing": 12,
+     "valid": false
+    },
+    {
+     "year": 1990,
+     "powerDays": 101,
+     "stationDays": 48,
+     "stationMissing": 4,
+     "valid": false
+    },
+    {
+     "year": 1991,
+     "powerDays": 90,
+     "stationDays": 67,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1992,
+     "powerDays": 83,
+     "stationDays": 78,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1993,
+     "powerDays": 85,
+     "stationDays": 84,
+     "stationMissing": 1,
+     "valid": false
+    },
+    {
+     "year": 1994,
+     "powerDays": 124,
+     "stationDays": 70,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1995,
+     "powerDays": 99,
+     "stationDays": 53,
+     "stationMissing": 1,
+     "valid": false
+    },
+    {
+     "year": 1996,
+     "powerDays": 91,
+     "stationDays": 82,
+     "stationMissing": 4,
+     "valid": false
+    },
+    {
+     "year": 1997,
+     "powerDays": 84,
+     "stationDays": 82,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1998,
+     "powerDays": null,
+     "stationDays": 99,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1999,
+     "powerDays": 92,
+     "stationDays": 46,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2000,
+     "powerDays": 106,
+     "stationDays": 64,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2001,
+     "powerDays": 109,
+     "stationDays": 59,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2002,
+     "powerDays": 90,
+     "stationDays": 89,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2003,
+     "powerDays": 94,
+     "stationDays": 77,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2004,
+     "powerDays": 102,
+     "stationDays": 73,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2005,
+     "powerDays": 104,
+     "stationDays": 55,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2006,
+     "powerDays": 82,
+     "stationDays": 79,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2007,
+     "powerDays": 87,
+     "stationDays": 66,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2008,
+     "powerDays": 88,
+     "stationDays": 44,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2009,
+     "powerDays": 111,
+     "stationDays": 88,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2010,
+     "powerDays": 76,
+     "stationDays": 75,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2011,
+     "powerDays": 115,
+     "stationDays": 83,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2012,
+     "powerDays": 96,
+     "stationDays": 72,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2013,
+     "powerDays": 110,
+     "stationDays": 75,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2014,
+     "powerDays": 104,
+     "stationDays": 104,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2015,
+     "powerDays": 108,
+     "stationDays": 84,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2016,
+     "powerDays": 101,
+     "stationDays": 57,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2017,
+     "powerDays": 109,
+     "stationDays": 84,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2018,
+     "powerDays": 93,
+     "stationDays": 92,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2019,
+     "powerDays": 106,
+     "stationDays": 82,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2020,
+     "powerDays": 91,
+     "stationDays": 66,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2021,
+     "powerDays": 105,
+     "stationDays": 105,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2022,
+     "powerDays": 78,
+     "stationDays": 59,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2023,
+     "powerDays": 87,
+     "stationDays": 80,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2024,
+     "powerDays": 115,
+     "stationDays": 63,
+     "stationMissing": 4,
+     "valid": false
+    },
+    {
+     "year": 2025,
+     "powerDays": 113,
+     "stationDays": 82,
+     "stationMissing": 0,
+     "valid": true
+    }
+   ]
+  },
+  {
+   "T": -4.0,
+   "searchWindow": "1 Mar to 31 Jul",
+   "rule": "years with no missing value before the first event in either series",
+   "validYears": 34,
+   "yearsBothFound": 22,
+   "medianDiffDays": 39.0,
+   "meanDiffDays": 32.4,
+   "meanAbsDiffDays": 32.5,
+   "within7Days": 6,
+   "years": [
+    {
+     "year": 1981,
+     "powerDays": null,
+     "stationDays": 117,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1982,
+     "powerDays": 107,
+     "stationDays": null,
+     "stationMissing": 64,
+     "valid": false
+    },
+    {
+     "year": 1983,
+     "powerDays": null,
+     "stationDays": 95,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1984,
+     "powerDays": 112,
+     "stationDays": 70,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1985,
+     "powerDays": 131,
+     "stationDays": 126,
+     "stationMissing": 12,
+     "valid": false
+    },
+    {
+     "year": 1986,
+     "powerDays": null,
+     "stationDays": 138,
+     "stationMissing": 16,
+     "valid": false
+    },
+    {
+     "year": 1987,
+     "powerDays": 104,
+     "stationDays": 84,
+     "stationMissing": 29,
+     "valid": false
+    },
+    {
+     "year": 1988,
+     "powerDays": 124,
+     "stationDays": 64,
+     "stationMissing": 1,
+     "valid": false
+    },
+    {
+     "year": 1989,
+     "powerDays": 127,
+     "stationDays": 64,
+     "stationMissing": 12,
+     "valid": false
+    },
+    {
+     "year": 1990,
+     "powerDays": 110,
+     "stationDays": 89,
+     "stationMissing": 9,
+     "valid": false
+    },
+    {
+     "year": 1991,
+     "powerDays": 132,
+     "stationDays": 99,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1992,
+     "powerDays": 142,
+     "stationDays": 87,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1993,
+     "powerDays": 135,
+     "stationDays": 85,
+     "stationMissing": 1,
+     "valid": false
+    },
+    {
+     "year": 1994,
+     "powerDays": 128,
+     "stationDays": 129,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1995,
+     "powerDays": 99,
+     "stationDays": 77,
+     "stationMissing": 1,
+     "valid": false
+    },
+    {
+     "year": 1996,
+     "powerDays": 110,
+     "stationDays": 82,
+     "stationMissing": 4,
+     "valid": false
+    },
+    {
+     "year": 1997,
+     "powerDays": null,
+     "stationDays": 83,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1998,
+     "powerDays": null,
+     "stationDays": 122,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 1999,
+     "powerDays": null,
+     "stationDays": 94,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2000,
+     "powerDays": 132,
+     "stationDays": 133,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2001,
+     "powerDays": 110,
+     "stationDays": 59,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2002,
+     "powerDays": 101,
+     "stationDays": 90,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2003,
+     "powerDays": null,
+     "stationDays": 94,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2004,
+     "powerDays": null,
+     "stationDays": 102,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2005,
+     "powerDays": 104,
+     "stationDays": 55,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2006,
+     "powerDays": 149,
+     "stationDays": 80,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2007,
+     "powerDays": 88,
+     "stationDays": 88,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2008,
+     "powerDays": 88,
+     "stationDays": null,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2009,
+     "powerDays": null,
+     "stationDays": 115,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2010,
+     "powerDays": 136,
+     "stationDays": 76,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2011,
+     "powerDays": 152,
+     "stationDays": 112,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2012,
+     "powerDays": 135,
+     "stationDays": 83,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2013,
+     "powerDays": 139,
+     "stationDays": 75,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2014,
+     "powerDays": 147,
+     "stationDays": 109,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2015,
+     "powerDays": 113,
+     "stationDays": 84,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2016,
+     "powerDays": null,
+     "stationDays": 116,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2017,
+     "powerDays": 137,
+     "stationDays": 94,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2018,
+     "powerDays": 104,
+     "stationDays": 104,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2019,
+     "powerDays": null,
+     "stationDays": 144,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2020,
+     "powerDays": 121,
+     "stationDays": 116,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2021,
+     "powerDays": 107,
+     "stationDays": 106,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2022,
+     "powerDays": null,
+     "stationDays": 87,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2023,
+     "powerDays": 138,
+     "stationDays": 80,
+     "stationMissing": 0,
+     "valid": true
+    },
+    {
+     "year": 2024,
+     "powerDays": 128,
+     "stationDays": 115,
+     "stationMissing": 4,
+     "valid": false
+    },
+    {
+     "year": 2025,
+     "powerDays": 119,
+     "stationDays": 105,
+     "stationMissing": 0,
+     "valid": true
+    }
+   ]
+  }
+ ],
+ "retrieved": "2026-11-14T13:48:37Z",
+ "summary": {
+  "station": "Neuquén Aero (NOAA GSOD 87715099999, about 50 km west of General Roca)",
+  "period": "1981–2025, March–June",
+  "biasC": 0.64,
+  "rmseC": 2.94,
+  "firstEventMedianLagDays": {
+   "0": 17.5,
+   "-2": 24,
+   "-4": 39.0
+  },
+  "matchingDays": {
+   "0": {
+    "station": 935,
+    "both": 430
+   },
+   "-2": {
+    "station": 482,
+    "both": 154
+   },
+   "-4": {
+    "station": 177,
+    "both": 22
+   }
+  },
+  "caveats": [
+   "GSOD summarizes on the UTC day; POWER uses local solar time. The minimum of a night can fall on different dates, so same-date matches understate agreement somewhat; they are not a pure detection rate.",
+   "The station is about 50 km west of General Roca and in a different POWER cell.",
+   "A good global correlation (POWER validation) does not validate threshold crossings."
+  ]
+ }
+}

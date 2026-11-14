@@ -1,0 +1,18 @@
+Umbral
+Copyright (c) 2026 Julia Gastellu
+
+AI assistance
+I used AI assistants (large language models) to search the literature, write and review code, and draft documentation. I defined the problem, chose the data, assumptions and scope, and checked the outputs against the cited sources. Agronomic validation with local growers or INTA is still pending.
+
+Data
+- NASA POWER (Prediction Of Worldwide Energy Resources), daily point API v2.10.3.
+- NASA Harmonized Landsat and Sentinel-2 (HLS) v2.0, distributed by NASA LP DAAC. Landsat data courtesy of NASA/USGS; contains modified Copernicus Sentinel data (ESA).
+- NOAA NCEI Global Surface Summary of the Day (GSOD), station 87715099999.
+- ESA WorldCover 10 m 2021 v200, CC BY 4.0.
+- Gerencia de Catastro – Agencia de Recaudación Tributaria, Provincia de Río Negro (IDERN WFS geonode:PARCELARIO1). Derived statistics and a generalized outline only; no formal open license confirmed.
+
+- Weather forecast: Open-Meteo (open-meteo.com), CC BY 4.0, free non-commercial use, requested live.
+- Map backgrounds, loaded live and never bundled: EOxCloudless 2024 by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2024), CC BY-NC-SA 4.0; NASA GIBS (HLS); © OpenStreetMap contributors (ODbL).
+- Logo generated with an AI image tool (see docs/AI_DISCLOSURE.md). Map library: Leaflet (BSD-2-Clause).
+
+Fonts (bundled via @fontsource): Fraunces and IBM Plex Sans / Mono, SIL Open Font License 1.1.

@@ -1,0 +1,11 @@
+# Never upload raw inputs, local environments or credentials.
+data/raw/
+.venv/
+.netrc
+_netrc
+.dodsrc
+.env
+.env.*
+node_modules/
+docs/screenshots/*.tmp
+.playwright-mcp/

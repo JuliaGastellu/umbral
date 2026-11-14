@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="200 150 624 624" width="64" height="64" role="img" aria-label="Umbral logo">
+  <title>Umbral</title>
+  <!-- Vector version of umbral-logo-v2 (logo generated with an AI image tool; see docs/AI_DISCLOSURE.md) -->
+  <rect x="200" y="150" width="624" height="624" rx="110" fill="#0B1522"/>
+  <g transform="rotate(-15 512 460)">
+    <path d="M92 460 A420 110 0 0 1 932 460" fill="none" stroke="#F4EFE6" stroke-width="12" opacity="0.35"/>
+  </g>
+  <circle cx="512" cy="460" r="270" fill="#0B1522" stroke="#F4EFE6" stroke-width="12"/>
+  <clipPath id="d"><circle cx="512" cy="460" r="264"/></clipPath>
+  <g clip-path="url(#d)">
+    <path d="M402 470 A110 110 0 0 1 622 470 Z" fill="#F2A93B"/>
+    <rect x="242" y="470" width="540" height="270" fill="#13263A"/>
+    <path d="M492 600 L470 600 L392 740 L438 740 Z" fill="#7FB069"/>
+    <path d="M503 600 L521 600 L540 740 L484 740 Z" fill="#7FB069"/>
+    <path d="M532 600 L554 600 L632 740 L586 740 Z" fill="#7FB069"/>
+  </g>
+  <line x1="246" y1="470" x2="778" y2="470" stroke="#F4EFE6" stroke-width="12" stroke-linecap="round"/>
+  <g transform="rotate(-15 512 460)">
+    <path d="M92 460 A420 110 0 0 0 932 460" fill="none" stroke="#F4EFE6" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="856" cy="523" r="24" fill="#F2A93B" stroke="#0B1522" stroke-width="8"/>
+  </g>
+</svg>

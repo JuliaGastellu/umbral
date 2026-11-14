@@ -1,0 +1,198 @@
+{
+ "meta": {
+  "retrieved": "2026-11-14T13:15:01Z",
+  "window": "1 Jun - 31 Aug",
+  "collections": [
+   "HLSL30_VI v2.0 (C3246892554-LPCLOUD)",
+   "HLSS30_VI v2.0 (C3246894861-LPCLOUD)",
+   "HLSL30 v2.0 (C2021957657-LPCLOUD), HLSS30 v2.0 (C2021957295-LPCLOUD): B04/B03/B02 for RGB chips"
+  ],
+  "cleanRule": "Pixel centre inside a parcel after a 30 m inward buffer; Fmask cloud, adjacent to cloud/shadow, cloud shadow, snow/ice and water bits all 0; aerosol level not 'high'; NDVI not fill (-19999).",
+  "summaryRule": "Median of per-observation cluster medians, clear observations only (clean fraction >= 0.8)."
+ },
+ "years": [
+  {
+   "year": 2016,
+   "itemsFound": 13,
+   "processed": 13,
+   "clearObservations": 10,
+   "ndviMedianOfClear": 0.356,
+   "clearDates": [
+    "2016-06-07",
+    "2016-06-17",
+    "2016-06-18",
+    "2016-07-04",
+    "2016-07-07",
+    "2016-07-20",
+    "2016-08-05",
+    "2016-08-06",
+    "2016-08-16",
+    "2016-08-21"
+   ]
+  },
+  {
+   "year": 2017,
+   "itemsFound": 16,
+   "processed": 16,
+   "clearObservations": 7,
+   "ndviMedianOfClear": 0.359,
+   "clearDates": [
+    "2017-07-17",
+    "2017-07-22",
+    "2017-07-23",
+    "2017-07-27",
+    "2017-08-01",
+    "2017-08-06",
+    "2017-08-08"
+   ]
+  },
+  {
+   "year": 2018,
+   "itemsFound": 18,
+   "processed": 18,
+   "clearObservations": 7,
+   "ndviMedianOfClear": 0.368,
+   "clearDates": [
+    "2018-06-02",
+    "2018-06-07",
+    "2018-06-12",
+    "2018-06-27",
+    "2018-08-01",
+    "2018-08-11",
+    "2018-08-21"
+   ]
+  },
+  {
+   "year": 2019,
+   "itemsFound": 19,
+   "processed": 19,
+   "clearObservations": 13,
+   "ndviMedianOfClear": 0.34,
+   "clearDates": [
+    "2019-06-02",
+    "2019-06-12",
+    "2019-06-27",
+    "2019-06-27",
+    "2019-07-02",
+    "2019-07-12",
+    "2019-07-22",
+    "2019-07-29",
+    "2019-08-01",
+    "2019-08-06",
+    "2019-08-11",
+    "2019-08-30",
+    "2019-08-31"
+   ]
+  },
+  {
+   "year": 2020,
+   "itemsFound": 19,
+   "processed": 19,
+   "clearObservations": 10,
+   "ndviMedianOfClear": 0.292,
+   "clearDates": [
+    "2020-06-01",
+    "2020-06-11",
+    "2020-06-21",
+    "2020-07-15",
+    "2020-07-16",
+    "2020-07-31",
+    "2020-08-05",
+    "2020-08-15",
+    "2020-08-20",
+    "2020-08-30"
+   ]
+  },
+  {
+   "year": 2021,
+   "itemsFound": 21,
+   "processed": 21,
+   "clearObservations": 7,
+   "ndviMedianOfClear": 0.327,
+   "clearDates": [
+    "2021-06-11",
+    "2021-06-26",
+    "2021-07-01",
+    "2021-07-11",
+    "2021-07-26",
+    "2021-08-05",
+    "2021-08-20"
+   ]
+  },
+  {
+   "year": 2022,
+   "itemsFound": 22,
+   "processed": 22,
+   "clearObservations": 6,
+   "ndviMedianOfClear": 0.298,
+   "clearDates": [
+    "2022-06-01",
+    "2022-06-27",
+    "2022-07-01",
+    "2022-07-11",
+    "2022-07-29",
+    "2022-08-30"
+   ]
+  },
+  {
+   "year": 2023,
+   "itemsFound": 20,
+   "processed": 20,
+   "clearObservations": 5,
+   "ndviMedianOfClear": 0.312,
+   "clearDates": [
+    "2023-06-11",
+    "2023-06-26",
+    "2023-07-26",
+    "2023-08-25",
+    "2023-08-30"
+   ]
+  },
+  {
+   "year": 2024,
+   "itemsFound": 23,
+   "processed": 23,
+   "clearObservations": 15,
+   "ndviMedianOfClear": 0.31,
+   "clearDates": [
+    "2024-06-15",
+    "2024-06-16",
+    "2024-06-25",
+    "2024-06-30",
+    "2024-07-02",
+    "2024-07-05",
+    "2024-07-15",
+    "2024-07-26",
+    "2024-08-03",
+    "2024-08-09",
+    "2024-08-11",
+    "2024-08-14",
+    "2024-08-24",
+    "2024-08-27",
+    "2024-08-29"
+   ]
+  },
+  {
+   "year": 2025,
+   "itemsFound": 27,
+   "processed": 27,
+   "clearObservations": 13,
+   "ndviMedianOfClear": 0.267,
+   "clearDates": [
+    "2025-06-05",
+    "2025-06-25",
+    "2025-06-30",
+    "2025-07-02",
+    "2025-07-10",
+    "2025-07-13",
+    "2025-07-22",
+    "2025-08-06",
+    "2025-08-09",
+    "2025-08-14",
+    "2025-08-19",
+    "2025-08-22",
+    "2025-08-24"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,93 @@
+{
+ "name": "A cluster of cadastral parcels in the horticultural belt of General Roca",
+ "status": "Selected from the provincial cadastral layer (SUBRURAL, 2-15 ha), screened with ESA WorldCover 2021 and HLS true colour. Land use not verified on the ground.",
+ "outlineNote": "Generalized outline: convex hull of the cluster, buffered 60 m, simplified and rounded to 0.001 deg (about 100 m). Individual parcel geometries are not published.",
+ "outline": [
+  [
+   -67.602,
+   -39.055
+  ],
+  [
+   -67.606,
+   -39.055
+  ],
+  [
+   -67.604,
+   -39.05
+  ],
+  [
+   -67.597,
+   -39.051
+  ],
+  [
+   -67.598,
+   -39.053
+  ],
+  [
+   -67.602,
+   -39.055
+  ]
+ ],
+ "nParcels": 4,
+ "parcels": [
+  {
+   "label": "Parcel 1",
+   "declaredHa": 4.41,
+   "innerHa": 2.26,
+   "worldCover": {
+    "n10m": 677,
+    "tree": 0.074,
+    "crop": 0.483,
+    "grass": 0.417,
+    "built": 0.0,
+    "bare": 0.0
+   }
+  },
+  {
+   "label": "Parcel 2",
+   "declaredHa": 4.36,
+   "innerHa": 2.08,
+   "worldCover": {
+    "n10m": 642,
+    "tree": 0.047,
+    "crop": 0.734,
+    "grass": 0.22,
+    "built": 0.0,
+    "bare": 0.0
+   }
+  },
+  {
+   "label": "Parcel 3",
+   "declaredHa": 4.43,
+   "innerHa": 2.16,
+   "worldCover": {
+    "n10m": 660,
+    "tree": 0.142,
+    "crop": 0.28,
+    "grass": 0.542,
+    "built": 0.018,
+    "bare": 0.0
+   }
+  },
+  {
+   "label": "Parcel 4",
+   "declaredHa": 4.04,
+   "innerHa": 1.93,
+   "worldCover": {
+    "n10m": 615,
+    "tree": 0.143,
+    "crop": 0.0,
+    "grass": 0.163,
+    "built": 0.0,
+    "bare": 0.485
+   }
+  }
+ ],
+ "inwardBufferM": 30.0,
+ "orchardScreen": "Dropped parcels with ESA WorldCover 2021 tree-cover share above 0.25, then checked visually on HLS true colour.",
+ "season": {
+  "start": "2024-02-01",
+  "end": "2024-11-30",
+  "label": "2024 reference season (summer harvest to the following spring)"
+ }
+}

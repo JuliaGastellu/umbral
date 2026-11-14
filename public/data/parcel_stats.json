@@ -1,0 +1,21 @@
+{
+ "source": "Derived from IDERN WFS layer geonode:PARCELARIO1 (SUBRURAL and RURAL parcels around General Roca).",
+ "credit": "Gerencia de Catastro – Agencia de Recaudación Tributaria, Provincia de Río Negro",
+ "parcelsInLayer": 2341,
+ "excludedPlateauRural": 29,
+ "parcelsUsed": 2312,
+ "subrural": {
+  "n": 2265,
+  "p25Ha": 2.9,
+  "medianHa": 6.1,
+  "p75Ha": 12.1
+ },
+ "all": {
+  "n": 2312,
+  "p25Ha": 2.9,
+  "medianHa": 6.2,
+  "p75Ha": 12.4
+ },
+ "geometryVsDeclaredMedianRelDiff": 0.0059,
+ "note": "Cadastral parcels are not management fields: one farm can hold several fields, orchards included. The layer has no land use or owner information."
+}
