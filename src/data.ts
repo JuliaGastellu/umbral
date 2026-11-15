@@ -153,11 +153,20 @@ export interface AppData {
   loading: boolean;
 }
 
+/** Content version of the bundled data; "dev" outside a Vite build (tests). */
+export const DATA_VERSION: string = typeof __DATA_VERSION__ === "string" ? __DATA_VERSION__ : "dev";
+
+/** The map needs a boundary for each example; anything else is treated as a failed load, not drawn. */
+export function validShapes(x: unknown): x is StudyParcels {
+  const p = (x as { parcels?: unknown })?.parcels;
+  return Array.isArray(p) && p.length > 0 && p.every((q) => { const g = (q as { geometry?: { type?: string; coordinates?: unknown } })?.geometry; return !!g && (g.type === "Polygon" || g.type === "MultiPolygon") && Array.isArray(g.coordinates); });
+}
+
 async function getJson<T>(path: string, timeoutMs = 15000): Promise<T> {
   const ctl = new AbortController();
   const t = setTimeout(() => ctl.abort(), timeoutMs);
   try {
-    const r = await fetch(path, { signal: ctl.signal });
+    const r = await fetch(`${path}?v=${DATA_VERSION}`, { signal: ctl.signal });
     if (!r.ok) throw new Error(`${path}: HTTP ${r.status}`);
     return (await r.json()) as T;
   } finally {
@@ -192,7 +201,8 @@ export function useAppData(): AppData {
       const next: AppData = { power: null, hls: null, hlsInter: null, station: null, area: null, parcels: null, shapes: null, registry: null, emit: null, outlines: null, errors: [], loading: false };
       res.forEach((r, i) => {
         const k = keys[i];
-        if (r.status === "fulfilled") (next as unknown as Record<string, unknown>)[k] = r.value;
+        if (r.status === "fulfilled" && k === "shapes" && !validShapes(r.value)) next.errors.push(`${files[k]} has an unexpected format.`);
+        else if (r.status === "fulfilled") (next as unknown as Record<string, unknown>)[k] = r.value;
         else if (k !== "hlsInter" && k !== "registry" && k !== "emit" && k !== "outlines") next.errors.push(`Could not load ${files[k]}.`);
       });
       setD(next);

@@ -4,7 +4,7 @@ Umbral has two deployable parts: the static frontend (Vercel) and an optional re
 
 ## State (15 Nov 2026)
 
-- **Frontend:** https://umbral-altovalle.vercel.app. Vercel builds every push to the production branch of https://github.com/JuliaGastellu/umbral. The production environment has `VITE_UMBRAL_API=https://umbral-api.juliacgastellu.workers.dev` (a public URL, not a secret); a variable takes effect only in a new build. The check of each published version is recorded separately, after the push.
+- **Frontend:** https://umbral-altovalle.vercel.app. Vercel builds every push to the production branch of https://github.com/JuliaGastellu/umbral. The production environment has `VITE_UMBRAL_API=https://umbral-api.juliacgastellu.workers.dev` (a public URL, not a secret); a variable takes effect only in a new build. The check of each published version is recorded in [RELEASE.md](RELEASE.md).
 - **API:** Worker `umbral-api` at https://umbral-api.juliacgastellu.workers.dev, published on 15 Nov 2026 (Cloudflare version `ee78fc44-c64d-4242-8902-3d70e0107ff5`, compatibility date 2026-11-01), built from `worker/src/index.ts` in this repository with the processed files in `public/data/`. No R2, D1, KV, paid service or Earthdata credential is used.
 
 ## What gets published
@@ -18,6 +18,7 @@ Umbral has two deployable parts: the static frontend (Vercel) and an optional re
 1. Project imported from the GitHub repository, preset **Vite**. `vercel.json` sets install `npm ci`, build `npm run build`, output `dist`.
 2. Environment variables (Production), both public and optional: `VITE_UMBRAL_API` (the Worker's base URL) and `VITE_UMBRAL_ASSET_BASE` (only if image chips are served elsewhere; by default they load from the site itself).
 3. Deployment Protection covers preview URLs only; production is public.
+4. Data files keep fixed names: each request carries `?v=` with a hash of `public/data/*.json` (set in `vite.config.ts`), and `vercel.json` asks browsers to revalidate `/data/` (`max-age=0, must-revalidate`), so a release never runs on files cached from an earlier one.
 
 ## API (Cloudflare Worker)
 

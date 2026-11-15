@@ -101,7 +101,7 @@ python -I scripts/sources_registry.py && python -I scripts/checksums.py
 
 ## Documentation
 
-[METHODS](docs/METHODS.md) (rules and their history) · [DATA_SOURCES](docs/DATA_SOURCES.md) · [DECISIONS](docs/DECISIONS.md) · [DEPLOY](docs/DEPLOY.md) · [SUBMISSION](docs/SUBMISSION.md) · [AI_DISCLOSURE](docs/AI_DISCLOSURE.md) · [worker/README](worker/README.md)
+[METHODS](docs/METHODS.md) (rules and their history) · [RELEASE](docs/RELEASE.md) (check of the published version) · [DATA_SOURCES](docs/DATA_SOURCES.md) · [DECISIONS](docs/DECISIONS.md) · [DEPLOY](docs/DEPLOY.md) · [SUBMISSION](docs/SUBMISSION.md) · [AI_DISCLOSURE](docs/AI_DISCLOSURE.md) · [worker/README](worker/README.md)
 
 Screenshots of the final interface (15 Nov 2026): [first screen](docs/screenshots/01-first-screen-1366x768.png), [HLS layer](docs/screenshots/02-hls-layer-p2.png), [EMIT layer](docs/screenshots/03-emit-layer-cluster-only.png), [POWER cold nights](docs/screenshots/04-power-cold-nights.png), [options and a date comparison](docs/screenshots/05-possibilities-pea-compare.png), [almond orchard with three checks](docs/screenshots/06-orchard-almond.png), [Climate & NASA](docs/screenshots/07-climate-view.png), [phone, 375 px](docs/screenshots/08-mobile-375.png), [editing with the current result](docs/screenshots/09-editing-with-current-result.png), [beds: drip is not path water](docs/screenshots/10-beds-drip-not-path-water.png).
 

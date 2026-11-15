@@ -23,6 +23,7 @@ import { EXPLORABLE, candidateScenario, suggest } from "./engine/recommend";
 import { Editor, cropName, fieldName, type Field } from "./ui/Editor";
 import { Possibilities } from "./ui/Possibilities";
 import { MapWorkspace, type Layer } from "./ui/Workspace";
+import { SectionBoundary } from "./ui/ErrorBoundary";
 import { conditionFor, exposureByYear, summarize, yearsInRange } from "./engine/climate";
 import { seriesYears } from "./engine/exposure";
 import { SavedPlans } from "./ui/SavedPlans";
@@ -367,6 +368,7 @@ export default function App() {
               )}
             </div>
           </div>
+          <SectionBoundary name="map and NASA layers">
           <MapWorkspace
             data={data}
             field={field}
@@ -387,6 +389,7 @@ export default function App() {
             permanent={permanentPlan}
             onSources={() => openDrawer("registry")}
           />
+          </SectionBoundary>
           <a href="#edit" className="btn primary next-step">Next: set crops, dates &amp; water</a>
           <div className="plan-grid">
             <Editor s={s} set={set} parcels={data.parcels} report={report} summary={<ResultSummary state={resultState} />} />
@@ -417,7 +420,9 @@ export default function App() {
           <p className="ctx-line">For <strong>{fieldName(field)}</strong>: {permanentPlan ? `${standingPhrase(s).stays}; cover window ${fmtDate(s.orchard.window[0], true)} to ${fmtDate(s.orchard.window[1], true)}` : `${cropName(s.previousCropId)} to ${cropName(s.nextCropId)}, field free ${fmtDate(s.release, true)}`}. <button type="button" className="linkbtn" onClick={() => setView("plan")}>Back to the plan</button></p>
           <div className="climate-grid">
             <WeatherPanel initialTab={beyondForecast ? "history" : "now"} frost={frost} place={{ name: "General Roca area", lat: -39.053, lon: -67.6 }} series={data.power ? { startDate: data.power.startDate, tmin: data.power.tmin, tmax: data.power.tmax, tmean: data.power.tmean, precip: data.power.precip } : null} station={station} cold={{ t: cfg.t, d: cfg.d }} onReport={setWxReport} history={{ period: nasaPeriod, following: nasaManual === null, planWindow, planLabel: period.historyLabel, setManual: setNasaManual, followPlan: () => setNasaManual(null) }} forecastPeriod={wxPeriod} setForecastPeriod={setWxPeriod} />
+            <SectionBoundary name="satellite evidence">
             <HlsPanel hls={data.hls} inter={data.hlsInter} shapes={data.shapes} selected={selected} onSelect={setSelObs} window={[period.start, period.end]} follow={follow} setFollow={setFollow} followInfo={followInfo} selection={hlsSel} parcel={parcel} onParcel={setParcel} area={(data.area?.outline as [number, number][]) ?? null} outlines={data.outlines} powerPeriod={data.power ? `${data.power.startDate.slice(0, 4)}–${powerLastDate({ startDate: data.power.startDate, tmin: data.power.tmin, tmax: data.power.tmax, tmean: data.power.tmean, precip: data.power.precip }).slice(0, 4)}` : "not loaded"} openDrawer={openDrawer} loading={data.loading} />
+            </SectionBoundary>
           </div>
           <EmitCard emit={data.emit} onSources={() => openDrawer("registry")} />
           {permanentPlan ? (
