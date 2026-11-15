@@ -8,15 +8,15 @@ const place = { name: "General Roca area", lat: -39.053, lon: -67.6 };
 // Test input shaped like the Open-Meteo response checked on 14 Nov 2026 (not live data).
 const sample = {
   latitude: -39.05097, longitude: -67.65433, elevation: 234, timezone: "America/Argentina/Buenos_Aires", utc_offset_seconds: -10800,
-  current_units: { temperature_2m: "°C", wind_speed_10m: "km/h" },
+  current_units: { time: "iso8601", interval: "seconds", temperature_2m: "°C", relative_humidity_2m: "%", precipitation: "mm", weather_code: "wmo code", wind_speed_10m: "km/h", wind_gusts_10m: "km/h" },
   current: { time: "2026-11-14T15:30", interval: 900, temperature_2m: 29, relative_humidity_2m: 18, precipitation: 0, weather_code: 1, wind_speed_10m: 14.5, wind_gusts_10m: 35.6 },
-  daily_units: { temperature_2m_max: "°C", precipitation_sum: "mm", precipitation_probability_max: "%" },
+  daily_units: { time: "iso8601", weather_code: "wmo code", temperature_2m_max: "°C", temperature_2m_min: "°C", precipitation_sum: "mm", precipitation_probability_max: "%", wind_speed_10m_max: "km/h", wind_gusts_10m_max: "km/h" },
   daily: {
     time: ["2026-11-14", "2026-11-15", "2026-11-16"],
     weather_code: [1, 61, 3], temperature_2m_max: [30.1, 22.4, 18], temperature_2m_min: [9.2, 11, -0.4],
     precipitation_sum: [0, 4.2, null], precipitation_probability_max: [5, 70, null], wind_speed_10m_max: [20, 30, 12], wind_gusts_10m_max: [40, 55, 20],
   },
-  hourly_units: { temperature_2m: "°C", precipitation: "mm" },
+  hourly_units: { time: "iso8601", temperature_2m: "°C", precipitation: "mm", precipitation_probability: "%", relative_humidity_2m: "%", weather_code: "wmo code", wind_speed_10m: "km/h", wind_gusts_10m: "km/h" },
   hourly: { time: ["2026-11-14T00:00", "2026-11-14T01:00"], temperature_2m: [12, 11.5], precipitation: [0, 0], precipitation_probability: [3, 4], relative_humidity_2m: [40, 42], weather_code: [0, 0], wind_speed_10m: [5, 6], wind_gusts_10m: [9, 10] },
 };
 
@@ -34,7 +34,7 @@ describe("Open-Meteo adapter", () => {
     expect(f.daily[2]).toMatchObject({ tmin: -0.4, rainMm: null, rainProbMaxPct: null });
     expect(f.hourly[1]).toMatchObject({ date: "2026-11-14", hour: 1, temp: 11.5 });
     expect(f.current).toMatchObject({ time: "2026-11-14T15:30", intervalS: 900, temp: 29, gustKmh: 35.6 });
-    expect(f.units.precipitation_probability_max).toBe("%");
+    expect(f.units["daily.precipitation_probability_max"]).toBe("%");
     expect(f.gridLon).toBeCloseTo(-67.654, 3);
   });
   it("rejects a response in another time zone", () => {
@@ -45,8 +45,41 @@ describe("Open-Meteo adapter", () => {
     const facts = forecastFacts(f.daily);
     expect(facts).toContain("Lowest forecast minimum: -0.4 °C on 16 Nov.");
     expect(facts).toContain("1 day with a forecast minimum at or below 0 °C.");
-    expect(facts.join(" ")).toMatch(/Most rain expected: 4.2 mm on 15 Nov; 4.2 mm in total/);
+    // Day 3 has no rain value: the sum is partial, never a total.
+    expect(facts.join(" ")).toMatch(/Most rain expected: 4.2 mm on 15 Nov; 4.2 mm over the 2 days with a value \(partial sum: 1 without a value\)/);
+    expect(facts.join(" ")).not.toMatch(/in total/);
     expect(facts.join(" ")).not.toMatch(/damage|frost risk|safe|irrigat/i);
+  });
+  it("missing minima or rain are never reported as no cold days or no rain", () => {
+    const d = (date: string, tmin: number | null, rainMm: number | null) => ({ date, code: null, tmax: null, tmin, rainMm, rainProbMaxPct: null, windMaxKmh: null, gustMaxKmh: null });
+    const facts = forecastFacts([d("2026-11-14", 10, 0), d("2026-11-15", null, null)], 2).join(" ");
+    expect(facts).not.toMatch(/No day with a forecast minimum/);
+    expect(facts).not.toMatch(/No rain expected in these days/);
+    expect(facts).toMatch(/Minimum temperature available for 1 of 2 days/);
+    expect(facts).toMatch(/the other 1 cannot be checked/);
+  });
+  it("reports a horizon that does not cover the requested days", () => {
+    const d = (date: string) => ({ date, code: null, tmax: 20, tmin: 5, rainMm: 0, rainProbMaxPct: null, windMaxKmh: null, gustMaxKmh: null });
+    const facts = forecastFacts([d("2026-11-28"), d("2026-11-29")], 7);
+    expect(facts[0]).toBe("The forecast covers 2 of the 7 requested days (to 29 Nov).");
+    expect(facts.join(" ")).not.toMatch(/No rain expected in these days/);
+  });
+  it("converts Fahrenheit and inches explicitly and records the conversion", () => {
+    const f = normalizeOpenMeteo(
+      { ...sample, daily_units: { ...sample.daily_units, temperature_2m_min: "°F", temperature_2m_max: "°F", precipitation_sum: "inch" }, daily: { ...sample.daily, temperature_2m_min: [32, 50, 14], temperature_2m_max: [86, 68, 50], precipitation_sum: [0, 1, null] } },
+      place, "x",
+    );
+    expect(f.daily.map((x) => x.tmin)).toEqual([0, 10, -10]);
+    expect(f.daily[1].rainMm).toBe(25.4);
+    expect(f.daily[2].rainMm).toBeNull();
+    expect(f.units["daily.temperature_2m_min"]).toBe("°C (converted from °F)");
+  });
+  it("rejects unknown units, missing units, mismatched columns and another location", () => {
+    expect(() => normalizeOpenMeteo({ ...sample, daily_units: { ...sample.daily_units, temperature_2m_min: "K" } }, place, "x")).toThrow(/unit/);
+    const { temperature_2m_min: _drop, ...noUnit } = sample.daily_units;
+    expect(() => normalizeOpenMeteo({ ...sample, daily_units: noUnit }, place, "x")).toThrow(/no unit/);
+    expect(() => normalizeOpenMeteo({ ...sample, daily: { ...sample.daily, temperature_2m_min: [1, 2] } }, place, "x")).toThrow(/does not match/);
+    expect(() => normalizeOpenMeteo({ ...sample, latitude: -34.6, longitude: -58.4 }, place, "x")).toThrow(/different location/);
   });
   it("uses Argentina's local date at the UTC day boundary", () => {
     expect(todayInArgentina(new Date("2026-11-15T02:30:00Z"))).toBe("2026-11-14");
@@ -55,7 +88,7 @@ describe("Open-Meteo adapter", () => {
 });
 
 describe("consultation period coverage", () => {
-  const c: CoverageInput = { today: "2026-11-14", forecastFirst: "2026-11-14", forecastLast: "2026-11-29", bundledFirst: "1981-01-01", bundledLast: "2025-12-31", liveLast: null };
+  const c: CoverageInput = { today: "2026-11-14", forecastFirst: "2026-11-14", forecastLast: "2026-11-29", bundledFirst: "1981-01-01", bundledLast: "2025-12-31", liveDays: null };
   it("upcoming days inside the horizon are forecast; beyond it there is none", () => {
     expect(segmentPeriod("2026-11-20", "2026-12-05", c)).toEqual([
       { from: "2026-11-20", to: "2026-11-29", kind: "forecast" },
@@ -65,19 +98,22 @@ describe("consultation period coverage", () => {
   it("a distant 2027 period has no forecast at all", () => {
     expect(segmentPeriod("2027-03-25", "2027-04-25", c)).toEqual([{ from: "2027-03-25", to: "2027-04-25", kind: "none-future" }]);
   });
+  it("live coverage uses the dates actually returned: first date and internal gaps stay gaps", () => {
+    expect(segmentPeriod("2026-01-01", "2026-01-04", { ...c, liveDays: ["2026-01-02", "2026-01-04"] }).map((x) => x.kind)).toEqual(["none-past", "nasa-live", "none-past", "nasa-live"]);
+  });
   it("past days use the bundled NASA record, then the live query, and gaps stay gaps", () => {
     expect(segmentPeriod("2025-12-30", "2026-01-02", c)).toEqual([
       { from: "2025-12-30", to: "2025-12-31", kind: "nasa-bundled" },
       { from: "2026-01-01", to: "2026-01-02", kind: "none-past" },
     ]);
-    expect(segmentPeriod("2025-12-30", "2026-01-02", { ...c, liveLast: "2026-01-01" })).toEqual([
+    expect(segmentPeriod("2025-12-30", "2026-01-02", { ...c, liveDays: ["2026-01-01"] })).toEqual([
       { from: "2025-12-30", to: "2025-12-31", kind: "nasa-bundled" },
       { from: "2026-01-01", to: "2026-01-01", kind: "nasa-live" },
       { from: "2026-01-02", to: "2026-01-02", kind: "none-past" },
     ]);
   });
   it("a period crossing today splits into past and forecast", () => {
-    const s = segmentPeriod("2026-11-12", "2026-11-15", { ...c, liveLast: "2026-11-08" });
+    const s = segmentPeriod("2026-11-12", "2026-11-15", { ...c, liveDays: ["2026-11-01", "2026-11-08"] });
     expect(s.map((x) => x.kind)).toEqual(["none-past", "forecast"]);
   });
   it("an end before the start gives no segments", () => {
@@ -137,6 +173,7 @@ describe("NASA POWER history", () => {
     const r = parsePowerLive(raw, "2026-01-01", "2026-01-03");
     expect(r.series.tmin).toEqual([12, null, null]);
     expect(r.lastValid).toBe("2026-01-01");
+    expect(r.validDays).toEqual(["2026-01-01"]);
     expect(powerLiveUrl("2026-01-01", "2026-01-03")).toContain("start=20260101");
     expect(() => parsePowerLive({ ...raw, geometry: { coordinates: [-60, -30] } }, "2026-01-01", "2026-01-03")).toThrow(/different location/);
   });

@@ -177,7 +177,7 @@ export function powerLiveUrl(start: ISODate, end: ISODate): string {
 }
 
 /** Validate a POWER response: point, units, fill value → missing. Returns null-filled days for dates not returned. */
-export function parsePowerLive(raw: unknown, start: ISODate, end: ISODate): { series: PowerSeries; version: string | null; lastValid: ISODate | null } {
+export function parsePowerLive(raw: unknown, start: ISODate, end: ISODate): { series: PowerSeries; version: string | null; lastValid: ISODate | null; validDays: ISODate[] } {
   const r = raw as Record<string, any>;
   const coords = r?.geometry?.coordinates;
   if (!Array.isArray(coords) || Math.abs(coords[0] - POWER_POINT.lon) > 0.01 || Math.abs(coords[1] - POWER_POINT.lat) > 0.01) throw new Error("NASA POWER returned a different location.");
@@ -193,6 +193,7 @@ export function parsePowerLive(raw: unknown, start: ISODate, end: ISODate): { se
   };
   const s: PowerSeries = { startDate: start, tmin: [], tmax: [], tmean: [], precip: [] };
   let lastValid: ISODate | null = null;
+  const validDays: ISODate[] = [];
   for (let k = 0; k < n; k++) {
     const d = addDays(start, k);
     const row = [get("T2M_MIN", d), get("T2M_MAX", d), get("T2M", d), get("PRECTOTCORR", d)];
@@ -200,7 +201,10 @@ export function parsePowerLive(raw: unknown, start: ISODate, end: ISODate): { se
     s.tmax.push(row[1]);
     s.tmean.push(row[2]);
     s.precip.push(row[3]);
-    if (row.every((v) => v !== null)) lastValid = d;
+    if (row.every((v) => v !== null)) {
+      lastValid = d;
+      validDays.push(d);
+    }
   }
-  return { series: s, version: r.header?.api?.version ?? null, lastValid };
+  return { series: s, version: r.header?.api?.version ?? null, lastValid, validDays };
 }

@@ -75,37 +75,55 @@ export function useForecast(place: Place, enabled = true): ForecastState {
   return state;
 }
 
-export type LiveState = { status: "idle" | "loading" | "ok" | "error"; series: PowerSeries | null; lastValid: ISODate | null; version: string | null; error: string | null; retrievedAt: string | null };
+export type LiveState = {
+  status: "idle" | "loading" | "ok" | "error";
+  /** The exact dates this state answers; a series is never shown under other dates. */
+  range: [ISODate, ISODate] | null;
+  series: PowerSeries | null;
+  lastValid: ISODate | null;
+  /** Dates with complete values, so coverage reflects gaps and the first date, not only the last valid one. */
+  validDays: ISODate[];
+  version: string | null;
+  error: string | null;
+  retrievedAt: string | null;
+};
 
-/** Live NASA POWER for dates after the bundled record (no key). Cached by dates. */
+const liveKey = (r: [ISODate, ISODate] | null) => (r ? `umbral:power-live:v2:${r[0]}:${r[1]}` : null);
+const emptyLive = (status: LiveState["status"], range: [ISODate, ISODate] | null): LiveState => ({ status, range, series: null, lastValid: null, validDays: [], version: null, error: null, retrievedAt: null });
+
+/**
+ * Live NASA POWER for dates after the bundled record (no key). Each result is
+ * bound to its query dates: while a new request loads, no earlier series is
+ * returned, and a late answer to an older request is ignored.
+ */
 export function useLivePower(range: [ISODate, ISODate] | null): LiveState {
-  const [state, setState] = useState<LiveState>({ status: "idle", series: null, lastValid: null, version: null, error: null, retrievedAt: null });
+  const k = liveKey(range);
+  const [state, setState] = useState<LiveState & { key: string | null }>({ ...emptyLive("idle", null), key: null });
   const latest = useRef(createLatest());
-  const k = range ? `umbral:power-live:${range[0]}:${range[1]}` : null;
   useEffect(() => {
     const id = latest.current.next();
     if (!range || !k) {
-      setState({ status: "idle", series: null, lastValid: null, version: null, error: null, retrievedAt: null });
+      setState({ ...emptyLive("idle", null), key: null });
       return;
     }
     const cached = readStore<LiveState>(k);
     if (cached && Date.now() - cached.at < 6 * 3600 * 1000) {
-      setState(cached.value);
+      setState({ ...cached.value, key: k });
       return;
     }
-    setState((s) => ({ ...s, status: "loading", error: null }));
+    setState({ ...emptyLive("loading", range), key: k });
     const ctl = new AbortController();
     const t = setTimeout(async () => {
       try {
         const r = await fetch(powerLiveUrl(range[0], range[1]), { signal: ctl.signal });
         if (!r.ok) throw new Error(`NASA POWER answered ${r.status}.`);
         const p = parsePowerLive(await r.json(), range[0], range[1]);
-        const v: LiveState = { status: "ok", series: p.series, lastValid: p.lastValid, version: p.version, error: null, retrievedAt: new Date().toISOString() };
+        const v: LiveState = { status: "ok", range, series: p.series, lastValid: p.lastValid, validDays: p.validDays, version: p.version, error: null, retrievedAt: new Date().toISOString() };
         writeStore(k, v);
-        if (latest.current.isLatest(id)) setState(v);
+        if (latest.current.isLatest(id)) setState({ ...v, key: k });
       } catch (e) {
         if (ctl.signal.aborted || !latest.current.isLatest(id)) return;
-        setState({ status: "error", series: null, lastValid: null, version: null, error: e instanceof Error ? e.message : "NASA POWER not available.", retrievedAt: null });
+        setState({ ...emptyLive("error", range), error: e instanceof Error ? e.message : "NASA POWER not available.", key: k });
       }
     }, 400);
     return () => {
@@ -114,5 +132,8 @@ export function useLivePower(range: [ISODate, ISODate] | null): LiveState {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [k]);
-  return state;
+  // Between a date change and its effect, the stored state still belongs to the old dates: never return it.
+  if (state.key !== k) return emptyLive(k ? "loading" : "idle", range);
+  const { key: _key, ...out } = state;
+  return out;
 }

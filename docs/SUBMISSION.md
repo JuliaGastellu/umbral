@@ -1,4 +1,4 @@
-# Space Apps 2026 submission drafts
+# Space Apps 2026 submission text
 
 Challenge: Field Shift: Adapting Farms with NASA Data. Team: one person, Julia Gastellu (General Roca, Río Negro, Argentina). Local event: Puerto Madryn.
 
@@ -6,46 +6,57 @@ Challenge: Field Shift: Adapting Farms with NASA Data. Team: one person, Julia G
 Umbral
 
 ## Title
-Does a winter cover fit before the canals close and the cold arrives?
+Umbral: a plan for living soil around your commercial crop
 
-## Summary (high level)
+## Project links
+- Live app: https://umbral-altovalle.vercel.app
+- Code: https://github.com/JuliaGastellu/umbral
+- Read-only API used by the app: https://umbral-api.juliacgastellu.workers.dev/api/health
 
-In the Alto Valle of Río Negro, vegetable plots are irrigated from canals that close for winter, around late April, and reopen in August. Between the summer harvest and the next spring crop, the plot often sits bare. Umbral helps growers use that gap without wasting seed, fuel and work. Before anything is spent, it compares leaving the plot as it is with a grass cover and a legume cover. For each one it shows whether the dates fit and the last canal turns, how often those dates met an early cold night (NASA POWER), what real parcels looked like in a past season (NASA HLS), what each cover is for, and what your field's conditions add. The decision stays with the grower.
+## Summary
 
-I built Umbral, a planning tool for vegetable growers and farm advisers in General Roca, in the Alto Valle of Río Negro. Plots there are irrigated by gravity from canals that close in winter. Between a summer crop and the next spring transplant, a plot often keeps residue, bare soil or volunteer plants. Umbral helps decide whether to try a winter cover in that gap, and which one, compared with current practice. It does not decide for the grower and does not predict agronomic success.
+In the Alto Valle of Río Negro, farms are irrigated from canals that close for winter, around late April, and reopen in August. Between two annual crops the plot often sits bare; in orchards the interrow, and in strawberry beds the paths, are managed around a crop that stays. I built Umbral to help growers explore a service crop for that time and space without wasting seed, fuel and work, and to show honestly what NASA data can and cannot say about it.
 
-The grower moves the release date, the cover sowing date or the next-crop date on one timeline. Umbral updates three strategies at once (current practice, a grass cover and a legume cover). For each one it shows whether the dates fit, with the margin in days and the binding constraint. It also shows how many irrigation turns remain before the canal closes, what would change the result, and the single most useful thing to find out next. NASA POWER data from 1981 to 2025 links the same dates to historical frost exposure: in how many years there were at least D days before the first minimum at or below T °C. A station check shows that this regional product understates cold nights in the valley. NASA HLS observations of a cluster of parcels in the horticultural belt show what was actually green on dates in the 2024 season. Everything exports as JSON and a readable summary.
+The page is one journey. I start on a map of the public provincial parcel layer around General Roca with four study examples; only those four parcels have satellite readings, and the app says that my own field has not been processed. Four NASA layers each answer one question: what was green on a real 2024 date (HLS, 30 m), how the ground divided into green plants, dry material and bare soil (EMIT, the four examples together), and how often the planned window had enough days before a cold night in 45 years (POWER). Then I set the management conditions: production system (annual rotation, permanent orchard or beds), commercial crops, goal, dates and canal water. Umbral evaluates nine candidates, four established and five experimental, shows up to three side by side with their benefit, trade-off and evidence, and lets me select one. That option drives the calendar, the cold-night question, the date comparison, the nitrogen-process chain, saving and export, and every check I must settle before sowing is listed at once. Leaving the ground as it is stays a valid baseline.
+
+The rules are documented and tested, with no score. A cover whose dates or system do not fit cannot be selected; a weaker match for the goal stays selectable with that limit shown. Missing inputs, water that may not reach the cover area, and reported waterlogging or salinity make an option conditional without changing its dates. No money, yield or nitrogen amount is computed. A station check shows that the regional NASA POWER record places cold nights later than the nearest station, and the app says so next to its climate readings.
 
 ## Demo plan (7 slides, English)
 
-1. **The gap.** A tomato plot in General Roca is released in autumn; the canal closes in late April (29 April in the 2024 season); the next tomato goes in mid-October. What fits in between?
-2. **The question.** Which strategies fit, and what climate exposure did those same dates have in past years? Who controls the plot in winter decides whether the question applies at all.
-3. **Three steps.** My field (main crop harvested, date it is free) → My next season (next main crop, planting date, last canal turn) → Compare options. Winter covers (rye, oat, vetch) are clearly separate from main crops (vegetables and maize). Then one timeline. Release, three strategy bars with termination intervals, irrigation turns, canal closure, the next crop, a frost band from 45 years of NASA POWER, and HLS observation ticks.
-4. **Move one date.** Squash leaves the plot; tomato goes in on 15 October; the last canal turn is 25 April, every 10 days. If the plot is free on 25 March, the cover can grow 162 days, has 31 days of canal water and 4 turns, and in 41 of 45 past years there were at least 30 days before the first night at or below 0 °C. If the plot is free on 10 April: 146 days, 15 days of canal water, 2 turns, and 33 of 45 years. With the last turn unknown, the app shows "Needs data" and asks for that date.
-5. **What NASA adds.** POWER turns a generic rule ("sow 30–45 days before a hard frost", US guidance) into how many days there actually were in each of 45 years for that date. HLS shows the 2024 season of real parcels: which dates were clear, and what was green.
-6. **Honest limits.** At Neuquén Aero, POWER's first autumn night at or below 0 °C comes a median of 17.5 days later than the station's (24 days at −2 °C, 39 at −4 °C), so its cold-night counts are likely too favourable. The app says so next to every climate reading and in the export. "Fits" is a calendar statement, not establishment. Salinity is never converted or classified.
-7. **Next step.** Each strategy ends with one concrete question for the grower, the irrigation consortium or INTA. The export is ready to share. Local validation with growers and INTA is pending.
+1. **The gap.** A squash plot in General Roca is free on 10 April; the canal closes in late April (29 April in the 2024 season); tomato goes in on 15 October. What could go in between?
+2. **Locate and understand.** The parcel map with the study examples P1–P4 and four NASA layers: HLS chips and greenness for P2 on 16 April 2024, EMIT fractions for the four examples together, POWER cold nights from the planned sowing.
+3. **Conditions.** Production system, previous and next crop, the free date, the last canal turn (25 April, every 10 days) and the goal "Prepare the next crop". The "Result now" line follows every change.
+4. **The options.** Hairy vetch or vetch with oat: a legume adds nitrogen from the air (SARE, US guidance). 2 canal turns after sowing; in 33 of 45 past years there were 30+ days before the first night at or below 0 °C. What decides between them: how early I can sow. Next check: the last canal turn with the irrigation consortium.
+5. **Change one thing.** Goal "Hold back weeds": cereal rye, oat and the mix are shown with what decides between them; dates and weather do not change. Move the free date to 20 June: no option fits, and the app says so.
+6. **Other systems.** An established almond orchard with no water reaching the interrow, waterlogging and salinity: the trees stay, only the interrow window is evaluated, and all three checks are listed before sowing. Strawberry beds with plants kept: drip on the beds is shown, and water for the paths stays "not confirmed".
+7. **What NASA adds, and its limits; keeping the plan.** POWER turns a generic rule ("sow vetch 30–45 days before a killing frost") into how many days there actually were in each of 45 years, and reads optimistic against Neuquén airport. HLS shows real parcels on real dates; little green is not proof of bare soil, and greenness is not soil nitrogen. Save the plan, reopen it and export JSON or Markdown with its reasons, assumptions and sources. Local validation with growers is pending.
 
 ## NASA data
 
-- **NASA POWER** daily point API (v2.10.3, community AG; MERRA-2 / GEOS-IT): T2M_MIN, T2M_MAX, T2M, PRECTOTCORR, 1981–2025, General Roca cell. Used for first-frost exposure by date, the frost band, and growing degree days with an explicit base.
-- **HLS v2.0** (HLSL30_VI, HLSS30_VI, HLSL30, HLSS30) via CMR STAC and LP DAAC: NDVI, Fmask and true-colour chips for the 2024 reference season over a cluster of four parcels.
-- Earthdata CMR to verify collection IDs and availability.
+- **NASA POWER** daily point API (v2.10.3, MERRA-2 / GEOS-IT): T2M_MIN, T2M_MAX, T2M, PRECTOTCORR, 1981–2025, General Roca cell (about 55 km), plus recent past days fetched live. Used for cold-night exposure in the plan's period and the climate history view.
+- **HLS v2.0** (HLSL30_VI, HLSS30_VI, HLSS30 reflectance) via CMR STAC and LP DAAC: NDVI, Fmask and true colour for the 2024 season over the four study examples; an exploratory red-edge index from Sentinel-2 dates is kept in the data but not shown in the main flow.
+- **NASA GIBS** HLS imagery tiles for the dated map.
+- **EMIT L2B Fractional Cover v002**: median green-plant, dry-material and bare-soil fractions over the four examples together, on the real acquisition dates with valid pixels (8 January, 23 February and 11 November 2024; 15 September 2026).
+- Earthdata CMR to verify collection IDs and the availability of ECOSTRESS, SMAP and IMERG. These are assessed or catalogued only and are not used in the app (IMERG file access was confirmed, but its data are not processed).
 
 ## Space agency partner data
 - ESA Sentinel-2, through HLS S30 (contains modified Copernicus Sentinel data).
-- ESA WorldCover 10 m 2021 v200 (CC BY 4.0), to screen orchard parcels out of the study cluster.
+- ESA WorldCover 10 m 2021 v200 (CC BY 4.0), to screen orchard parcels out of the study selection.
 
 ## Other data and references
+- Open-Meteo forecast API (CC BY 4.0): weather for the coming days; not NASA data.
 - NOAA NCEI GSOD, station 87715099999 (Neuquén airport): regional check of POWER minimum temperature.
-- Gerencia de Catastro – Agencia de Recaudación Tributaria, Provincia de Río Negro (IDERN WFS geonode:PARCELARIO1): study-cluster selection and parcel-size statistics; only derived statistics and a generalized outline are published.
-- Departamento Provincial de Aguas (2024 canal closure), INTA Alto Valle (mean last frost, vetch trial in Cipolletti), SARE cover-crop guides (US), Noale 2015 (UNLP), Reinoso et al. (INTA/UNRN), SAGyP 2023, Paredes 2019 (CIEA), POWO (Kew). Full list: `docs/DATA_SOURCES.md`.
+- Gerencia de Catastro – Agencia de Recaudación Tributaria, Provincia de Río Negro (IDERN WFS geonode:PARCELARIO1): public provincial parcel layer. I used it to select and sample the four study examples and show the derived boundaries on the maps with attribution; the original file is obtained with a download script and not redistributed.
+- Departamento Provincial de Aguas (2024 canal closure), INTA Alto Valle publications (mean last frost; a vetch study in an almond orchard in Cipolletti, used as context), SARE cover-crop guides (US), Noale 2015 (UNLP), Reinoso et al. (INTA/UNRN), SAGyP 2023, Paredes 2019 (CIEA), POWO (Kew). Full list: `docs/DATA_SOURCES.md`.
 
 ## Tools
-TypeScript, React, Vite, Vitest, Leaflet with EOX Sentinel-2 cloudless, NASA GIBS and OpenStreetMap tiles; Python (standard library; rasterio, earthaccess, shapely, pyproj, numpy, Pillow); Playwright for browser checks; Vercel for hosting.
+TypeScript, React, Vite, Vitest, Leaflet with EOX Sentinel-2 cloudless, NASA GIBS and OpenStreetMap tiles; Python (standard library; rasterio, earthaccess, shapely, pyproj, numpy, Pillow); Cloudflare Workers for the read-only API; Vercel for hosting; Playwright and axe-core for browser and accessibility checks.
+
+## Online use
+The calculations and bundled data run in the browser once the page has loaded. Maps, the forecast and recent NASA POWER days need a connection. There is no offline installation; a first visit needs the network.
 
 ## AI assistance
 
-The Umbral logo was generated with an AI image tool (see `docs/AI_DISCLOSURE.md`).
+The Umbral logo is an AI-generated image; it carries a visible "Logo: AI-generated" mark in the app and in the logo file used in exports (see `docs/AI_DISCLOSURE.md`). NASA imagery and charts are data, not generated images.
 
-I used AI assistants (large language models) to search the literature, write and review code, and draft documentation. I defined the problem, chose the data, assumptions and scope, and checked the outputs against the cited sources. Agronomic validation with local growers or INTA is still pending.
+I used AI assistants (large language models) to search the literature, write and review code, run browser checks and draft documentation. I defined the problem, chose the data, assumptions and scope, and checked the outputs against the cited sources. Agronomic validation with local growers or agronomists is still pending; no institution has reviewed or endorsed the app.

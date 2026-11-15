@@ -1,0 +1,136 @@
+{
+ "product": "EMIT L2B Estimated Fractional Cover v002 (EMITL2BFRCOV.002, DOI 10.5067/EMIT/EMITL2BFRCOV.002)",
+ "collection": "C4303752957-LPCLOUD",
+ "retrieved": "2026-11-14T23:11:11Z",
+ "scope": "Cluster of the four processed examples: pixels whose centre lies inside the inward-buffered parcels, together. Not per parcel.",
+ "variables": "PV green vegetation, NPV non-photosynthetic material (dry plants, litter, wood and other material; not only crop residue), BARE exposed soil; fractions 0-1, with per-pixel uncertainty.",
+ "qcRule": "Only pixels with QC = 0 (no flag: valid fractional cover pixel; EMIT L2B FRCOV ATBD section 4.6) and fractions within 0-1 are used.",
+ "limits": "60 m pixels; a few pixels per parcel. NPV can be inflated near cloud and shadow edges. No scene between March and October 2024 in this collection over the area; values are never moved to another date or year.",
+ "scenes": [
+  {
+   "granule": "G4382483672-LPCLOUD",
+   "scene": "EMIT_L2B_FRCOV_002_20240108T140434",
+   "acquired": "2024-01-08",
+   "timeUTC": "14:04",
+   "sceneCloudPct": 0,
+   "pixelsInside": 32,
+   "pixelSizeNative": [
+    0.000542232520256367,
+    0.000542232520256367
+   ],
+   "qcValuesInside": {
+    "0": 32
+   },
+   "validPixels": 32,
+   "median": {
+    "PV": 0.623,
+    "NPV": 0.058,
+    "BARE": 0.271
+   },
+   "medianUncertainty": {
+    "PV": 0.007,
+    "NPV": 0.014,
+    "BARE": 0.016
+   },
+   "status": "values"
+  },
+  {
+   "granule": "G4384641503-LPCLOUD",
+   "scene": "EMIT_L2B_FRCOV_002_20240223T194227",
+   "acquired": "2024-02-23",
+   "timeUTC": "19:42",
+   "sceneCloudPct": 0,
+   "pixelsInside": 32,
+   "pixelSizeNative": [
+    0.000542232520256367,
+    0.000542232520256367
+   ],
+   "qcValuesInside": {
+    "0": 32
+   },
+   "validPixels": 32,
+   "median": {
+    "PV": 0.676,
+    "NPV": 0.0,
+    "BARE": 0.225
+   },
+   "medianUncertainty": {
+    "PV": 0.005,
+    "NPV": 0.016,
+    "BARE": 0.017
+   },
+   "status": "values"
+  },
+  {
+   "granule": "G4410409203-LPCLOUD",
+   "scene": "EMIT_L2B_FRCOV_002_20241111T184432",
+   "acquired": "2024-11-11",
+   "timeUTC": "18:44",
+   "sceneCloudPct": 56,
+   "pixelsInside": 32,
+   "pixelSizeNative": [
+    0.000542232520256367,
+    0.000542232520256367
+   ],
+   "qcValuesInside": {
+    "0": 32
+   },
+   "validPixels": 32,
+   "median": {
+    "PV": 0.744,
+    "NPV": 0.0,
+    "BARE": 0.256
+   },
+   "medianUncertainty": {
+    "PV": 0.005,
+    "NPV": 0.0,
+    "BARE": 0.009
+   },
+   "status": "values"
+  },
+  {
+   "granule": "G4321599381-LPCLOUD",
+   "scene": "EMIT_L2B_FRCOV_002_20260915T162209",
+   "acquired": "2026-09-15",
+   "timeUTC": "16:22",
+   "sceneCloudPct": 0,
+   "pixelsInside": 32,
+   "pixelSizeNative": [
+    0.000542232520256367,
+    0.000542232520256367
+   ],
+   "qcValuesInside": {
+    "-9999": 32
+   },
+   "validPixels": 0,
+   "status": "no EMIT data over the study area (fill value; the twin scene 20260915T162157 covers it)"
+  },
+  {
+   "granule": "G4321599382-LPCLOUD",
+   "scene": "EMIT_L2B_FRCOV_002_20260915T162157",
+   "acquired": "2026-09-15",
+   "timeUTC": "16:21",
+   "sceneCloudPct": 1,
+   "pixelsInside": 32,
+   "pixelSizeNative": [
+    0.000542232520256367,
+    0.000542232520256367
+   ],
+   "qcValuesInside": {
+    "0": 32
+   },
+   "validPixels": 32,
+   "median": {
+    "PV": 0.242,
+    "NPV": 0.453,
+    "BARE": 0.331
+   },
+   "medianUncertainty": {
+    "PV": 0.007,
+    "NPV": 0.024,
+    "BARE": 0.03
+   },
+   "status": "values"
+  }
+ ]
+}

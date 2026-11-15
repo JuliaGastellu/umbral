@@ -1,6 +1,23 @@
 # Methods
 
-Umbral answers one question: *between the release of this plot and the next crop, which strategies fit, and what climate exposure did those same dates have in past years?* It compares calendars and shows historical weather frequencies. It does not decide, and it does not predict establishment, growth, yield or income.
+## How to read this file
+
+The section below, "Current behaviour", describes the final app. Sections 1–18 are a dated record of how the rules were built and corrected; where an earlier section conflicts with a later one or with "Current behaviour", the later text applies. Parts marked as removed or superseded are kept for traceability only.
+
+## Current behaviour (15 Nov 2026)
+
+Umbral helps explore a service crop for the time and space around a commercial crop. It checks dates, water, past weather and published evidence; it does not decide, and it does not predict establishment, growth, yield, income or fertiliser savings.
+
+- **Systems** (`src/engine/period.ts`, `recommend.ts`). Annual rotation, or beds whose plants are removed: the management period runs from the date the field is free to the date the soil must be ready (next crop minus preparation), with canal turns and closure (§1). Permanent orchard, or beds whose plants stay: harvest does not free the plot; only the cover area and the cover window entered are evaluated, and the main crop is the standing crop. Beds with plants "not sure" are calculated as if the plants stay and labelled as not confirmed.
+- **Candidates.** Established: cereal rye, oat, hairy vetch, hairy vetch + oat. Experimental: winter field pea, small-seeded faba bean, forage radish, buckwheat, strawberry clover (perennial; orchard interrow or bed paths only).
+- **Statuses.** Excluded and not selectable: dates do not fit (including zero days, or a sourced frost condition that fails in most past years) or the system does not suit the species. Selectable: "Worth exploring", "Conditional: check first", "Experimental candidate", "Dates fit; partial match for this goal", "Dates fit; does not serve this goal". Goal match, calendar viability and evidence level are kept separate (§15–§17).
+- **Checks before sowing** (`src/engine/planText.ts`). The selected option's blocking checks plus the shared ones, without duplicates, in a fixed priority (access, system, soil, water, calendar, climate, species); all are shown, the first as the next check (§18). Reported waterlogging or salinity, water that does not or may not reach the cover area, young or unknown-age trees, a missing last canal turn and unread past weather make an option conditional; they never change the dates. No tolerance threshold is applied.
+- **Past weather** (§3). A general cold check with the person's threshold and days, from the selected option's sowing (annual) or over the cover window (standing crops). It changes a candidate's status only where a source states a threshold with a unit (forage radish, buckwheat, winter pea). The station check travels with every climate output.
+- **Satellite evidence** (§4, §13, §17). HLS shows dated greenness of the study examples; EMIT shows median ground-cover fractions for the four examples together. Neither ranks candidates or measures soil nitrogen.
+- **Nitrogen** is shown as a process (establishment, growth and nodulation with water, biomass retained, breakdown, overlap with uptake), never as an amount.
+- **Assumptions.** Termination intervals without a local source (including the 21-day default for several experimental species) are labelled as scenario assumptions and can be changed.
+- **Export** (§17). JSON (`umbral.plan/2`) and Markdown are built from the plan on screen, including unsaved edits, the selected option and the system's management period. The annual A/B/C strategies appear only for annual plans, as labelled reference comparators.
+- **Browser state.** Saved plans and notes in `localStorage` (`umbral:plans:v2`); the plan on screen is not saved automatically.
 
 ## 1. Engine rules (`src/engine/`)
 
@@ -126,11 +143,11 @@ Keep the next crop's date / explore soil cover / avoid extra field operations. I
 
 ## 5. IMERG
 
-Deferred. It would only add satellite precipitation accumulated over the selected window, per year, next to POWER's PRECTOTCORR. It needs the GES DISC EULA, which only the author can accept, and it comes after the core passes the acceptance checks. If it is not added, this section records why.
+Not integrated. It would only add satellite precipitation accumulated over the selected window, per year, next to POWER's PRECTOTCORR. File access was confirmed on 15 Nov 2026, but no IMERG data were processed, so POWER rain remains the only rain record in the app (status in `public/data/sources_registry.json`).
 
-## 6. Scenario explainer
+## 6. Scenario explainer (removed 15 Nov 2026)
 
-"Ask about this scenario" offers three questions: what limits this option, what changes if sowing is delayed, and what information is missing. Answers are rule-based and computed with the same engine; no AI model is used and nothing is labelled as a model response. "What changes if sowing is delayed?" runs the engine for +7 and +14 days, shows the three quantities and the calendar check for each, and lets the user apply one. It never states species suitability, yields, forecasts or water sufficiency.
+Removed from the interface in the final integration; the "Why this option?" rows and the date comparison cover the same questions. Historical description: "Ask about this scenario" offered three questions: what limits this option, what changes if sowing is delayed, and what information is missing. Answers are rule-based and computed with the same engine; no AI model is used and nothing is labelled as a model response. "What changes if sowing is delayed?" runs the engine for +7 and +14 days, shows the three quantities and the calendar check for each, and lets the user apply one. It never states species suitability, yields, forecasts or water sufficiency.
 
 ## 7. Revision of 14 Nov 2026 (independent review)
 
@@ -140,7 +157,7 @@ Fixed with regression tests in `src/engine/review.test.ts`: unknown water after 
 
 - Plain words in the main view; technical terms (NDVI, median, reanalysis, Fmask, sensor codes) stay in "How this was built" sections and in Sources and methods.
 - Example opened by default (after computing): squash then tomato, plot free 10 Apr, last canal turn 25 Apr every 10 days, cold night at 0 °C, D = 30. It shows 146 days the cover can grow, 15 days until the last irrigation, 2 canal turns, and 33 of 45 years with at least 30 days before the first cold night. With the plot free on 25 Mar: 162 days, 31 days, 4 turns, 41 of 45. At −2 °C the years only split from mid-April, so 0 °C is the default. The engine tests keep their own baseline scenario.
-- Map: four study parcels drawn from simplified shapes and coloured by greenness on the selected date in five display steps (below 0.2 "little or no green cover", 0.2–0.35, 0.35–0.5, 0.5–0.65, 0.65 and above "very green"); a parcel with fewer than 20 % visible pixels is shown as "hidden by clouds". Background: EOX Sentinel-2 cloudless 2024 (a mosaic; it does not change with the date), optional NASA GIBS HLS true colour for the selected date, OpenStreetMap as fallback. If every background fails, the parcels and colours still show.
+- Map (superseded on 14 Nov 2026, see §13): four study parcels drawn from simplified shapes and coloured by greenness on the selected date in five display steps (below 0.2 "little or no green cover", 0.2–0.35, 0.35–0.5, 0.5–0.65, 0.65 and above "very green"); a parcel with fewer than 20 % visible pixels is shown as "hidden by clouds". Background: EOX Sentinel-2 cloudless 2024 (a mosaic; it does not change with the date), optional NASA GIBS HLS true colour for the selected date, OpenStreetMap as fallback. If every background fails, the parcels and colours still show.
 - The small 30 m image chip is no longer the main image; the season chart is linked to the map date and shades the scenario window placed on 2024 by day and month.
 
 ## 9. Product flow and evidence controls (14 Nov 2026)
@@ -178,8 +195,145 @@ Fixed with regression tests in `src/engine/review.test.ts`: unknown water after 
 
 ## 12. Judging pass (14 Nov 2026)
 
-- First screen: the question, a purpose line, the example result with the NASA cold-night number, and one action ("Try another free date", which moves the field-free date and the cover sowings together) plus "See the NASA image nearest this date". A cover sown after the last useful turn is described in words ("you would sow after the last useful canal turn"), never as a saving.
+- First screen (replaced on 14 Nov 2026, see §13): the question, a purpose line, the example result with the NASA cold-night number, and one action ("Try another free date", which moves the field-free date and the cover sowings together) plus "See the NASA image nearest this date". A cover sown after the last useful turn is described in words ("you would sow after the last useful canal turn"), never as a saving.
 - "What NASA data does here": POWER gives the 45-year cold-night count for the chosen dates; HLS shows the real parcels on each 2024 date.
 - The result card ends with "What this does not tell you".
-- Map: thin parcel boundaries (land registry, no attributes) over every background, toggle on by default; the four example parcels keep a thicker outline and labels.
+- Map (removed on 14 Nov 2026, see §13): thin parcel boundaries over every background.
 - Walkthrough check (automated, about 20 s): open → change the free date (15 → 31 days of canal water, 2 → 4 turns, 33 → 41 of 45) → open the NASA image nearest the date (1 Apr 2024) → export.
+
+
+## 13. Cover suggestion, corrections and new sources (14 Nov 2026)
+
+### Flow
+Map-first: (1) choose an example field on a context map (EOX photo or street map; examples then drawn as approximate locations; boundaries restored on 15 Nov, see §16); (2) weather for the example area with Today / Next days (Open-Meteo, weather models, not NASA) and NASA history (POWER); (3) crops, dates and canal water; (4) goal; (5) suggestion; (6) saved plans and dated field notes. Evidence follows: the dated NASA HLS map and chart, EMIT fractional cover when values exist, the calendar check per option, the comparison of two free dates, and the full calendar with year-by-year cold nights.
+
+### Suggestion engine (`src/engine/recommend.ts`)
+- Candidates: cereal rye, oat, hairy vetch, hairy vetch + oat; baseline "leave it as now". Each variant is evaluated with the existing calendar engine (its own termination interval).
+- Dimensions kept apart: purpose match (supports / partial / against / not assessed, with sourced reasons), dates and canal water (existing calendar states, available days, turns, binding constraints), past cold nights (POWER count with the station-check warning), plot conditions (user inputs; unknown is valid), productive use (service cover / possible harvested use / not supported / not assessed), next step.
+- Rules: calendar failure excludes; best purpose match among the viable covers; ties are shown together with a fixed, sourced deciding factor; "needs data" or a partial match makes the suggestion provisional; "not sure" shows a grass and a legume and asks for the goal; productive use is always provisional and states that removal reduces the soil effects and that profitability is not calculated.
+- Species statements: SARE *Managing Cover Crops Profitably*, re-read 14 Nov 2026 (cereal rye, oats, hairy vetch pages). Next-crop links used only where the page states them: vetch before transplanted early-summer crops such as tomato; vetch partly replacing nitrogen fertiliser for maize (no amount); waiting 3–4 weeks after rye and 2–3 weeks after oats before sowing small-seeded crops (onion).
+- No amounts: nitrogen, biomass, yield, money. A 0 °C night is reported as a temperature reading, not as SARE's "killing frost".
+
+### HLS evidence and exports (`src/engine/hlsSelect.ts`)
+- One historical-period function shared by the screen and both exports: the plan interval is placed on the reference season by day and month with the same length (a plan crossing 31 December continues into the next calendar year of the season). Real acquisition dates are kept; plan interval, historical interval and the rule are exported.
+- The selected scope (one example or the cluster) is applied before summaries and exports; each exported observation carries acquisition date, sensor, quality, clear and total pixels, NDVI median and scope. When one example is selected, cluster values for the same dates are exported separately, labelled "for comparison only".
+- The season summary is derived from the values: medians for February–April, June–August and October–November; the highest and lowest are named, with seasons within 0.05 of either named together as about the same; when all three are within 0.05 the text says they are about the same through the year (a display rule), and all values below 0.2 are called low. No cause is inferred.
+
+### Weather
+- Open-Meteo units are validated per variable (°C, mm, km/h, %); °F, inch, m/s, mph and knots are converted explicitly and recorded; any other or missing unit, mismatched columns or a location more than 0.25° away rejects the response.
+- Forecast facts report N of M days covered; "no day at or below 0 °C" and "no rain" are said only when every expected day has a value; sums over incomplete days are called partial.
+- Live NASA POWER results are bound to their exact query dates; while a new request loads, no earlier series is returned, and a late answer to an older request is ignored. Coverage uses the dates actually returned (first date and internal gaps included). Tested with a React hook test (`src/weather/useLivePower.test.tsx`).
+- NASA history follows the plan (free date + 30 days) by default; editing the dates switches to "Exploring another period" with a button to follow the plan again.
+- Chart wording: the climate band's lines are daily medians across years, not one real year. Hourly forecast gaps break the temperature line and are marked "?" for rain, never drawn as zero.
+
+### New sources
+- EMIT fractional cover (`scripts/emit_frcov.py`): cluster-level medians of PV, NPV and BARE with median per-pixel uncertainty, for real EMIT dates only. Probed with authenticated LP DAAC reads of the six layers plus QC. Values (median of the 32 valid 60 m pixels in the cluster, QC 0): 8 Jan 2024 green 62 %, dry plant material 6 %, bare soil 27 %; 23 Feb 2024 68 %, 0 %, 23 %; 11 Nov 2024 74 %, 0 %, 26 %; 15 Sep 2026 24 %, 45 %, 33 %. Scene 20260915T162209 has only fill values over the area (its twin 20260915T162157 covers it; counted once). No scene between March and October 2024. Shown in the evidence as "What was on the ground on a few dates"; not used in the suggestion. The September 2026 dry-material share may include cloud-edge effects noted by the producer.
+- HLS S30 red edge (`scripts/hls_ndre.py`): NDRE = (B8A − B05)/(B8A + B05) on Sentinel-2 dates only, same clean-pixel rule; Landsat dates are not computed or mixed. Exploratory. Probed: all 48 Sentinel-2 dates of the 2024 season read (0 read failures), 32 clear for the cluster; cluster NDRE medians 0.15–0.46. Scale 0.0001 and fill −9999 read from each file. Landsat dates not computed. Kept in `public/data/hls_ndre.json` and the source registry; not shown in the main flow and not used in the suggestion, because it adds no grower question beyond NDVI here and must not be read as a nitrogen measure.
+- Status of every other researched source: `docs/DATA_SOURCES.md`.
+
+### Publication boundary (superseded on 15 Nov 2026, see §16)
+The contextual 212-outline layer and the four simplified example outlines were removed on 14 Nov as a precaution; they were restored on 15 Nov at source precision.
+
+### AI-generated logo
+The logo is marked "AI-generated logo" next to it in the header, inside `public/logo.svg` (the file embedded in the Markdown export), and in the export caption. NASA imagery and charts are not marked as synthetic.
+
+
+## 14. Workspace redesign and rule corrections (14 Nov 2026)
+
+### Layout
+Three views share one state: **Plan** (editor beside the result), **Climate & NASA** (weather, NASA history, HLS map and trajectory, EMIT, full calendar) and **Saved plans**. The Plan editor starts with the field map; after a choice it collapses to the field name with "Change field". Editor groups: Field, Crops & dates, Canal water, Winter goal (with plot access); soil history and advanced assumptions open on demand. The result shows a plan summary, up to three candidates side by side, the deciding factor, one next check, the canal-water and NASA cold-night facts once, a shared calendar, other options, and "Compare another free date" (applying a date is a named action). On narrow screens a bottom bar switches between "Edit plan" and "View options".
+
+### Corrected rules (`src/engine/recommend.ts`)
+- Zero or negative calendar time: never suggested ("No time for a living cover"). Positive time is calendar information, not proof of establishment; no minimum is invented.
+- Statuses: "Worth exploring" needs a fitting calendar, a goal match and no blocking check; otherwise "Conditional: check first". Blocking checks: plot access (someone else, or agreement pending), reported waterlogging or salinity (review first; no tolerance data), a calendar input still needed, and past cold nights that could not be read. Species cold notes (vetch: SARE 30–45 days before a killing frost; oat winterkill) are shown but do not block. Checks never change the dates.
+- Next check priority: access, soil review, missing calendar input, unread climate, then the irrigation action.
+- Termination interval: if the person changed the group's interval, the setting applies to the other variant of that group and is labelled "your setting"; otherwise each variant uses its species default with its source.
+- Baseline: residue, volunteer plants or bare soil stay as they are; their soil effect is not assessed (no claim of "no effects").
+- Regional evidence records: see `docs/DATA_SOURCES.md`; context only, no figures.
+- Past weather and satellite evidence do not rank covers; the result says so.
+
+### Inputs
+- "I know it" for the last canal turn opens an empty date; until one is entered the turn stays unknown. A labelled example date can be chosen on purpose.
+- Date fields explain an incomplete entry instead of silently ignoring it.
+
+### Saved plans (`src/engine/planStore.ts`)
+Version-2 envelope: scenario, chosen field, climate settings, evidence choices (image, follow-plan, history period) and the plan's own notes. Version-1 saves and global notes are migrated (field "not recorded"; notes "not linked to a plan") and the originals are left in place.
+
+### Tests added
+Zero-day rejection, unread climate, waterlogging review, plot access, termination provenance, fair baseline, regional evidence by next crop, last-turn entry (React test), complete save/restore and migration.
+
+
+## 15. Production systems, experimental species and the source-to-decision record (15 Nov 2026)
+
+### Real-window reachability
+Measured in a real Chrome window on the author's machine: outer 1366 × 720, CSS viewport 1366 × 599, DPR 1. `html` and `body` overflow visible; the page scrolls as one document and the wheel reaches the footer. The 1036 × 692 window reported in the audit could not be reproduced there (the window did not resize), and the person's own tab was not reachable by the browser connector, so the cause of the vertical cut-off reported in that tab is **not established**. Emulated CSS viewports 1366 × 657, 1036 × 571, 1093 × 526 (125 %), 911 × 438 (150 %) and 390 × 760: no horizontal page scroll, wheel and End reach the footer, focusing the last control scrolls it into view. Wide content (calendar, option table) scrolls inside its own box.
+
+### Active candidate
+One active candidate id in the app state (validated against the current suggestion; if it disappears the app says so). `candidateScenario()` gives the variant and effective termination interval used by the calendar, the date comparison, an applied date change, the export (`activeCandidate`) and saved plans. Fixes the audited case (oat on the calendar, rye in the comparison).
+
+### Saved plans
+Stored plans keep the active candidate and an input state ("incomplete" when a date was being edited). "Update plan" (keeps notes, shows when the field changes) and "Save a copy" (new plan, no notes) are separate; an "Unsaved changes" state is shown. Stored entries are schema-checked on load; unreadable ones are kept aside, not dropped; new fields get defaults.
+
+### Systems
+- Annual rotation: unchanged engine.
+- Orchard: no field-free date; window entered by the person; checks for water reaching the area (drip on the tree row does not water the interrow), tree age, tree row versus interrow, mowing for perennial covers, late-frost note around flowering (stages not modelled), evergreen citrus (no winter dormancy), bell bean citrus caution. Almond with vetch counts as a local study in this system (Domini et al.); other orchards do not.
+- Beds: plants kept → only a stated free area (paths) is evaluated and drip on the beds does not water the paths; plants removed → annual rotation.
+
+### Experimental species
+Pea, faba bean, forage radish, buckwheat, strawberry clover. States: "Experimental candidate" when dates fit; "Not on these dates" or "Not for this system" otherwise. Sourced climate tests on NASA POWER for each candidate's own dates (thresholds and units above). Nutrient mechanisms kept separate: legume fixation; radish captures existing N; buckwheat may recycle P but does not create it. Same-family checks against the next crop.
+
+### Source-to-decision record
+Each candidate carries five dimensions with provenance: kind (your input, calculation from your dates, reanalysis, published guidance, regional study, research brief, app rule), source, scope, dates, quality, role and what is missing. They are exported with the active candidate. No forecast is used for plans beyond the forecast horizon; regional products are never labelled as plot measurements; no nitrogen release model was run and no amount is computed.
+
+### Sources assessed but not added to the decision
+IMERG (access confirmed, file not processed), ECOSTRESS and SMAP (catalog only), soil maps (not verified at plot scale), CC-NCALC and PCSE (not run). See `docs/DATA_SOURCES.md`.
+
+
+## 16. Provincial parcel layer: reproducible integration (15 Nov 2026)
+
+- Download: `scripts/fetch_parcelario.py` (public IDERN WFS, `geonode:PARCELARIO1`, TPA SUBRURAL or RURAL, bounding box −67.75, −39.15, −67.35, −38.90, EPSG:4326), with a provenance sidecar. Re-download on 15 Nov 2026 matched the analysed file exactly (2,341 parcels, identical geometry and attributes).
+- Selection and sampling: `scripts/parcels.py` (SUBRURAL 2–15 ha, WorldCover tree share ≤ 0.25, four adjacent examples; 30 m inward buffer); HLS, EMIT and NDRE use pixels whose centre lies inside those buffers.
+- Publication: `scripts/parcel_layers.py` writes the 212 surrounding parcels and the four examples with their boundaries as served (no simplification or rounding) plus the sampling polygons, with source attribution and terms. No owner or crop is attached.
+- Maps: example parcels drawn with their boundaries; the dated NASA map adds the sampled area (dashed); a toggle shows the surrounding parcel boundaries. Attribution under each map.
+- Not included in the repository: the original GeoJSON; see `docs/DATA_SOURCES.md` for what is confirmed and what is not.
+
+## 17. Final interface integration (15 Nov 2026)
+
+The approved interface (designed as a prototype in Framer with illustrative fixtures) was rebuilt in the repository's own React components and connected to the real data; no Framer code or iframe is used.
+
+- **One journey.** Plan view: (1) *Locate & understand*: the real parcel map (`ParcelMap`), P1–P4 or all four, and a layer rail (Location, HLS, EMIT, POWER) whose status reads "Connected" only when that file loaded; (2) *Management conditions*: the existing editor as compact selects; (3) *Your possibilities*: all nine evaluated candidates in one catalogue select, up to three cards, one active candidate.
+- **POWER panel.** The cold-night question is asked from the active candidate's sowing to the next crop (annual), or over the window the person entered (orchard, beds with plants kept), with the person's threshold and days. The same numbers appear in the cards, in "Why this option?" and in the export (`coldNightQuestion`). The station-check lag is shown next to it.
+- **HLS panel.** Real acquisition dates for the selected scope, the 30 m chips without smoothing, clear pixels of the chosen example, the trajectory. Data come from `/api/observations` when an API is configured (`src/api/observations.ts`); an answer is used only if its scope and date equal the request, a late answer for an earlier selection is ignored, and any failure keeps the bundled file. Chip paths resolve against the asset base (the app's address unless `VITE_UMBRAL_ASSET_BASE` is set), never against the API host.
+- **EMIT panel.** One entry per acquisition date; on 2026-09-15 two scenes exist, and the one with valid pixels is used (its twin covered the area with fill only). Medians of each fraction are taken separately and need not add to 100 %. Next to each median, "pixel unc." is the median of the per-pixel uncertainties the product publishes; it is not a confidence interval for the cluster value, and no aggregate uncertainty is computed. A parcel selection states that EMIT has no per-parcel value.
+- **Provenance chips.** Each "Why this option?" row carries the kind of evidence with its real strength: NASA observation, NASA historical model, Published guidance (for example SARE, US guidance, not a trial), Regional study, Research summary · original not rechecked (statements taken from the research brief whose source page could not be reread), Your input or Assumption. The export keeps the same kinds.
+- **Standing crops.** For orchards and kept beds the goal reads "Support the standing crop", benefit texts say "the standing <crop>" and state that competition for water and nitrogen is the main risk; the annual option table is not shown.
+- **Management period** (`src/engine/period.ts`). Derived once from the system: annual, field free to soil ready; orchard or kept beds, the cover window entered (there is no field-free date). The same period sets the NASA history default ("Following your plan: …"; the annual default stays the first 31 days after the field is free), the HLS period, the cold-night question and the export. A period chosen in the history view is labelled as exploration, with a way back. The annual calendar detail of the Climate view is not shown for a standing crop.
+- **Soil in every system.** Reported waterlogging or salinity is a blocking review for every candidate, annual or permanent; the reported conditions are carried in the candidate (`soil`), its water-and-soil dimension, the next check and the export. Dates are never changed and no tolerance threshold is applied. The family rule (successor crop) does not apply to a standing crop.
+- **Goal match, viability and evidence are separate.** Only a date or system conflict excludes a candidate. A viable candidate outside the best goal match is "Dates fit; partial match for this goal" or "Dates fit; does not serve this goal", stays selectable to compare, and carries that limit on its card and in the export.
+- **Canonical export** (`src/engine/planExport.ts`, schema `umbral.plan/2`). JSON and Markdown are built from the selected candidate and the system: plan (goal, crops, management period), selected candidate (calendar, ending, benefit, trade-off, checks, reported soil, five dimensions with provenance, nutrient process), the selected candidate's own annual calendar (annual only), the cold-night question shown on screen with its per-year rows, all candidates evaluated, the two-date comparison (annual only), HLS, weather, assumptions for this system, and raw inputs with the fields that do not apply. The three annual strategies appear only for annual plans, last, as "Reference comparators (not the selected plan)". Tests in `src/engine/planExport.test.ts` inspect the whole structure for the audited cases.
+- **First screen.** The HLS season trajectory is folded into "Greenness through the 2024 season" (closed by default).
+- **Checks (15 Nov 2026, after the audit fixes).** 162 Vitest tests; app and Worker type checks; build and publish check; production build in a browser: almond with salinity and waterlogging (vetch from Worth exploring to Conditional, the soil review as next check, dates unchanged, both conditions in JSON and Markdown), kept beds with salinity, oat with the weeds goal (153 days in every primary field; rye's 146 days only among the labelled comparators), the orchard window in Plan, history, JSON and Markdown, oat selectable as a partial soil-cover match while strawberry clover stays excluded; axe without violations on Plan (all sections open), the EMIT layer and the orchard Climate view at 1366×768; no horizontal scroll at 375 px. The zoom levels and the other sizes listed below were not re-measured after these fixes.
+- **Earlier checks (before the audit fixes).** 156 Vitest tests; app and Worker type checks; production build and publish check; `npm audit` 0 vulnerabilities; production build in a browser with the API, without it and with the API configured but down; axe without violations on every layer, the orchard case, Climate & NASA and Saved plans; no horizontal scroll and footer reachable at 1366×768, 1036×692, 125 % and 150 % zoom, 768 and 375 px with every section expanded.
+
+## 18. Grower-facing clarity pass (15 Nov 2026)
+
+Fixes from an AI walkthrough with two hypothetical growers (annual irrigated vegetables; orchard). Not a test with real people; a short test with a grower is still needed. Calendar arithmetic, species thresholds, data files and irrigation rules are unchanged.
+
+- **Water statement by the input that answers it** (`src/engine/planText.ts`, `waterFact`). Kept beds: "Drip on the beds: Yes/No/Not sure" and, separately, "Water reaching the paths: not confirmed" (or the free area is not stated). The drip answer is never shown as water for the cover. Orchard: irrigation water reaching the interrow or tree row. Annual: canal opportunities. JSON adds `waterReachingCoverArea` next to `dripOnBeds`.
+- **All checks before sowing** (`beforeSowing`). The selected option's blocking checks plus shared ones, without duplicates (same kind and same text), in the engine's priority order. The first is "Next check"; the rest are listed at once under "Also before sowing (N)". "Why this option?", the JSON (`selectedCandidate.beforeSowing`, additive) and the Markdown use the same list.
+- **Current result while editing** (`ResultSummary`). Option, status and number of checks, with "View result"; it says when a date is incomplete and uses a warning style when nothing fits or only an exploratory option is selected. Sticky below the topbar at 1024 px and wider, inside the editor column; the bottom bar carries it below 1024 px. Focused controls are kept clear of it with scroll padding.
+- **Notifications** (`src/ui/notice.ts`). One live region. A notice belongs to the state it was issued for: it is cleared by the next change of plan, field or selected option, by changing view, or after 8 s. Only save and open notices link to Saved plans. In the page flow below 700 px. Unresolved checks are never notices; they stay in the result.
+- **Dates being typed.** A year outside 2000–2100 is treated as still being typed. Browsers fill the year digit by digit (0002, 0020, 0202, 2027); before this guard, a year such as 0002 was accepted as a plan date and froze the page while the calendar was computed over two thousand years.
+- **Study examples and example dates.** P1–P4 carry a visible "Study examples" caption. Prefilled dates show "Starts with example dates — replace them with yours" until one is changed. New plan names state scenario, year and evidence (for example "Maize → Onion · 2027 · evidence: example P2"); existing names are not changed. The saved-plan list shows the selected option.
+- **System switch.** `cropsBySystem` (optional, saved with the plan) remembers the main crop of each production system, so annual → orchard → annual restores the annual crop. Plans saved before it existed simply have none.
+- **Opening over unsaved work.** Opening a saved plan while the plan on screen has unsaved changes asks: save a copy then open, discard and open, or cancel. The copy must be stored before anything opens; on a storage failure nothing opens. The untouched example never asks.
+- **Wording.** Standing crops are not called "the next crop" in the deciding factor. Beds whose plants are "Don't know" read "If the … plants stay (not confirmed)". "?" answers read "Not sure". The vetch + oat trade-off is the sourced limitation of its vetch, not a restatement of its benefit; when no limitation is sourced, the card says none was assessed. The general cold check (your threshold) and a species guidance reference are labelled separately. EMIT shows "median per-pixel uncertainty", explained as not the uncertainty or a confidence interval of the cluster value; QC 0 is described as the product's code for valid pixels. NDVI is described as ranging from −1 to +1, with the chart axis 0–0.9. The HLS heading names the 2024 season; the EMIT card names its real dates (2024 and September 2026). Markdown uses plain labels; JSON keys are unchanged.
+- **Accessibility.** Image-date controls use unique ids in each view. A provenance chip that inherited the form-field style (class `input`) was renamed. Labelled `div`s got a role. A description reference that pointed at a missing element was removed.
+
+## 19. Release pass (15 Nov 2026)
+
+- **Visible text.** Counted in a clean browser at 1366×768 on first load: every rendered text node in the Plan view, excluding `<option>` lists, closed `<details>` content (their summaries counted), hidden and zero-size elements, script and style; a word is a whitespace-separated token with a letter or digit. Before this pass: Plan view 952 words, "Your possibilities" 460. After: 805 and 344 (map section 338 → 293; editor 111 → 125 with the result line and the example-date cue). The 250-word target for the decision surface is not met; the remaining text is the options' benefits and trade-offs, the checks before sowing and the evidence labels, which were kept. Changes: the goal reasoning moved into "How this suggestion is made"; the station caveat appears once, inside the cold-check card; the nitrogen process is collapsed by default; map and image-date notes say each thing once.
+- **Mobile bar.** "View result" shows a short status (for example "No option fits", or the selected option and its number of checks) on at most two lines; the full status is its accessible name.
+- **Contrast over imagery** (axe "incomplete", reviewed by hand). Map credits and the scale bar now sit on a solid background, credit links are underlined and show a focus ring. The "green" example badge used white text on #6fae55 (2.67:1); it now uses dark text (5.53:1), and white remains only on the darkest step (6.54:1). Remaining incomplete items are decorative icons hidden from assistive technology.
+- **Focus on date fields.** Chromium moves focus into a date field's internal parts, where `:focus-visible` does not match; form fields now show a focus ring on `:focus` and `:focus-within`. All 66 tab stops of the expanded editor show a ring at 1366×768 and 375×812.
+- **Publication guard.** It now matches forbidden file names by name (Windows paths included), scans files without an extension such as `.netrc`, and detects bearer tokens without an `Authorization:` prefix, JSON web tokens, Cloudflare and Earthdata credential variables and private keys (`src/engine/publishGuard.test.ts`).

@@ -7,6 +7,32 @@ import type { TurnSchedule } from "./turns";
 
 export type Access = "me" | "someone-else" | "can-agree";
 export type Priority = "keep-date" | "explore-cover" | "avoid-operations";
+/** What the grower wants from the winter; it changes the explanation, never the dates. */
+export type Goal = "next-crop-n" | "soil-cover" | "weeds" | "productive-use" | "not-sure";
+
+/** Permanent orchard: the trees stay; only a management area and window are evaluated. */
+export interface OrchardInputs {
+  age: "young" | "established" | "unknown";
+  area: "interrow" | "tree-row";
+  /** Does irrigation water reach the area where the cover would grow? Drip on the tree row usually does not reach the interrow. */
+  waterReach: "yes" | "no" | "unknown";
+  irrigation: "drip-row" | "furrow" | "sprinkler" | "unknown";
+  mowing: "yes" | "no" | "unknown";
+  /** When the area can carry a cover (sowing to mowing/ending), as entered. */
+  window: [ISODate, ISODate];
+}
+
+/** Beds or camellones (e.g. strawberry): harvest does not by itself free the beds. */
+export interface BedInputs {
+  plants: "removed" | "retained" | "unknown";
+  mulch: "plastic" | "organic" | "none" | "unknown";
+  drip: "yes" | "no" | "unknown";
+  /** Area available for a cover while plants are kept. */
+  area: "paths" | "none" | "unknown";
+}
+
+export const DEFAULT_ORCHARD: OrchardInputs = { age: "unknown", area: "interrow", waterReach: "unknown", irrigation: "unknown", mowing: "unknown", window: ["2027-04-01", "2027-09-15"] };
+export const DEFAULT_BEDS: BedInputs = { plants: "unknown", mulch: "unknown", drip: "unknown", area: "unknown" };
 
 export interface CoverSettings {
   variantId: string;
@@ -32,9 +58,28 @@ export interface Scenario {
   access: Access;
   water: WaterInputs;
   priority: Priority;
+  goal: Goal;
+  /** Production system: annual rotation, permanent orchard, or beds that may be kept. */
+  system: "annual" | "orchard" | "beds";
+  orchard: OrchardInputs;
+  beds: BedInputs;
   covers: Record<"B" | "C", CoverSettings>;
   whatIf: WhatIf;
   context: PlotContext;
+  /**
+   * The main crop last chosen in each production system, so switching system and back
+   * restores it. Optional: plans saved before it existed simply have none.
+   */
+  cropsBySystem?: Partial<Record<"annual" | "orchard" | "beds", string>>;
+}
+
+/** Switch production system, remembering the crop of the system left and restoring the one returned to. */
+export function switchSystem(x: Scenario, sys: Scenario["system"], firstFor: (sys: Scenario["system"], avoid: string) => string, fits: (cropId: string, sys: Scenario["system"]) => boolean): Scenario {
+  if (sys === x.system) return x;
+  const memory = { ...(x.cropsBySystem ?? {}), [x.system]: x.previousCropId };
+  const remembered = memory[sys];
+  const previousCropId = remembered && fits(remembered, sys) ? remembered : fits(x.previousCropId, sys) ? x.previousCropId : firstFor(sys, x.nextCropId);
+  return { ...x, system: sys, previousCropId, cropsBySystem: memory };
 }
 
 export const NO_WHATIF: WhatIf = { releaseDelay: 0, tractorDelay: 0, loseLastTurn: false, earlierTransplant: 0 };
@@ -59,6 +104,10 @@ export function defaultScenario(): Scenario {
       minTurnsAfterSowing: 1,
     },
     priority: "explore-cover",
+    goal: "next-crop-n",
+    system: "annual",
+    orchard: { ...DEFAULT_ORCHARD },
+    beds: { ...DEFAULT_BEDS },
     covers: {
       B: { variantId: "rye", sowing: release, terminationDays: 28, targetDurationDays: null },
       C: { variantId: "vetch", sowing: release, terminationDays: 21, targetDurationDays: null },

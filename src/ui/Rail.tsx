@@ -1,9 +1,8 @@
 import { useState, type ReactNode } from "react";
 import { CROPS, STRATEGIES, SOURCES } from "../engine/catalog";
-import { isValidISO, type ISODate } from "../engine/dates";
+import { isPlanDate, isValidISO, type ISODate } from "../engine/dates";
 import type { PlotContext, SalinityMethod, Texture } from "../engine/context";
-import type { Access, Priority, Scenario } from "../engine/scenario";
-import { Info } from "./bits";
+import type { Priority, Scenario } from "../engine/scenario";
 import type { ParcelStats } from "../data";
 
 interface Props {
@@ -31,7 +30,7 @@ function DateField({ label, value, onChange, tag, hint, id, allowUnknown }: { la
           disabled={allowUnknown && value === null && draft === null}
           onChange={(e) => {
             const v = e.target.value;
-            if (isValidISO(v)) {
+            if (isPlanDate(v)) {
               setDraft(null);
               onChange(v);
             } else setDraft(v);
@@ -49,7 +48,7 @@ function DateField({ label, value, onChange, tag, hint, id, allowUnknown }: { la
   );
 }
 
-function Seg<T extends string>({ value, options, onChange, label }: { value: T; options: { v: T; l: string }[]; onChange: (v: T) => void; label: string }) {
+export function Seg<T extends string>({ value, options, onChange, label }: { value: T; options: { v: T; l: string }[]; onChange: (v: T) => void; label: string }) {
   return (
     <div className="seg" role="radiogroup" aria-label={label}>
       {options.map((o) => (
@@ -97,31 +96,19 @@ function NumField({ id, label, value, onChange, min = 0, max = 365, unit = "d", 
   );
 }
 
-export function Rail({ s, set, openDrawer }: Props) {
+export function Rail({ s, set }: Props) {
   const w = s.whatIf;
   return (
-    <div className="rail assumptions" aria-label="Assumptions">
+    <div className="rail assumptions" role="group" aria-label="Assumptions">
       <div className="rail-body">
-        <p className="rail-notice">Example values. Change them to match your field. Crops, dates and the last canal turn are set in steps 1 and 2 above.</p>
+        <p className="rail-notice">Example values. Change them to match your field. Crops, dates, the last canal turn, canal closure and plot access are set in the plan editor.</p>
         <section className="group" aria-labelledby="g-crops">
           <h2 id="g-crops">Soil preparation</h2>
           <NumField id="prep" label="Days to prepare the soil before the next crop" value={s.preparationDays} onChange={(v) => set((x) => ({ ...x, preparationDays: v ?? 0 }))} max={90} hint="Ploughing and beds. Example value." />
         </section>
 
         <section className="group" aria-labelledby="g-water">
-          <h2 id="g-water">Canal and who decides</h2>
-          <div className="field">
-            <span className="lbl" id="acc-l">Who controls the plot April–September?</span>
-            <Seg<Access> label="Plot access" value={s.access} onChange={(v) => set((x) => ({ ...x, access: v }))} options={[{ v: "me", l: "Me" }, { v: "can-agree", l: "Can be agreed" }, { v: "someone-else", l: "Someone else" }]} />
-          </div>
-          <DateField
-            id="closure"
-            label="Canal closes on"
-            value={s.water.closure}
-            onChange={(v) => v && set((x) => ({ ...x, water: { ...x.water, closure: v } }))}
-            tag={<span className="src-tag">Source: DPA 2024</span>}
-            hint={<>The canal closed on 29 Apr in 2024 (DPA). Change it if you know this year's date. <Info label="canal closure" onClick={() => openDrawer("sources")} /></>}
-          />
+          <h2 id="g-water">Canal turn details</h2>
           {s.water.frequencyDays !== null && !s.water.lastTurn && (
             <div className="field">
               <span className="lbl">One known turn date (fixes the phase)</span>
@@ -131,14 +118,10 @@ export function Rail({ s, set, openDrawer }: Props) {
                 onChange={(v) => set((x) => ({ ...x, water: { ...x.water, referenceTurn: v === "known" ? x.release : null } }))}
                 options={[{ v: "unknown", l: "Don't know" }, { v: "known", l: "Known" }]}
               />
-              {s.water.referenceTurn && <input aria-label="Reference turn date" className="input" type="date" value={s.water.referenceTurn} onChange={(e) => isValidISO(e.target.value) && set((x) => ({ ...x, water: { ...x.water, referenceTurn: e.target.value } }))} />}
+              {s.water.referenceTurn && <input aria-label="Reference turn date" className="input" type="date" value={s.water.referenceTurn} onChange={(e) => isPlanDate(e.target.value) && set((x) => ({ ...x, water: { ...x.water, referenceTurn: e.target.value } }))} />}
             </div>
           )}
           <NumField id="minTurns" label="Turns the seed needs after sowing" value={s.water.minTurnsAfterSowing} max={10} unit="" onChange={(v) => set((x) => ({ ...x, water: { ...x.water, minTurnsAfterSowing: v ?? 0 } }))} hint="Example value. A count of turns, not of how much water." />
-          <div className="field">
-            <span className="lbl">Other water after the canal closes (well, pond)</span>
-            <Seg<"yes" | "no" | "unknown"> label="Other water after closure" value={s.water.waterAfterClosure} onChange={(v) => set((x) => ({ ...x, water: { ...x.water, waterAfterClosure: v } }))} options={[{ v: "no", l: "No" }, { v: "unknown", l: "Don't know" }, { v: "yes", l: "Yes" }]} />
-          </div>
         </section>
 
         <section className="group" aria-labelledby="g-cover">
@@ -211,7 +194,7 @@ export function Rail({ s, set, openDrawer }: Props) {
   );
 }
 
-function PlotContextGroup({ ctx, set, parcels }: { ctx: PlotContext; set: (f: (c: PlotContext) => PlotContext) => void; parcels: ParcelStats | null }) {
+export function PlotContextGroup({ ctx, set, parcels }: { ctx: PlotContext; set: (f: (c: PlotContext) => PlotContext) => void; parcels: ParcelStats | null }) {
   const textures: Texture[] = ["unknown", "sand", "loamy sand", "sandy loam", "loam", "silt loam", "clay loam", "clay"];
   const sal = ctx.salinity;
   return (

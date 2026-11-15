@@ -22,7 +22,10 @@ prov["requests"] = {
     "power": prov.get("power", {}).get("requestUrl"),
     "stationCheck": "NOAA GSOD https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/{year}/87715099999.csv and POWER at the station point (see stationCheck.power.requestUrl)",
     "hls": "CMR STAC https://cmr.earthdata.nasa.gov/stac/LPCLOUD/search (HLSL30_VI_2.0, HLSS30_VI_2.0), windowed reads from LP DAAC; see scripts/hls_trajectory.py",
-    "parcels": "IDERN WFS https://idern.rionegro.gov.ar/geoserver/ows layer geonode:PARCELARIO1 (raw file not published); see scripts/parcels.py and scripts/parcel_outlines.py",
+    "emit": "LP DAAC EMITL2BFRCOV.002 (C4303752957-LPCLOUD) layers PV, NPV, BARE, their UNC and QC for 5 scenes over the study rectangle; windowed authenticated reads; see scripts/emit_frcov.py",
+    "hlsNdre": "CMR STAC HLSS30_VI_2.0 items (2024 season, Sentinel-2 dates only); reflectance B8A, B05 and Fmask read from LP DAAC; see scripts/hls_ndre.py",
+    "catalogChecks": "Public CMR collection and granule searches for IMERG (C2723754864-GES_DISC), SMAP SPL4SMGP v008 (C3480440870-NSIDC_CPRD), ECOSTRESS JET v002/ETAUX v003/JET v003, 14 Nov 2026",
+    "parcels": "IDERN WFS https://idern.rionegro.gov.ar/geoserver/ows layer geonode:PARCELARIO1, TPA in (SUBRURAL, RURAL), BBOX(-67.75, -39.15, -67.35, -38.90), EPSG:4326; downloaded with scripts/fetch_parcelario.py (original file kept in data/raw/, not redistributed); published layers built by scripts/parcels.py and scripts/parcel_layers.py",
 }
 PROV.write_text(json.dumps(prov, indent=1, ensure_ascii=False), encoding="utf-8")
 print(len(files), "files")

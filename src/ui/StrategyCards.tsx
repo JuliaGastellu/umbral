@@ -46,7 +46,7 @@ export function StrategyCards({ ev, s, whatIfActive, climateBy }: Props) {
         <p className="shared">
           Same for all three: field free {fmtDate(ev.effective.cal.release)}; last canal turn {s.water.lastTurn ? fmtDate(s.water.lastTurn) : "not known"} ({turns === "unknown" ? "turns after sowing not known" : `${turns} turn${turns === "1" ? "" : "s"} after sowing`}); canal closes {fmtDate(s.water.closure)}; other water after that: {WATER_AFTER[s.water.waterAfterClosure]}; soil ready by {fmtDate(ev.window.soilReady)}. The label checks dates only; it does not rank the covers.
         </p>
-        <div className="tbl-scroll">
+        <div className="tbl-scroll" tabIndex={0}>
           <table className="data options">
             <thead>
               <tr>

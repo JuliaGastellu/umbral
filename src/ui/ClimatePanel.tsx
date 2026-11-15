@@ -1,4 +1,4 @@
-import { diffDays, fmtDate, isValidISO, type ISODate } from "../engine/dates";
+import { diffDays, fmtDate, isPlanDate, type ISODate } from "../engine/dates";
 import { fmtT, type Condition, type ExposureSummary } from "../engine/climate";
 import type { ClimateReading, ClimateSettings, StationSummary } from "../engine/exposure";
 import type { PowerMeta } from "../data";
@@ -77,7 +77,7 @@ export function ClimatePanel({ reading, cfg, setCfg, meta, station, nextCrop, op
             <div className="field">
               <label htmlFor="cl-end">Look until</label>
               <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                <input id="cl-end" className="input" type="date" value={cfg.searchEnd ?? nextCrop} onChange={(e) => isValidISO(e.target.value) && setCfg({ ...cfg, searchEnd: e.target.value })} style={{ width: "auto" }} />
+                <input id="cl-end" className="input" type="date" value={cfg.searchEnd ?? nextCrop} onChange={(e) => isPlanDate(e.target.value) && setCfg({ ...cfg, searchEnd: e.target.value })} style={{ width: "auto" }} />
                 {cfg.searchEnd && <button type="button" className="btn small" onClick={() => setCfg({ ...cfg, searchEnd: null })}>Next crop</button>}
               </div>
             </div>
@@ -138,7 +138,7 @@ function CompareBars({ c, d, t }: { c: NonNullable<Props["compare"]>; d: number;
   return (
     <div className="cmp-bars">
       <h3 className="sub-q">Your plan and the other date, same question</h3>
-      <div className="tbl-scroll">
+      <div className="tbl-scroll" tabIndex={0}>
         <svg width={W + 230} height={rows.length * 46 + 26} role="img" aria-label={rows.map((r) => `${r.label}: ${r.s.met} of ${r.s.total} years with ${d} or more days before the first night at or below ${fmtT(t)} °C, ${r.s.notMet} with fewer, ${r.s.notEvaluable} can't tell`).join(". ")}>
           {rows.map((r, i) => {
             const y = 8 + i * 46;

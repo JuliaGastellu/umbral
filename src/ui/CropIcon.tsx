@@ -14,6 +14,18 @@ export function CropIcon({ id, size = 28 }: { id: IconId | string; size?: number
   );
 }
 
+const FRUIT: Record<string, string> = {'apple': '#c8402f', 'pear': '#a8b83a', 'peach': '#f08a4b', 'nectarine': '#e2563a', 'plum': '#6b3a7a', 'cherry': '#b3142b', 'apricot': '#f2a33a', 'almond': '#a7865a', 'pecan': '#7a5230', 'walnut': '#8b6a3f', 'orange': '#f08c1a', 'mandarin': '#f39a2b', 'lemon': '#e8d034', 'grapefruit': '#f2a35a'};
+
+function tree(fruit: string, evergreen: boolean) {
+  return (
+    <g strokeLinecap="round" strokeLinejoin="round">
+      <rect x={14.6} y={19} width={2.8} height={10} rx={1} fill="#7a5a3a" />
+      <circle cx={16} cy={13} r={10} fill={evergreen ? "#2f7a3a" : "#6fae4a"} stroke="#3f6b22" strokeWidth={0.8} />
+      {[[11, 11], [19, 9], [20, 16], [12, 17], [16, 13]].map(([x, y]) => <circle key={`${x}${y}`} cx={x} cy={y} r={1.9} fill={fruit} />)}
+    </g>
+  );
+}
+
 function cerealHead(dx = 0, spikelets = 6, awns = true) {
   const parts = [];
   for (let i = 0; i < spikelets; i++) {
@@ -116,7 +128,66 @@ function draw(id: string) {
           <path d="M6 22 L9 15 M11 22 L12 17 M17 22 L20 14 M23 22 L22 16 M26 22 L28 18" stroke="#c9a96b" strokeWidth={1.6} />
         </g>
       );
+    case "apple":
+    case "pear":
+    case "peach":
+    case "nectarine":
+    case "plum":
+    case "cherry":
+    case "apricot":
+    case "almond":
+    case "pecan":
+    case "walnut":
+    case "orange":
+    case "mandarin":
+    case "lemon":
+    case "grapefruit":
+      return tree(FRUIT[id], id === "orange" || id === "mandarin" || id === "lemon" || id === "grapefruit");
+    case "strawberry":
+      return (
+        <g {...S}>
+          <path d="M16 9 C9 9 7 15 9 20 C11 25 14 28 16 28 C18 28 21 25 23 20 C25 15 23 9 16 9 Z" fill="#d7263d" stroke="#8a1323" strokeWidth={0.8} />
+          <path d="M11 9 L16 5 L21 9 L18 8 L16 10 L14 8 Z" fill="#4f8f3a" />
+          {[[13, 15], [19, 15], [16, 19], [12, 21], [20, 21], [16, 24]].map(([x, y]) => <circle key={`${x}${y}`} cx={x} cy={y} r={0.8} fill="#f6e27a" />)}
+        </g>
+      );
+    case "pea":
+    case "faba":
+      return (
+        <g {...S}>
+          <path d="M6 22 C10 12 22 8 27 10 C25 16 16 24 6 22 Z" fill="#7fb24a" stroke="#3f6b22" strokeWidth={0.9} />
+          {[0, 1, 2].map((i) => <circle key={i} cx={12 + i * 4.5} cy={18 - i * 2.6} r={id === "faba" ? 2.2 : 1.8} fill="#b6d97a" stroke="#3f6b22" strokeWidth={0.6} />)}
+        </g>
+      );
+    case "radish":
+      return (
+        <g {...S}>
+          <path d="M16 12 C21 12 22 18 19 24 L16 30 L13 24 C10 18 11 12 16 12 Z" fill="#f2f0e6" stroke="#9a8f78" strokeWidth={0.9} />
+          <path d="M16 12 L12 4 M16 12 L16 3 M16 12 L20 4" stroke="#4f8f3a" strokeWidth={1.8} />
+        </g>
+      );
+    case "buckwheat":
+      return (
+        <g {...S}>
+          <path d="M16 30 L16 12" stroke="#a24d3a" strokeWidth={1.4} />
+          {[[16, 8], [12, 11], [20, 11], [14, 6], [18, 6]].map(([x, y]) => <circle key={`${x}${y}`} cx={x} cy={y} r={2.2} fill="#fff" stroke="#c9a3a3" strokeWidth={0.7} />)}
+          <path d="M16 20 C11 18 9 21 9 21 C12 23 15 22 16 20 Z" fill="#4f8f3a" />
+        </g>
+      );
+    case "clover":
+      return (
+        <g {...S}>
+          <path d="M16 30 L16 18" stroke="#3f6b22" strokeWidth={1.4} />
+          {[[12, 15], [20, 15], [16, 10]].map(([x, y]) => <circle key={`${x}${y}`} cx={x} cy={y} r={4} fill="#6fae4a" stroke="#3f6b22" strokeWidth={0.7} />)}
+          <circle cx={16} cy={6} r={2.4} fill="#f2b6c6" />
+        </g>
+      );
     default:
-      return <circle cx={16} cy={16} r={10} fill="#ccc" />;
+      return (
+        <g {...S}>
+          <path d="M16 28 C8 22 8 10 16 4 C24 10 24 22 16 28 Z" fill="#9cc47a" stroke="#4f7a32" strokeWidth={0.9} />
+          <path d="M16 28 L16 8" stroke="#4f7a32" strokeWidth={0.9} />
+        </g>
+      );
   }
 }

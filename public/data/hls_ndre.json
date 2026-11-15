@@ -1,0 +1,1888 @@
+{
+ "meta": {
+  "retrieved": "2026-11-14T23:39:07Z",
+  "collection": "HLSS30 v2.0 surface reflectance bands B8A and B05 (assets of the HLSS30_VI v2.0 items), Fmask from the same item",
+  "formula": "NDRE = (B8A - B05) / (B8A + B05)",
+  "sensor": "Sentinel-2 only (S30). Landsat L30 has no red-edge band; not computed, not mixed.",
+  "cleanRule": "Same as the NDVI series: pixel centre inside a parcel after a 30 m inward buffer; Fmask cloud, adjacent, shadow, snow, water and high aerosol excluded.",
+  "meaning": "Vegetation signal related to chlorophyll. Not soil nitrogen, not a fertilization diagnosis, not nitrogen fixed by a legume.",
+  "B8AScale": 0.0001,
+  "B8ANodata": -9999.0,
+  "B05Scale": 0.0001,
+  "B05Nodata": -9999.0
+ },
+ "observations": [
+  {
+   "id": "HLS-VI.S30.T19HFS.2024032T141709.v2.0",
+   "date": "2024-02-01",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.412,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.542
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.401
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.47
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.139
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024037T141711.v2.0",
+   "date": "2024-02-06",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 79,
+   "quality": "clear",
+   "ndreMedian": 0.401,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 19,
+     "quality": "partial",
+     "ndreMedian": 0.546
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.411
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 16,
+     "quality": "partial",
+     "ndreMedian": 0.407
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 20,
+     "quality": "clear",
+     "ndreMedian": 0.145
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024042T141709.v2.0",
+   "date": "2024-02-11",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.457,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.566
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.454
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.501
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.154
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024047T141711.v2.0",
+   "date": "2024-02-16",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.464,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.562
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.465
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.487
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.14
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024052T141709.v2.0",
+   "date": "2024-02-21",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.423,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.491
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.411
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.492
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.11
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024057T141711.v2.0",
+   "date": "2024-02-26",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.433,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.49
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.431
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.502
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.133
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024062T141709.v2.0",
+   "date": "2024-03-02",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.409,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.449
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.41
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.47
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.098
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024067T141711.v2.0",
+   "date": "2024-03-07",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 0,
+   "quality": "obscured",
+   "ndreMedian": null,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024072T141709.v2.0",
+   "date": "2024-03-12",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.399,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.442
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.403
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.461
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.116
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024077T141711.v2.0",
+   "date": "2024-03-17",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.41,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.461
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.404
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.452
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.096
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024087T142041.v2.0",
+   "date": "2024-03-27",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 0,
+   "quality": "obscured",
+   "ndreMedian": null,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024092T141709.v2.0",
+   "date": "2024-04-01",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.413,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.523
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.425
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.407
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.104
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024097T141711.v2.0",
+   "date": "2024-04-06",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.414,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.513
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.42
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.396
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.104
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024107T141711.v2.0",
+   "date": "2024-04-16",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.412,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.502
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.424
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.388
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.185
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024112T141709.v2.0",
+   "date": "2024-04-21",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 0,
+   "quality": "obscured",
+   "ndreMedian": null,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024117T141711.v2.0",
+   "date": "2024-04-26",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.356,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.444
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.381
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.313
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.103
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024122T141709.v2.0",
+   "date": "2024-05-01",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.331,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.416
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.347
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.287
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.094
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024127T142041.v2.0",
+   "date": "2024-05-06",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.296,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.394
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.317
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.239
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.093
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024132T141709.v2.0",
+   "date": "2024-05-11",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 0,
+   "quality": "obscured",
+   "ndreMedian": null,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024137T141711.v2.0",
+   "date": "2024-05-16",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 0,
+   "quality": "obscured",
+   "ndreMedian": null,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024142T141709.v2.0",
+   "date": "2024-05-21",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.276,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.359
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.311
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.203
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.127
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024167T141721.v2.0",
+   "date": "2024-06-15",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.275,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.332
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.311
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.18
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.114
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024177T141711.v2.0",
+   "date": "2024-06-25",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.262,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.307
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.289
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.185
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.113
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024182T141719.v2.0",
+   "date": "2024-06-30",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.238,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.297
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.283
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.174
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.116
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024187T141711.v2.0",
+   "date": "2024-07-05",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.233,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.28
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.263
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.156
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.093
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024192T141709.v2.0",
+   "date": "2024-07-10",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 23,
+   "quality": "partial",
+   "ndreMedian": 0.192,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.192
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024197T141711.v2.0",
+   "date": "2024-07-15",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.215,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.25
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.243
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.165
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.096
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024217T141711.v2.0",
+   "date": "2024-08-04",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 0,
+   "quality": "obscured",
+   "ndreMedian": null,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024222T141719.v2.0",
+   "date": "2024-08-09",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.217,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.251
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.246
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.172
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.11
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024227T141711.v2.0",
+   "date": "2024-08-14",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.209,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.237
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.239
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.163
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.096
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024232T141709.v2.0",
+   "date": "2024-08-19",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 0,
+   "quality": "obscured",
+   "ndreMedian": null,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024237T141711.v2.0",
+   "date": "2024-08-24",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.23,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.259
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.256
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.17
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.109
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024242T141709.v2.0",
+   "date": "2024-08-29",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.21,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.24
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.241
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.154
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.084
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024247T141711.v2.0",
+   "date": "2024-09-03",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 79,
+   "quality": "clear",
+   "ndreMedian": 0.146,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 11,
+     "quality": "partial",
+     "ndreMedian": 0.263
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.257
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.139
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.083
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024252T141709.v2.0",
+   "date": "2024-09-08",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 0,
+   "quality": "obscured",
+   "ndreMedian": null,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024257T141711.v2.0",
+   "date": "2024-09-13",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 0,
+   "quality": "obscured",
+   "ndreMedian": null,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024267T141711.v2.0",
+   "date": "2024-09-23",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.243,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.275
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.291
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.158
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.086
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024277T141711.v2.0",
+   "date": "2024-10-03",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.265,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.333
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.305
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.184
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.095
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024282T141709.v2.0",
+   "date": "2024-10-08",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 0,
+   "quality": "obscured",
+   "ndreMedian": null,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024287T141711.v2.0",
+   "date": "2024-10-13",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 53,
+   "quality": "partial",
+   "ndreMedian": 0.259,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 15,
+     "quality": "partial",
+     "ndreMedian": 0.438
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 11,
+     "quality": "partial",
+     "ndreMedian": 0.375
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 5,
+     "quality": "partial",
+     "ndreMedian": 0.149
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.113
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024292T141709.v2.0",
+   "date": "2024-10-18",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 0,
+   "quality": "obscured",
+   "ndreMedian": null,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024297T141711.v2.0",
+   "date": "2024-10-23",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 0,
+   "quality": "obscured",
+   "ndreMedian": null,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024302T141709.v2.0",
+   "date": "2024-10-28",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.438,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.533
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.467
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.295
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.105
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024307T141711.v2.0",
+   "date": "2024-11-02",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.439,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.521
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.468
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.3
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.102
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024312T141659.v2.0",
+   "date": "2024-11-07",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 0,
+   "quality": "obscured",
+   "ndreMedian": null,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024317T141711.v2.0",
+   "date": "2024-11-12",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 0,
+   "quality": "obscured",
+   "ndreMedian": null,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 0,
+     "quality": "obscured",
+     "ndreMedian": null
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024327T141711.v2.0",
+   "date": "2024-11-22",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.41,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.465
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.458
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.358
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.133
+    }
+   ]
+  },
+  {
+   "id": "HLS-VI.S30.T19HFS.2024332T141709.v2.0",
+   "date": "2024-11-27",
+   "sensor": "S30",
+   "pixels": 95,
+   "cleanPixels": 95,
+   "quality": "clear",
+   "ndreMedian": 0.365,
+   "parcels": [
+    {
+     "label": "Parcel 1",
+     "pixels": 26,
+     "cleanPixels": 26,
+     "quality": "clear",
+     "ndreMedian": 0.427
+    },
+    {
+     "label": "Parcel 2",
+     "pixels": 24,
+     "cleanPixels": 24,
+     "quality": "clear",
+     "ndreMedian": 0.413
+    },
+    {
+     "label": "Parcel 3",
+     "pixels": 23,
+     "cleanPixels": 23,
+     "quality": "clear",
+     "ndreMedian": 0.315
+    },
+    {
+     "label": "Parcel 4",
+     "pixels": 22,
+     "cleanPixels": 22,
+     "quality": "clear",
+     "ndreMedian": 0.108
+    }
+   ]
+  }
+ ]
+}

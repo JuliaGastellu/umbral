@@ -72,6 +72,7 @@ export interface Forecast {
   timezone: string;
   utcOffsetSeconds: number;
   retrievedAt: string; // ISO, client clock
+  /** Unit per variable as normalized, e.g. "daily.temperature_2m_min": "°C (converted from °F)". */
   units: Record<string, string>;
   current: { time: string; intervalS: number | null; temp: Num; humidityPct: Num; rainMm: Num; code: Num; windKmh: Num; gustKmh: Num } | null;
   daily: DailyWeather[];
@@ -81,39 +82,100 @@ export interface Forecast {
 }
 
 const num = (v: unknown): Num => (typeof v === "number" && Number.isFinite(v) ? v : null);
-const col = (o: Record<string, unknown[]> | undefined, k: string, i: number): Num => num(o?.[k]?.[i]);
+
+/** Target unit per kind of variable, and the conversions accepted from the provider. */
+type Kind = "temp" | "rain" | "wind" | "pct" | "code";
+const KIND: Record<string, Kind> = {
+  temperature_2m: "temp", temperature_2m_max: "temp", temperature_2m_min: "temp",
+  precipitation: "rain", precipitation_sum: "rain",
+  wind_speed_10m: "wind", wind_gusts_10m: "wind", wind_speed_10m_max: "wind", wind_gusts_10m_max: "wind",
+  relative_humidity_2m: "pct", precipitation_probability: "pct", precipitation_probability_max: "pct",
+  weather_code: "code",
+};
+const TARGET: Record<Kind, string> = { temp: "°C", rain: "mm", wind: "km/h", pct: "%", code: "wmo code" };
+const CONVERT: Record<Kind, Record<string, ((v: number) => number) | null>> = {
+  temp: { "°C": null, "°F": (v) => ((v - 32) * 5) / 9 },
+  rain: { mm: null, inch: (v) => v * 25.4 },
+  wind: { "km/h": null, "m/s": (v) => v * 3.6, mph: (v) => v * 1.609344, kn: (v) => v * 1.852 },
+  pct: { "%": null },
+  code: { "wmo code": null },
+};
+
+/**
+ * Column reader for one block (current, hourly or daily) after checking each
+ * variable's unit: values are converted to the target unit explicitly, or the
+ * response is rejected. Only the weather code may come without a unit.
+ */
+function reader(block: Record<string, unknown> | undefined, units: Record<string, unknown> | undefined, section: string, log: Record<string, string>) {
+  const conv: Record<string, (v: number) => number> = {};
+  for (const k of Object.keys(block ?? {})) {
+    const kind = KIND[k];
+    if (!kind) continue;
+    const u = typeof units?.[k] === "string" ? (units[k] as string) : kind === "code" ? "wmo code" : null;
+    if (u === null) throw new Error(`Forecast has no unit for ${section}.${k}.`);
+    if (!(u in CONVERT[kind])) throw new Error(`Forecast unit for ${section}.${k} is ${u}; expected ${TARGET[kind]}.`);
+    const f = CONVERT[kind][u];
+    if (f) conv[k] = f;
+    log[`${section}.${k}`] = f ? `${TARGET[kind]} (converted from ${u})` : TARGET[kind];
+  }
+  return (k: string, i?: number): Num => {
+    const raw = i === undefined ? block?.[k] : (block?.[k] as unknown[] | undefined)?.[i];
+    const v = num(raw);
+    if (v === null) return null;
+    const f = conv[k];
+    return f ? Math.round(f(v) * 10) / 10 : v;
+  };
+}
+
+function checkColumns(block: Record<string, unknown>, section: string) {
+  const n = (block.time as unknown[]).length;
+  for (const [k, v] of Object.entries(block)) {
+    if (k === "time") continue;
+    if (!Array.isArray(v) || v.length !== n) throw new Error(`Forecast ${section}.${k} does not match its dates.`);
+  }
+}
 
 /** Normalize an Open-Meteo response. Dates are taken from the provider's local strings, never re-parsed in the browser's time zone. */
 export function normalizeOpenMeteo(raw: unknown, place: Place, retrievedAt: string): Forecast {
   const r = raw as Record<string, any>;
   if (!r || typeof r !== "object" || !r.daily || !Array.isArray(r.daily.time)) throw new Error("Unexpected forecast response.");
   if (r.timezone && r.timezone !== TIMEZONE) throw new Error(`Forecast returned in time zone ${r.timezone}, expected ${TIMEZONE}.`);
+  // The provider snaps to its grid; a point far from the request is a different place.
+  const la = num(r.latitude);
+  const lo = num(r.longitude);
+  if (la !== null && lo !== null && (Math.abs(la - place.lat) > 0.25 || Math.abs(lo - place.lon) > 0.25)) throw new Error("Forecast returned for a different location.");
   const d = r.daily as Record<string, unknown[]>;
-  const h = (r.hourly ?? {}) as Record<string, unknown[]>;
+  checkColumns(d, "daily");
+  const h = (r.hourly ?? { time: [] }) as Record<string, unknown[]>;
+  if (!Array.isArray(h.time)) throw new Error("Unexpected hourly forecast.");
+  checkColumns(h, "hourly");
+  const units: Record<string, string> = {};
+  const dc = reader(d, r.daily_units, "daily", units);
+  const hc = reader(h, r.hourly_units, "hourly", units);
+  const c = r.current as Record<string, unknown> | undefined;
+  const cc = reader(c, r.current_units, "current", units);
   const daily: DailyWeather[] = (d.time as string[]).map((t, i) => ({
-    date: t.slice(0, 10),
-    code: col(d, "weather_code", i),
-    tmax: col(d, "temperature_2m_max", i),
-    tmin: col(d, "temperature_2m_min", i),
-    rainMm: col(d, "precipitation_sum", i),
-    rainProbMaxPct: col(d, "precipitation_probability_max", i),
-    windMaxKmh: col(d, "wind_speed_10m_max", i),
-    gustMaxKmh: col(d, "wind_gusts_10m_max", i),
+    date: String(t).slice(0, 10),
+    code: dc("weather_code", i),
+    tmax: dc("temperature_2m_max", i),
+    tmin: dc("temperature_2m_min", i),
+    rainMm: dc("precipitation_sum", i),
+    rainProbMaxPct: dc("precipitation_probability_max", i),
+    windMaxKmh: dc("wind_speed_10m_max", i),
+    gustMaxKmh: dc("wind_gusts_10m_max", i),
   }));
-  const hourly: HourlyWeather[] = ((h.time as string[]) ?? []).map((t, i) => ({
+  const hourly: HourlyWeather[] = (h.time as string[]).map((t, i) => ({
     time: t,
     date: t.slice(0, 10),
     hour: Number(t.slice(11, 13)),
-    temp: col(h, "temperature_2m", i),
-    rainMm: col(h, "precipitation", i),
-    rainProbPct: col(h, "precipitation_probability", i),
-    humidityPct: col(h, "relative_humidity_2m", i),
-    code: col(h, "weather_code", i),
-    windKmh: col(h, "wind_speed_10m", i),
-    gustKmh: col(h, "wind_gusts_10m", i),
+    temp: hc("temperature_2m", i),
+    rainMm: hc("precipitation", i),
+    rainProbPct: hc("precipitation_probability", i),
+    humidityPct: hc("relative_humidity_2m", i),
+    code: hc("weather_code", i),
+    windKmh: hc("wind_speed_10m", i),
+    gustKmh: hc("wind_gusts_10m", i),
   }));
-  const c = r.current as Record<string, unknown> | undefined;
-  const units = { ...(r.daily_units ?? {}), ...(r.hourly_units ?? {}), ...(r.current_units ?? {}) } as Record<string, string>;
   const valid = daily.filter((x) => isValidISO(x.date));
   return {
     provider: "Open-Meteo",
@@ -127,7 +189,7 @@ export function normalizeOpenMeteo(raw: unknown, place: Place, retrievedAt: stri
     retrievedAt,
     units,
     current: c && typeof c.time === "string"
-      ? { time: c.time, intervalS: num(c.interval), temp: num(c.temperature_2m), humidityPct: num(c.relative_humidity_2m), rainMm: num(c.precipitation), code: num(c.weather_code), windKmh: num(c.wind_speed_10m), gustKmh: num(c.wind_gusts_10m) }
+      ? { time: c.time, intervalS: num(c.interval), temp: cc("temperature_2m"), humidityPct: cc("relative_humidity_2m"), rainMm: cc("precipitation"), code: cc("weather_code"), windKmh: cc("wind_speed_10m"), gustKmh: cc("wind_gusts_10m") }
       : null,
     daily: valid,
     hourly,
@@ -156,8 +218,8 @@ export interface CoverageInput {
   forecastLast: ISODate | null;
   bundledFirst: ISODate;
   bundledLast: ISODate;
-  /** Last date the live NASA POWER request returned (null if not requested or failed). */
-  liveLast: ISODate | null;
+  /** Dates for which the live NASA POWER request returned complete values (null if not requested, loading or failed). */
+  liveDays: ISODate[] | null;
 }
 
 /**
@@ -167,6 +229,7 @@ export interface CoverageInput {
  */
 export function segmentPeriod(start: ISODate, end: ISODate, c: CoverageInput): Segment[] {
   if (!isValidISO(start) || !isValidISO(end) || toDay(end) < toDay(start)) return [];
+  const live = new Set(c.liveDays ?? []);
   const kindOf = (d: ISODate): SegmentKind => {
     const t = toDay(d);
     if (t >= toDay(c.today)) {
@@ -174,7 +237,7 @@ export function segmentPeriod(start: ISODate, end: ISODate, c: CoverageInput): S
       return "none-future";
     }
     if (t >= toDay(c.bundledFirst) && t <= toDay(c.bundledLast)) return "nasa-bundled";
-    if (c.liveLast && t > toDay(c.bundledLast) && t <= toDay(c.liveLast)) return "nasa-live";
+    if (t > toDay(c.bundledLast) && live.has(d)) return "nasa-live";
     return "none-past";
   };
   const out: Segment[] = [];
@@ -219,21 +282,37 @@ export function weatherWord(code: Num): string {
   return `weather code ${code}`;
 }
 
-/** Plain facts for a set of forecast days. Threshold wording only; no damage or irrigation claims. */
-export function forecastFacts(days: DailyWeather[]): string[] {
+const plural = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"}`;
+
+/**
+ * Plain facts for the forecast days of a requested period. `expected` is how
+ * many requested days could have a forecast (today onward). Absence ("no day",
+ * "no rain") is stated only when every expected day has a value; sums over
+ * incomplete days are called partial. Threshold wording only.
+ */
+export function forecastFacts(days: DailyWeather[], expected = days.length): string[] {
   const out: string[] = [];
+  if (days.length < expected) out.push(`The forecast covers ${days.length} of the ${plural(expected, "requested day")}${days.length ? ` (to ${fmtDate(days[days.length - 1].date)})` : ""}.`);
   const withMin = days.filter((d) => d.tmin !== null);
-  if (withMin.length) {
+  const minAll = withMin.length === expected;
+  if (!withMin.length) out.push("No forecast minimum temperature is available for these days.");
+  else {
+    if (!minAll) out.push(`Minimum temperature available for ${withMin.length} of ${plural(expected, "day")}.`);
     const lo = withMin.reduce((a, b) => (b.tmin! < a.tmin! ? b : a));
-    out.push(`Lowest forecast minimum: ${lo.tmin} °C on ${fmtDate(lo.date)}.`);
+    out.push(`Lowest forecast minimum${minAll ? "" : " among those days"}: ${lo.tmin} °C on ${fmtDate(lo.date)}.`);
     const frost = withMin.filter((d) => d.tmin! <= 0);
-    out.push(frost.length ? `${frost.length} day${frost.length === 1 ? "" : "s"} with a forecast minimum at or below 0 °C.` : "No day with a forecast minimum at or below 0 °C.");
+    if (frost.length) out.push(`${plural(frost.length, "day")} with a forecast minimum at or below 0 °C.`);
+    else out.push(minAll ? "No day with a forecast minimum at or below 0 °C." : `None of the ${plural(withMin.length, "day")} with a value has a minimum at or below 0 °C; the other ${expected - withMin.length} cannot be checked.`);
   }
   const withRain = days.filter((d) => d.rainMm !== null);
-  if (withRain.length) {
+  const rainAll = withRain.length === expected;
+  if (!withRain.length) out.push("No rain amount is available for these days.");
+  else {
     const hi = withRain.reduce((a, b) => (b.rainMm! > a.rainMm! ? b : a));
-    const total = Math.round(withRain.reduce((s, d) => s + d.rainMm!, 0) * 10) / 10;
-    out.push(hi.rainMm! > 0 ? `Most rain expected: ${hi.rainMm} mm on ${fmtDate(hi.date)}; ${total} mm in total.` : "No rain expected in these days.");
+    const sum = Math.round(withRain.reduce((s, d) => s + d.rainMm!, 0) * 10) / 10;
+    const total = rainAll ? `${sum} mm in total` : `${sum} mm over the ${plural(withRain.length, "day")} with a value (partial sum: ${expected - withRain.length} without a value)`;
+    if (hi.rainMm! > 0) out.push(`Most rain expected: ${hi.rainMm} mm on ${fmtDate(hi.date)}; ${total}.`);
+    else out.push(rainAll ? "No rain expected in these days." : `No rain expected on the ${plural(withRain.length, "day")} with a value; the other ${expected - withRain.length} cannot be checked.`);
   }
   return out;
 }

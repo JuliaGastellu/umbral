@@ -1,19 +1,19 @@
 """Select the HLS study cluster from the Río Negro cadastral parcel layer.
 
-Input (git-ignored, never published):
+Input (data/raw/, git-ignored; obtained with scripts/fetch_parcelario.py):
     data/raw/parcelario_roca_rural_subrural.geojson
     IDERN GeoServer WFS, layer geonode:PARCELARIO1, SUBRURAL + RURAL parcels
     in a bounding box around General Roca.
 
 Outputs:
-    data/raw/cluster_parcels.json   full-precision buffered parcels for the
-                                    HLS script (git-ignored, never published)
+    data/raw/cluster_parcels.json   buffered sampling polygons for the HLS/EMIT scripts
+                                    (published, with the parcel boundaries, by scripts/parcel_layers.py)
     public/data/parcel_stats.json   derived size statistics (publishable)
     public/data/study_area.json     generalized cluster outline (publishable)
     data/raw/candidates.png         review image (git-ignored)
 
-Privacy: cadastral codes (CCA, PAR_ID, OBJECTID) are dropped on load and are
-never written anywhere. Parcels are labelled "Parcel 1..n" in published files.
+Parcels are labelled "Parcel 1..n"; scripts/parcel_layers.py links each to its
+OBJECTID in the public layer. No owner or crop is attached to any parcel.
 
 Usage:
     .venv/Scripts/python.exe -I scripts/parcels.py candidates LON LAT RADIUS_M
@@ -167,7 +167,7 @@ def main() -> int:
         area = {
             "name": "A cluster of cadastral parcels in the horticultural belt of General Roca",
             "status": "Selected from the provincial cadastral layer (SUBRURAL, 2-15 ha), screened with ESA WorldCover 2021 and HLS true colour. Land use not verified on the ground.",
-            "outlineNote": "Generalized outline: convex hull of the cluster, buffered 60 m, simplified and rounded to 0.001 deg (about 100 m). Individual parcel geometries are not published.",
+            "outlineNote": "Outline of the study cluster (convex hull of the four examples, buffered 60 m, rounded to 0.001 deg), used to frame maps and image chips. The parcel boundaries themselves are in study_parcels.json and parcel_outlines.json.",
             "outline": outline,
             "nParcels": len(chosen),
             "parcels": [{k: v for k, v in p.items() if k != "innerGeometry"} for p in parcels],
@@ -176,20 +176,7 @@ def main() -> int:
             "season": {"start": "2024-02-01", "end": "2024-11-30", "label": "2024 reference season (summer harvest to the following spring)"},
         }
         (OUT / "study_area.json").write_text(json.dumps(area, indent=1), encoding="utf-8")
-        # Simplified parcel shapes for the map: labels and geometry only, no cadastral attributes.
-        # Douglas-Peucker 10 m in UTM, then coordinates rounded to 1e-4 deg (about 10 m).
-        shapes = []
-        for k, r in enumerate(chosen, 1):
-            simp = r["utm"].simplify(10, preserve_topology=True)
-            ll = stransform(TO_LL, simp)
-            geoms = getattr(ll, "geoms", [ll])
-            rings = [[[round(x, 4), round(y, 4)] for x, y in g.exterior.coords] for g in geoms]
-            shapes.append({"label": f"Parcel {k}", "rings": rings})
-        (OUT / "study_parcels.json").write_text(json.dumps({
-            "note": "Simplified outlines of the four study parcels (10 m simplification, coordinates rounded to about 10 m). No cadastral codes or attributes. Greenness values come from pixels at least 30 m inside each parcel.",
-            "source": "Derived from IDERN WFS geonode:PARCELARIO1 (Gerencia de Catastro – Agencia de Recaudación Tributaria, Provincia de Río Negro)",
-            "parcels": shapes,
-        }, ensure_ascii=False), encoding="utf-8")
+        # Boundaries and sampling polygons are published by scripts/parcel_layers.py.
         print(json.dumps({k: area[k] for k in ("nParcels", "parcels")}, indent=1))
         return 0
     return 1

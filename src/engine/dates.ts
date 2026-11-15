@@ -27,6 +27,18 @@ export function isValidISO(s: string | null | undefined): s is ISODate {
   return mo >= 1 && mo <= 12 && d >= 1 && d <= daysInMonth(y, mo);
 }
 
+/**
+ * A date the planner accepts as a plan input. Browsers fill the year digit by digit
+ * (0002, 0020, 0202, 2027), so a year outside the planning range is treated as still
+ * being typed, never as a plan date.
+ */
+export const PLAN_YEARS: [number, number] = [2000, 2100];
+export function isPlanDate(s: string | null | undefined): s is ISODate {
+  if (!isValidISO(s)) return false;
+  const y = +s.slice(0, 4);
+  return y >= PLAN_YEARS[0] && y <= PLAN_YEARS[1];
+}
+
 export function parts(s: ISODate): { y: number; m: number; d: number } {
   const m = ISO_RE.exec(s);
   if (!m) throw new Error(`Invalid date: ${s}`);

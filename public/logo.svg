@@ -20,4 +20,5 @@
     <circle cx="856" cy="523" r="24" fill="#F2A93B" stroke="#0B1522" stroke-width="8"/>
   </g>
   <text x="512" y="905" text-anchor="middle" font-family="Montserrat, 'Segoe UI', Arial, sans-serif" font-size="104" font-weight="600" letter-spacing="28" fill="#F4EFE6">UMBRAL</text>
+  <text x="1004" y="1004" text-anchor="end" font-family="IBM Plex Sans, Arial, sans-serif" font-size="30" fill="#C9D3DD" opacity="0.9">AI-generated logo</text>
 </svg>

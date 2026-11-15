@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { withFallback } from "./api/client";
 import type { DailySeries } from "./engine/climate";
 
 export interface PowerMeta {
@@ -92,9 +93,49 @@ export interface ParcelStats {
 }
 
 export interface StudyParcels {
-  note: string;
   source: string;
-  parcels: { label: string; rings: number[][][] }[];
+  note: string;
+  request?: string | null;
+  serviceTimeStamp?: string | null;
+  terms?: string;
+  /** The four processed examples with their boundaries as served by the public layer and the sampling polygon used for NASA values. */
+  parcels: { label: string; objectid: number; type: string; declaredHa: number; geometry: GeoJSON.Geometry; samplingGeometry: GeoJSON.Geometry }[];
+}
+
+export interface RegistryEntry {
+  id: string;
+  name: string;
+  status: string;
+  question: string;
+  version?: string | null;
+  retrieved?: string | null;
+  variables?: string;
+  dates?: string;
+  scope?: string;
+  quality?: string;
+  processing?: string;
+  note?: string;
+}
+
+export interface EmitScene {
+  scene: string;
+  acquired: string;
+  timeUTC: string;
+  sceneCloudPct: number;
+  status: string;
+  pixelsInside?: number;
+  validPixels?: number;
+  median?: { PV: number; NPV: number; BARE: number };
+  medianUncertainty?: { PV: number; NPV: number; BARE: number };
+}
+
+export interface EmitFrcov {
+  product: string;
+  retrieved: string;
+  scope: string;
+  variables: string;
+  limits: string;
+  scenes: EmitScene[];
 }
 
 export interface AppData {
@@ -105,7 +146,9 @@ export interface AppData {
   area: StudyArea | null;
   parcels: ParcelStats | null;
   shapes: StudyParcels | null;
+  registry: { entries: RegistryEntry[]; origin?: string } | null;
   outlines: GeoJSON.FeatureCollection | null;
+  emit: EmitFrcov | null;
   errors: string[];
   loading: boolean;
 }
@@ -124,7 +167,7 @@ async function getJson<T>(path: string, timeoutMs = 15000): Promise<T> {
 
 /** Loads the bundled data files (served with the app; no external requests). */
 export function useAppData(): AppData {
-  const [d, setD] = useState<AppData>({ power: null, hls: null, hlsInter: null, station: null, area: null, parcels: null, shapes: null, outlines: null, errors: [], loading: true });
+  const [d, setD] = useState<AppData>({ power: null, hls: null, hlsInter: null, station: null, area: null, parcels: null, shapes: null, registry: null, emit: null, outlines: null, errors: [], loading: true });
   useEffect(() => {
     let alive = true;
     const files = {
@@ -136,15 +179,21 @@ export function useAppData(): AppData {
       parcels: "data/parcel_stats.json",
       shapes: "data/study_parcels.json",
       outlines: "data/parcel_outlines.json",
+      registry: "data/sources_registry.json",
+      emit: "data/emit_frcov.json",
     } as const;
-    Promise.allSettled(Object.values(files).map((p) => getJson<unknown>(p))).then((res) => {
+    const load = (k: string, p: string) =>
+      k === "registry"
+        ? withFallback("/api/sources", (b) => ({ entries: b.data as RegistryEntry[], updated: String(b.processed ?? "") }), () => getJson<{ entries: RegistryEntry[] }>(p)).then((r) => ({ ...r.data, origin: r.note }))
+        : getJson<unknown>(p);
+    Promise.allSettled(Object.entries(files).map(([k, p]) => load(k, p))).then((res) => {
       if (!alive) return;
       const keys = Object.keys(files) as (keyof typeof files)[];
-      const next: AppData = { power: null, hls: null, hlsInter: null, station: null, area: null, parcels: null, shapes: null, outlines: null, errors: [], loading: false };
+      const next: AppData = { power: null, hls: null, hlsInter: null, station: null, area: null, parcels: null, shapes: null, registry: null, emit: null, outlines: null, errors: [], loading: false };
       res.forEach((r, i) => {
         const k = keys[i];
         if (r.status === "fulfilled") (next as unknown as Record<string, unknown>)[k] = r.value;
-        else if (k !== "hlsInter" && k !== "outlines") next.errors.push(`Could not load ${files[k]}.`);
+        else if (k !== "hlsInter" && k !== "registry" && k !== "emit" && k !== "outlines") next.errors.push(`Could not load ${files[k]}.`);
       });
       setD(next);
     });

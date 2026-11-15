@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { STATE_LABEL } from "../engine/calendar";
 import { compareDates, type DateSide } from "../engine/compare";
 import { fmtT, type DailySeries } from "../engine/climate";
-import { addDays, fmtDate, isValidISO, parts, toDay, type ISODate } from "../engine/dates";
+import { addDays, fmtDate, isPlanDate, parts, toDay, type ISODate } from "../engine/dates";
 import { climateReading, type ClimateSettings } from "../engine/exposure";
 import type { Scenario } from "../engine/scenario";
 import { CropIcon } from "./CropIcon";
@@ -66,7 +66,7 @@ export function DateCompare({ s, alt, setAlt, focus, series, cfg, apply }: Props
           </div>
           <div className="field">
             <label htmlFor="dc-alt">Compare with</label>
-            <input id="dc-alt" className="input date" type="date" value={alt} onChange={(e) => isValidISO(e.target.value) && setAlt(e.target.value)} />
+            <input id="dc-alt" className="input date" type="date" value={alt} onChange={(e) => isPlanDate(e.target.value) && setAlt(e.target.value)} />
           </div>
           <div className="presets" aria-label="Quick dates to compare">
             {([["−15 days", -15], ["−7 days", -7], ["+7 days", 7], ["+15 days", 15]] as const).map(([l, d]) => (
@@ -77,7 +77,7 @@ export function DateCompare({ s, alt, setAlt, focus, series, cfg, apply }: Props
           <button type="button" className="btn" onClick={() => apply(alt)} disabled={alt === s.release}>Make {fmtDate(alt)} my plan</button>
         </div>
         <TwoTimelines plan={plan} proposed={proposed} focus={focus} name={name} />
-        <div className="tbl-scroll">
+        <div className="tbl-scroll" tabIndex={0}>
           <table className="data dc-table">
             <caption className="sr-only">Plan compared with the other date</caption>
             <thead>
@@ -143,7 +143,7 @@ function TwoTimelines({ plan, proposed, focus, name }: { plan: DateSide; propose
     if (iso.endsWith("-01") || iso.endsWith("-15")) ticks.push(iso);
   }
   return (
-    <div className="tbl-scroll">
+    <div className="tbl-scroll" tabIndex={0}>
       <svg width={W} height={H} className="dc-svg" role="img" aria-label={`Two timelines. Your plan: field free ${fmtDate(plan.date)}, ${plan[focus].daysToLastTurn ?? "unknown"} days of canal water. Other date: field free ${fmtDate(proposed.date)}, ${proposed[focus].daysToLastTurn ?? "unknown"} days of canal water.`}>
         {ticks.map((d) => (
           <g key={d}>

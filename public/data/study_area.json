@@ -1,7 +1,7 @@
 {
  "name": "A cluster of cadastral parcels in the horticultural belt of General Roca",
  "status": "Selected from the provincial cadastral layer (SUBRURAL, 2-15 ha), screened with ESA WorldCover 2021 and HLS true colour. Land use not verified on the ground.",
- "outlineNote": "Generalized outline: convex hull of the cluster, buffered 60 m, simplified and rounded to 0.001 deg (about 100 m). Individual parcel geometries are not published.",
+ "outlineNote": "Outline of the study cluster (convex hull of the four examples, buffered 60 m, rounded to 0.001 deg), used to frame maps and image chips. The parcel boundaries themselves are in study_parcels.json and parcel_outlines.json.",
  "outline": [
   [
    -67.602,

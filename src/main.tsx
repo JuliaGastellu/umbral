@@ -11,6 +11,9 @@ import "@fontsource/ibm-plex-mono/500.css";
 import "@fontsource/ibm-plex-mono/600.css";
 import "./styles.css";
 import App from "./App";
+import { installArrowKeys } from "./ui/arrowKeys";
+
+installArrowKeys();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

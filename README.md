@@ -1,101 +1,112 @@
 # Umbral
 
-**Does a winter cover fit before the canals close and the cold arrives?**
+**A little space. A living possibility.** A plan for living soil: explore which service crop could use the time and space around a commercial crop, and what it could do for the soil and that crop.
 
-In the Alto Valle of Río Negro, vegetable plots are irrigated from canals that close for winter, around late April, and reopen in August. Between the summer harvest and the next spring crop, the plot often sits bare. Umbral helps growers use that gap without wasting seed, fuel and work. Before anything is spent, it compares leaving the plot as it is with a grass cover and a legume cover. For each one it shows whether the dates fit and the last canal turns, how often those dates met an early cold night (NASA POWER), what real parcels looked like in a past season (NASA HLS), what each cover is for, and what your field's conditions add. The decision stays with the grower.
+- Live app: https://umbral-altovalle.vercel.app
+- Read-only API (Cloudflare Worker): https://umbral-api.juliacgastellu.workers.dev/api/health
+- Code: https://github.com/JuliaGastellu/umbral
 
-I built Umbral for the NASA Space Apps Challenge 2026, challenge "Field Shift: Adapting Farms with NASA Data". I am a one-person team from General Roca, Río Negro, Argentina, competing at the Puerto Madryn local event.
+I built Umbral for the NASA Space Apps Challenge 2026, challenge "Field Shift: Adapting Farms with NASA Data". I am a one-person team from General Roca, Río Negro, Argentina.
 
-## Who it is for and the decision it supports
+## The problem
 
-Umbral is for growers and farm advisers with irrigated annual fields (vegetables and maize) in the Alto Valle, around General Roca. It supports one decision: whether to sow a winter cover between two main crops, and which one, compared with leaving the field as it is. It does not make that decision.
-
-Scale, from the provincial land registry layer I used (parcels, not growers): around General Roca the layer holds 2,341 rural and sub-rural parcels; after leaving out 29 very large plateau parcels, 2,312 remain, of which 2,265 are sub-rural, with a typical size of about 6 ha (half between 3 and 12 ha). Many of them are orchards; the layer has no land use, so it does not say how many are annual fields. I have no adoption or benefit figures, and Umbral computes no savings in money, yield or soil.
-
-## The problem in General Roca
-
-In the Alto Valle, vegetable plots are irrigated by gravity from canals that close in winter (in the 2024 season the first cut at Dique Ballester was on 29 April). After a summer crop such as tomato or squash, a plot can sit with residue, bare soil or volunteer plants until the next spring crop. A winter cover could protect that soil, but it has to fit between dates the grower does not fully control: when the plot is released, when the last irrigation turn comes, when frost arrives, and when the soil must be ready for the next transplant. Many growers also rent for one or two seasons, so who controls the plot in winter matters as much as the agronomy.
+In the Alto Valle of Río Negro, farms are irrigated from canals that close for winter (about late April) and reopen in August. Between two annual crops the plot often sits bare; in orchards the interrow, and in strawberry beds the paths, are managed around a crop that stays. A service crop could protect and feed the soil, but only if the dates, the water and the weather allow it, and only if it suits what the grower wants from it. Umbral helps explore that choice. The decision stays with the grower.
 
 ## What the app does
 
-Three steps: **My field** (main crop harvested and the date the field is free), **My next season** (next main crop, planting date, last canal turn) and **Compare options**. Main crops (tomato, squash, onion, maize) are kept apart from winter covers (rye, oat, vetch). The scope is irrigated annual fields in the Alto Valle; orchards are a different system and are not covered.
+The Plan view is one journey:
 
+1. **Locate & understand.** A map of the public provincial parcel layer around General Roca, with four *study examples* (P1–P4). Only these four parcels have satellite readings; your own field has not been processed. Four NASA layers each answer one question: what was green on a real 2024 date (HLS), how the ground divided into green plants, dry material and bare soil (EMIT, the four examples together), and how often the planned window had enough days before a cold night in 45 years (POWER).
+2. **Management conditions.** Production system, commercial crops, service goal, dates and canal water, and optional soil and plot details. The prefilled dates are example dates until you change them.
+3. **Your possibilities.** All nine candidates are evaluated. Up to three are shown side by side with benefit, trade-off, evidence level and "Why this option?"; one is selected and drives the shared calendar, the date comparison, the cold-night question, the nitrogen-process chain, saving and export. Every blocking check of the selected option is listed ("Next check" and "Also before sowing"). While you edit, a compact "Result now" line keeps the current result in view.
 
-- Answers first what remains under the stated inputs: days until the cover must be terminated, days until the last irrigation opportunity (and whether that date is stated, nominal or unknown), and how many irrigation turns follow sowing.
-- Draws the available window from release to the date the soil must be ready, on one shared calendar with three strategies: current practice (a neutral baseline), a grass cover (rye or oat) and a legume cover (hairy vetch or vetch with oat).
-- Shows irrigation turns as exact dates when a reference turn and frequency are known, and as a range when the phase is unknown. Turns never move with the sowing date.
-- For each strategy, separates **calendar compatibility** (with its margin and binding constraint) from **reported plot conditions**, and lists **what would change this** and one **next step**.
-- Links the selected dates to **cold nights in past years** from NASA POWER (1981–2025): in how many years there were at least D days before the first minimum at or below T °C, in how many there were not, and how many cannot be evaluated.
-- Shows four example parcels on a satellite map, coloured by how green they were on each 2024 satellite date, and **HLS** satellite observations (Landsat and Sentinel-2) of a small cluster of parcels for the 2024 season: each date's image, its clear pixels and a greenness chart.
-- Answers three questions about the scenario with the same engine (rule-based, no AI model): what limits this option, what changes if sowing is delayed, and what information is missing.
-- Exports inputs, assumptions, sources and results as JSON and a readable Markdown summary.
+**Climate & NASA** shows today and the next days from the Open-Meteo forecast (not NASA), NASA POWER history for the plan's period (the default when the plan is beyond the forecast horizon), the HLS and EMIT detail and, for annual plans, the full calendar with year-by-year cold nights. **Saved plans** keeps plans and dated field notes in this browser; plans export as JSON or a Markdown summary of the plan as it is on screen.
 
-Moving any date updates the timeline, the columns, the turns, the climate sentence, the HLS highlight and the export together.
+### Production systems
 
-## How to run it
+- **Annual rotation** (vegetables and field crops): the gap from the date the field is free to the date the soil must be ready for the next crop, with canal turns and closure.
+- **Permanent orchard** (apple, pear, peach, nectarine, plum, cherry, apricot, almond, pecan, walnut, orange, mandarin, lemon, grapefruit): harvest does not free the plot. Only the cover area (interrow or tree row) and the cover window you enter are evaluated; water reaching that area, tree age and mowing are checks.
+- **Beds / camellones** (strawberry): if the plants are kept, only a stated free area (the paths) and window are evaluated; drip on the beds is not taken as water for the paths. If the plants are removed, the annual rotation applies. If you are not sure, the result is labelled "if the plants stay (not confirmed)".
+
+Crops in the catalogue show their regional source or "not verified"; being listed is not a recommendation to grow them. "Other crop" keeps the name you type.
+
+### The nine candidates
+
+- **Established:** cereal rye, oat, hairy vetch, hairy vetch + oat.
+- **Experimental** (listed apart, labelled "Experimental candidate"): winter field pea, small-seeded faba bean, forage radish, buckwheat, strawberry clover (perennial; orchard interrow or bed paths only).
+
+Umbral never guarantees establishment, growth, yield, profit or fertiliser savings.
+
+### How options are evaluated
+
+Documented rules, no score and no success probability (`src/engine/recommend.ts`; details in [docs/METHODS.md](docs/METHODS.md)):
+
+- **Excluded** (cannot be selected): a candidate whose dates do not fit (including zero days) or that does not suit the production system, for example a perennial in an annual gap. The reason stays visible.
+- **Grouped by goal match:** candidates are grouped by how well the cited guidance matches the goal. A weaker match ("Dates fit; partial match for this goal") or a mismatch ("Dates fit; does not serve this goal") stays selectable with that limit shown; it is not an exclusion.
+- **Conditional:** missing inputs (for example the last canal turn), unread past weather, water that may not reach the cover area, reported waterlogging or salinity, young trees, or plot access that depends on someone else make a candidate "Conditional: check first". These checks never change the dates.
+- **Past weather** changes a candidate's state only through a threshold its source states with a unit (forage radish about four weeks before −2.2 °C; buckwheat not frost tolerant, 70–90 days; winter pea about −12 °C). Otherwise POWER is context and does not rank candidates.
+- **Assumptions stay labelled:** termination intervals without a local source (for example the 21-day default for several experimental species) are marked as assumptions and can be changed in the advanced settings.
+- **Nitrogen:** only a legume adds nitrogen from the air, and how much depends on establishment, nodulation, biomass, management and timing with the following or standing crop. Umbral shows this as a process, never as a dose, a fertiliser credit or a satellite measurement.
+
+## Data in one paragraph
+
+NASA POWER daily records (1981–2025, about 55 km regional model) give past cold nights for the plan's dates; checked against the Neuquén airport station, POWER places the first autumn cold nights later, so its counts read optimistic. NASA HLS (30 m, 2024 season, cloud-masked) shows dated greenness of the four examples; little green is not proof of bare soil. NASA EMIT (60 m, four real dates in 2024 and September 2026) gives median ground-cover fractions for the four examples together. Open-Meteo provides the forecast. None of these measures soil nitrogen. Per-dataset roles, resolution, period, quality rules and terms: [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md).
+
+## Architecture
+
+- **Frontend:** static Vite + React + TypeScript build on Vercel. The engine runs in the browser; the processed data in `public/data/` are bundled with the site.
+- **API:** a small read-only Cloudflare Worker (`worker/`) serving the same processed data with provenance. The frontend uses `/api/sources` and `/api/observations` (HLS) when `VITE_UMBRAL_API` is set at build time. An answer is used only for the exact example and date requested; if the API fails or takes more than 3 s, the app uses its bundled files and says so. Image chips always load from the site's own address. The Worker also offers `/api/health`, `/api/history` and `/api/weather`, which the frontend does not call. See [worker/README.md](worker/README.md).
+- **Live services:** map tiles (EOX, NASA GIBS, OpenStreetMap), the Open-Meteo forecast and recent NASA POWER days are requested from the browser. The app is not an offline app: a first visit needs the network, and maps and forecasts stop without it, while the calculations and bundled data keep working on a loaded page.
+- **What the browser keeps:** saved plans and notes in `localStorage` (`umbral:plans:v2`), the forecast for 30 minutes and recent POWER days for 6 hours. The plan on screen is not saved automatically: reloading starts again from the example plan; open a saved plan to continue it.
+
+## Run it
+
+Checked with Node 24.14 and npm 11 on Windows 11 (Vite 6.4, TypeScript 5.7, Vitest 5).
 
 ```bash
 npm ci
-npm run dev        # http://localhost:5173
-npm run test       # engine tests (Vitest)
-npm run build      # type-check, build to dist/, and check that no private data is published
+npm run dev                      # http://localhost:5173
+npm test                         # engine, UI, API client, publication guard and Worker tests
+npx tsc --noEmit -p worker       # type-check the Worker
+npm run build                    # type-check, build to dist/ and run the publication guard
+npm run preview                  # serve dist/ at http://localhost:4173
 ```
 
-The app works offline from the bundled data in `public/data/`.
+No environment variable is required. The two optional public settings are in [.env.example](.env.example): `VITE_UMBRAL_API` (API base URL) and `VITE_UMBRAL_ASSET_BASE` (where chips are served; default: the site itself). Neither is a secret. Local API: `ALLOWED_ORIGINS=http://localhost:5173 npx vite-node worker/dev-server.ts`, then `VITE_UMBRAL_API=http://localhost:8787 npm run dev`. Deployment: [docs/DEPLOY.md](docs/DEPLOY.md).
 
-### Data preparation (optional, already done)
+### Data preparation (already done; outputs are in `public/data/`)
 
 ```bash
 python -I scripts/fetch_power.py           # NASA POWER, standard library only
+python -I scripts/fetch_parcelario.py      # public provincial parcel layer (IDERN WFS) -> data/raw/ (not committed)
 python -I scripts/station_check.py         # POWER vs NOAA GSOD Neuquén Aero
 uv venv --python 3.11 .venv && uv pip install --python .venv/Scripts/python.exe earthaccess rasterio numpy pillow pyproj shapely
-.venv/Scripts/python.exe -I scripts/parcels.py candidates -67.609 -39.062 1500   # needs the cadastral file in data/raw/
-.venv/Scripts/python.exe -I scripts/hls_trajectory.py season                      # needs your own Earthdata Login (.netrc)
+.venv/Scripts/python.exe -I scripts/parcels.py candidates -67.609 -39.062 1500
+.venv/Scripts/python.exe -I scripts/parcels.py select -67.609 -39.062 1500 <ids>   # the four examples and sampling polygons
+.venv/Scripts/python.exe -I scripts/parcel_layers.py                               # derived boundary files
+.venv/Scripts/python.exe -I scripts/hls_trajectory.py season                      # needs your own Earthdata Login (.netrc, never committed)
 .venv/Scripts/python.exe -I scripts/hls_trajectory.py interannual
+.venv/Scripts/python.exe -I scripts/emit_frcov.py
+.venv/Scripts/python.exe -I scripts/hls_ndre.py                                    # exploratory, not shown in the main flow
+python -I scripts/sources_registry.py && python -I scripts/checksums.py
 ```
-
-## Data and methods
-
-NASA POWER retrieved 2026-11-14 (API v2.10.3) and HLS v2.0 via NASA CMR/LP DAAC, processed by the scripts in /scripts; each file's request and checksum are in public/data/provenance.json.
-
-- **NASA POWER** daily T2M_MIN, T2M_MAX, T2M and PRECTOTCORR at −39.03, −67.58, 1981–2025 (MERRA-2 / GEOS-IT, ½° × ⅝°, about 55 km). 45 valid years. Validated for coordinates, units, fill values and gaps.
-- **Regional check:** POWER against NOAA GSOD at Neuquén Aero, March–June. POWER's daily minimum is +0.64 °C warmer on average (RMSE 2.94 °C), and in the 34 years with complete data its first autumn night at or below 0, −2 and −4 °C comes a median of 17.5, 24 and 39 days later than at the station. I show this next to every climate reading and in the export, and do not correct it.
-- **HLS v2.0** (HLSL30_VI, HLSS30_VI, plus reflectance for true colour), Fmask-based clean-pixel rule, parcels buffered 30 m inward.
-- **Study area:** a cluster of four cadastral parcels in the horticultural belt of General Roca, selected from the provincial cadastral layer and screened with ESA WorldCover 2021. Only a generalized outline and derived statistics are published.
-
-Full details: [docs/METHODS.md](docs/METHODS.md), [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md), [docs/DECISIONS.md](docs/DECISIONS.md).
 
 ## What Umbral does not claim
 
-- "Fits" means only that the stated dates and turns line up. It does not mean the cover will establish, grow or pay off.
-- The climate sentence is a historical frequency of a weather condition, not a probability of success and not a forecast. Climate never changes the calendar status.
-- "Turns that fit" is a count, not a statement that the water is enough.
-- Salinity is shown as entered; it is never converted between methods or classified.
-- The family alert describes a repeated botanical family; it does not estimate disease or say that a cover breaks a cycle.
-- HLS shows what was green or not on given dates; it does not date harvest or release, and a low NDVI is not bare soil (residue is not green).
+- "Worth exploring" is not proof that a cover will establish, grow or pay off here. Local validation with growers and agronomists is pending.
+- "Fits" means only that the stated dates and turns line up; turns after sowing are chances to water, not enough water.
+- A count of past years is a frequency, not a forecast or a probability of crop success; a night at or below a threshold is a temperature reading, not crop damage.
+- P1–P4 and the prefilled dates are study examples; Umbral does not analyse the user's own field.
+- No money, yield, nitrogen amount, fertiliser saving or soil-health score is computed.
 
-## External prerequisites
+## Documentation
 
-- Weather forecast: Open-Meteo's free non-commercial API is connected directly (no key). Meteomatics is not connected; it would need my account and a server-side function for the credentials.
+[METHODS](docs/METHODS.md) (rules and their history) · [DATA_SOURCES](docs/DATA_SOURCES.md) · [DECISIONS](docs/DECISIONS.md) · [DEPLOY](docs/DEPLOY.md) · [SUBMISSION](docs/SUBMISSION.md) · [AI_DISCLOSURE](docs/AI_DISCLOSURE.md) · [worker/README](worker/README.md)
 
-- Deployment: connect the private GitHub repository to Vercel and check the production URL in a private window (see `docs/DEPLOY.md`).
-- Optional: IMERG needs the GES DISC license accepted by me.
-- Optional: a generative assistant would need a model API with a server-side key; the current explainer is rule-based.
+Screenshots of the final interface (15 Nov 2026): [first screen](docs/screenshots/01-first-screen-1366x768.png), [HLS layer](docs/screenshots/02-hls-layer-p2.png), [EMIT layer](docs/screenshots/03-emit-layer-cluster-only.png), [POWER cold nights](docs/screenshots/04-power-cold-nights.png), [options and a date comparison](docs/screenshots/05-possibilities-pea-compare.png), [almond orchard with three checks](docs/screenshots/06-orchard-almond.png), [Climate & NASA](docs/screenshots/07-climate-view.png), [phone, 375 px](docs/screenshots/08-mobile-375.png), [editing with the current result](docs/screenshots/09-editing-with-current-result.png), [beds: drip is not path water](docs/screenshots/10-beds-drip-not-path-water.png).
 
-## Limitations
+## Licence, data terms and AI use
 
-- POWER is a ~55 km reanalysis cell, not a plot. At the nearest station it understates cold nights; a valley-floor plot is likely colder.
-- The scenario is illustrative. Its dates are assumptions, and the termination intervals come from US guidance.
-- The 2024 HLS season covers one cluster of parcels; cadastral parcels are not management fields, and land use was not verified on the ground.
-- Agronomic validation with local growers or INTA is pending.
+Code: MIT ([LICENSE](LICENSE)). The MIT licence covers the code only; data and map tiles keep their own terms, including the parcel boundaries derived from the provincial layer ([NOTICE](NOTICE), [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md)).
 
-## Sources and licenses
-
-Code: MIT ([LICENSE](LICENSE)). Data: NASA POWER; NASA HLS (NASA/USGS Landsat 8/9 and ESA Sentinel-2, partner-agency data) via LP DAAC; NOAA NCEI GSOD; ESA WorldCover 2021 (CC BY 4.0); Gerencia de Catastro – Agencia de Recaudación Tributaria, Provincia de Río Negro (derived statistics only; no formal open license confirmed). Full list with DOIs and access dates in [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md).
-
-## AI assistance
-
-The logo was generated with an AI image tool; see [docs/AI_DISCLOSURE.md](docs/AI_DISCLOSURE.md).
-
-
-I used AI assistants (large language models) to search the literature, write and review code, and draft documentation. I defined the problem, chose the data, assumptions and scope, and checked the outputs against the cited sources. Agronomic validation with local growers or INTA is still pending.
+The logo is an AI-generated image and is marked "Logo: AI-generated" wherever it is shown. I used AI assistants to search the literature, write and review code and draft documentation; I defined the problem, chose the data, assumptions and scope, and checked the outputs against the cited sources ([docs/AI_DISCLOSURE.md](docs/AI_DISCLOSURE.md)). Agronomic validation with local growers or agronomists is still pending.

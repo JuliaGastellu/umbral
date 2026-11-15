@@ -2,16 +2,28 @@ import { SOURCES, STRATEGIES, cropById } from "./catalog";
 import { STATE_LABEL } from "./calendar";
 import type { DailySeries } from "./climate";
 import { fmtT } from "./climate";
-import { fmtDate, toDay, type ISODate } from "./dates";
+import { fmtDate, type ISODate } from "./dates";
+import type { ExportedObservation, HlsSelection } from "./hlsSelect";
 import { climateReading, stationLine, type ClimateSettings, type StationSummary } from "./exposure";
 import { describeTurns, hasWhatIf, overviewOf, type Evaluation, type Scenario } from "./scenario";
 
-export interface HlsObservationLite {
-  date: ISODate;
-  sensor: string;
-  quality: string;
-  cleanFraction: number;
-  ndviMedian: number | null;
+export interface SelectedImage extends ExportedObservation {
+  followPlanDate: boolean;
+  planDate: ISODate | null;
+  offsetDays: number | null;
+  note: string;
+}
+
+export interface HlsExport {
+  label: string;
+  rule: string;
+  planInterval: [ISODate, ISODate];
+  historicalInterval: [ISODate, ISODate];
+  seasonYear: number;
+  scope: string;
+  observations: ExportedObservation[];
+  clusterForComparison: ExportedObservation[] | null;
+  selectedImage: SelectedImage | null;
 }
 
 export interface ExportDoc {
@@ -61,14 +73,37 @@ export interface ExportDoc {
     perYear: { year: number; firstEvent: string; days?: number; date?: ISODate; tminC?: number; condition: string }[];
     regionalCheck: { line: string; detail: StationSummary | null };
   };
-  hls: { label: string; interval: [ISODate, ISODate]; observationsInInterval: HlsObservationLite[]; selectedImage?: Record<string, unknown> | null } | null;
+  hls: HlsExport | null;
   comparison?: { plan: Record<string, unknown>; other: Record<string, unknown> };
   weather?: Record<string, unknown>;
   parcelScope?: string;
+  suggestion?: unknown;
+  activeCandidate?: Record<string, unknown> | null;
+  inputState?: string;
+  coldNightQuestion?: Record<string, unknown> | null;
+  observations?: { date: ISODate; text: string }[];
   sources: { id: string; title: string; url?: string; status: string }[];
 }
 
-export function buildExport(s: Scenario, ev: Evaluation, series: DailySeries, cfg: ClimateSettings, hls: { label: string; observations: HlsObservationLite[]; interval: [ISODate, ISODate] } | null, station: StationSummary | null = null): ExportDoc {
+export type HlsInput = { label: string; selection: HlsSelection; selectedImage?: SelectedImage | null };
+
+/** The HLS block shared by every export: real acquisition dates, the selected scope, and the cluster kept apart. */
+export function hlsExport(hls: HlsInput): HlsExport {
+  return {
+    label: hls.label,
+    rule: hls.selection.interval.rule,
+    planInterval: hls.selection.interval.plan,
+    historicalInterval: hls.selection.interval.historical,
+    seasonYear: hls.selection.interval.seasonYear,
+    scope: hls.selection.scope,
+    observations: hls.selection.observations,
+    clusterForComparison: hls.selection.clusterForComparison,
+    selectedImage: hls.selectedImage ?? null,
+  };
+}
+
+/** Annual reference strategies (A/B/C) of the base scenario. Used as labelled comparators by the plan export, and by engine tests. */
+export function buildExport(s: Scenario, ev: Evaluation, series: DailySeries, cfg: ClimateSettings, hls: HlsInput | null, station: StationSummary | null = null): ExportDoc {
   const cr = climateReading(ev, series, cfg);
   const w = ev.window;
   const assumptions: ExportDoc["assumptions"] = [
@@ -146,20 +181,14 @@ export function buildExport(s: Scenario, ev: Evaluation, series: DailySeries, cf
       ),
       regionalCheck: { line: stationLine(station, cr.t), detail: station },
     },
-    hls: hls
-      ? {
-          label: hls.label,
-          interval: hls.interval,
-          observationsInInterval: hls.observations.filter((o) => toDay(o.date) >= toDay(hls.interval[0]) && toDay(o.date) <= toDay(hls.interval[1])),
-        }
-      : null,
+    hls: hls ? hlsExport(hls) : null,
     sources: Object.values(SOURCES).map((x) => ({ id: x.id, title: x.title, url: x.url, status: x.status })),
   };
 }
 
 export function exportMarkdown(x: ExportDoc, logoDataUri?: string): string {
   const L: string[] = [];
-  if (logoDataUri) L.push(`![Umbral logo (generated with an AI image tool)](${logoDataUri})`, "");
+  if (logoDataUri) L.push(`![Umbral logo, AI-generated](${logoDataUri})`, "", "*Logo: AI-generated image (see docs/AI_DISCLOSURE.md).*", "");
   L.push(`# Umbral: ${x.label}`, "", `Generated ${x.generated.slice(0, 10)}. Umbral compares calendars and historical climate exposure. It does not predict agronomic success.`, "");
   if (!x.applies) L.push(`**${x.notApplicableText}**`, "");
   const e = x.effectiveDates;
@@ -197,11 +226,50 @@ export function exportMarkdown(x: ExportDoc, logoDataUri?: string): string {
   }
   if (x.hls?.selectedImage) {
     const im = x.hls.selectedImage;
-    L.push("## Historical image shown", "", `Image taken on ${im.acquisitionDate} (${im.sensor}, ${im.quality}). ${im.note}${im.followPlanDate ? ` Chosen as the nearest clear 2024 image to the plan date ${im.planDate} (offset ${im.offsetDays ?? "none found"} days).` : ""}`, "");
+    L.push("## Historical image shown", "", `Image taken on ${im.acquisitionDate} (${im.sensor}, ${im.quality}); ${im.scope}: NDVI median ${im.ndviMedian ?? "—"}, ${im.cleanPixels} of ${im.totalPixels} pixels clear. ${im.note}${im.followPlanDate ? ` Chosen as the nearest clear ${x.hls.seasonYear} image to the plan date ${im.planDate} (offset ${im.offsetDays ?? "none found"} days).` : ""}`, "");
   }
   if (x.hls) {
-    L.push("## Satellite observations (HLS)", "", `${x.hls.label}. Interval ${fmtDate(x.hls.interval[0], true)} to ${fmtDate(x.hls.interval[1], true)}: ${x.hls.observationsInInterval.length} observation(s).`, "");
-    for (const o of x.hls.observationsInInterval) L.push(`- ${o.date} ${o.sensor}: ${o.quality}, clean ${Math.round(o.cleanFraction * 100)} %, NDVI median ${o.ndviMedian ?? "—"}`);
+    const h = x.hls;
+    L.push(
+      "## Satellite observations (HLS)",
+      "",
+      `${h.label}. Plan period ${fmtDate(h.planInterval[0], true)} to ${fmtDate(h.planInterval[1], true)}; matching historical period ${fmtDate(h.historicalInterval[0], true)} to ${fmtDate(h.historicalInterval[1], true)}. ${h.rule} Scope: ${h.scope}. ${h.observations.length} observation(s).`,
+      "",
+    );
+    if (h.observations.length) {
+      L.push("| Acquisition date | Sensor | Quality | Clear pixels | NDVI median |", "|---|---|---|---|---|");
+      for (const o of h.observations) L.push(`| ${o.acquisitionDate} | ${o.sensor} | ${o.quality} | ${o.cleanPixels} of ${o.totalPixels} | ${o.ndviMedian ?? "—"} |`);
+      L.push("");
+    }
+    if (h.clusterForComparison?.length) {
+      L.push(`Cluster of four example parcels, same dates, for comparison only (not the selected scope):`, "", "| Acquisition date | Quality | Clear pixels | NDVI median |", "|---|---|---|---|");
+      for (const o of h.clusterForComparison) L.push(`| ${o.acquisitionDate} | ${o.quality} | ${o.cleanPixels} of ${o.totalPixels} | ${o.ndviMedian ?? "—"} |`);
+      L.push("");
+    }
+  }
+  if (x.inputState && x.inputState !== "complete") L.push(`**Input state: ${x.inputState}.**`, "");
+  if (x.activeCandidate) {
+    const a = x.activeCandidate as Record<string, any>;
+    L.push("## Candidate used for the calendar and comparison", "", `${a.name} (${a.status}); sowing ${a.sowing ?? "—"}, end by ${a.endBy ?? "—"}; termination ${a.terminationDays} days (${a.terminationProvenance}: ${a.terminationSource}).`, "");
+    for (const d of a.dimensions ?? []) L.push(`- ${d.label}: ${d.text} [${d.provenance.kind}; ${d.provenance.source}; ${d.provenance.scope}${d.provenance.dates ? `; ${d.provenance.dates}` : ""}. Role: ${d.provenance.role}${d.provenance.missing ? ` Missing: ${d.provenance.missing}` : ""}]`);
+    L.push("");
+  }
+  if (x.suggestion) {
+    const sg = x.suggestion as import("./recommend").Suggestion;
+    L.push("## Suggestion", "", `Goal: ${sg.goal}. **${sg.headline}.** ${sg.why}`, "");
+    if (sg.decidingFactor) L.push(`What decides between them: ${sg.decidingFactor}`, "");
+    for (const c of sg.main) {
+      L.push(`### ${c.name} (${c.status})`, "");
+      for (const r of c.purpose.reasons) L.push(`- ${r.text} (${r.sourceId ?? r.where}${r.sourceId ? `, ${r.where}` : ""})`);
+      L.push(`- Dates and canal water: ${c.calendar.label}; ${c.calendar.availableDays ?? "—"} days from sowing; canal turns after sowing: ${c.calendar.turns}.`);
+      if (c.climate) L.push(`- Past cold nights: ${c.climate}`);
+      L.push(`- Productive use: ${c.productiveUse.kind}. ${c.productiveUse.text}`, `- Next step: ${c.nextStep}`, "");
+    }
+    L.push(`Confirm first: ${sg.confirmFirst}`, "", "Rules: " + sg.rules.join(" "), "");
+  }
+  if (x.observations?.length) {
+    L.push("## Field notes", "");
+    for (const o of x.observations) L.push(`- ${o.date}: ${o.text}`);
     L.push("");
   }
   L.push("## Inputs and assumptions", "", "| Item | Value | Status | Source |", "|---|---|---|---|");

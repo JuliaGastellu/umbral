@@ -2,17 +2,19 @@ Umbral
 Copyright (c) 2026 Julia Gastellu
 
 AI assistance
-I used AI assistants (large language models) to search the literature, write and review code, and draft documentation. I defined the problem, chose the data, assumptions and scope, and checked the outputs against the cited sources. Agronomic validation with local growers or INTA is still pending.
+I used AI assistants (large language models) to search the literature, write and review code, and draft documentation. I defined the problem, chose the data, assumptions and scope, and checked the outputs against the cited sources. Agronomic validation with local growers or agronomists is still pending.
 
 Data
 - NASA POWER (Prediction Of Worldwide Energy Resources), daily point API v2.10.3.
-- NASA Harmonized Landsat and Sentinel-2 (HLS) v2.0, distributed by NASA LP DAAC. Landsat data courtesy of NASA/USGS; contains modified Copernicus Sentinel data (ESA).
+- NASA Harmonized Landsat and Sentinel-2 (HLS) v2.0, distributed by NASA LP DAAC.
+- NASA EMIT L2B Estimated Fractional Cover v002 (DOI 10.5067/EMIT/EMITL2BFRCOV.002), distributed by NASA LP DAAC. Landsat data courtesy of NASA/USGS; contains modified Copernicus Sentinel data (ESA).
 - NOAA NCEI Global Surface Summary of the Day (GSOD), station 87715099999.
 - ESA WorldCover 10 m 2021 v200, CC BY 4.0.
-- Gerencia de Catastro – Agencia de Recaudación Tributaria, Provincia de Río Negro (IDERN WFS geonode:PARCELARIO1). Derived statistics and a generalized outline only; no formal open license confirmed.
+- Gerencia de Catastro – Agencia de Recaudación Tributaria, Provincia de Río Negro (IDERN WFS geonode:PARCELARIO1). Public provincial parcel layer; boundaries shown and published as served in public/data/parcel_outlines.json and study_parcels.json, with attribution. The original GeoJSON is not redistributed (obtained with scripts/fetch_parcelario.py). No formal licence text found; these data are not covered by the MIT licence of the code.
 
-- Weather forecast: Open-Meteo (open-meteo.com), CC BY 4.0, free non-commercial use, requested live.
+- Weather forecast: Open-Meteo (open-meteo.com), CC BY 4.0, free non-commercial use, requested live by the browser (and by the optional API's /api/weather route).
+- Read-only API: Cloudflare Worker serving the processed files above; no third-party data beyond those listed.
 - Map backgrounds, loaded live and never bundled: EOxCloudless 2024 by EOX IT Services GmbH (contains modified Copernicus Sentinel data 2024), CC BY-NC-SA 4.0; NASA GIBS (HLS); © OpenStreetMap contributors (ODbL).
-- Logo generated with an AI image tool (see docs/AI_DISCLOSURE.md). Map library: Leaflet (BSD-2-Clause).
+- Logo: AI-generated image, marked "Logo: AI-generated" where it is shown (see docs/AI_DISCLOSURE.md). Map library: Leaflet (BSD-2-Clause).
 
 Fonts (bundled via @fontsource): Fraunces and IBM Plex Sans / Mono, SIL Open Font License 1.1.

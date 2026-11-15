@@ -1,9 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { diffDays, fmtDate, onYear, parts, type ISODate } from "../engine/dates";
 import type { HlsInterannual, HlsObservation, HlsSeason, StudyParcels } from "../data";
 import { ParcelMap } from "./ParcelMap";
 import { stepClear } from "../engine/compare";
 import { GREEN_STEPS, greenStep, satelliteName } from "./plain";
+import { scopeObservation as scopeObs, seasonSummary, type HlsSelection } from "../engine/hlsSelect";
+export { seasonSummary };
 
 interface Props {
   hls: HlsSeason | null;
@@ -17,10 +19,13 @@ interface Props {
   setFollow: (v: boolean) => void;
   /** Plan date being followed and the result of the lookup. */
   followInfo: { planDate: ISODate; offsetDays: number | null } | null;
+  /** The shared historical selection (same as the exports). */
+  selection: HlsSelection | null;
   parcel: number | null;
   onParcel: (i: number | null) => void;
   powerPeriod: string;
-  outlines: GeoJSON.FeatureCollection | null;
+  area: [number, number][] | null;
+  outlines?: GeoJSON.FeatureCollection | null;
   openDrawer: (s: string) => void;
   loading: boolean;
 }
@@ -33,38 +38,18 @@ export function hlsLabel(h: HlsSeason | null): string {
 /** Display rule: do not join clear dates more than this many days apart. */
 export const GAP_DAYS = 20;
 
-function median(v: number[]): number | null {
-  if (!v.length) return null;
-  const s = [...v].sort((a, b) => a - b);
-  const m = Math.floor(s.length / 2);
-  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
-}
-
-/** Plain description of observed change, clear dates only. No cause is inferred. */
-export function seasonSummary(obs: HlsObservation[]): string | null {
-  const clear = obs.filter((o) => o.quality === "clear" && o.ndviMedian !== null);
-  const pick = (months: number[]) => median(clear.filter((o) => months.includes(+o.date.slice(5, 7))).map((o) => o.ndviMedian!));
-  const a = pick([2, 3, 4]);
-  const b = pick([6, 7, 8]);
-  const c = pick([10, 11]);
-  if (a === null || b === null || c === null) return null;
-  return `Greenest from February to April (typical value ${a.toFixed(2)}), least green from June to August (${b.toFixed(2)}), green again by October–November (${c.toFixed(2)}).`;
-}
-
 function onSeason(d: ISODate): ISODate {
   const p = parts(d);
   return onYear(p.m, p.d, 2024);
 }
 
-/** One observation seen through the selected parcel (or the whole cluster). */
+/** One observation seen through the selected parcel (or the whole cluster); same rule as the exports. */
 export function scopeObservation(o: HlsObservation, i: number | null): HlsObservation {
-  if (i === null) return o;
-  const p = o.parcels[i];
-  if (!p) return o;
-  return { ...o, ndviMedian: p.ndviMedian, ndviP25: null, ndviP75: null, cleanPixels: p.cleanPixels, pixels: p.pixels, cleanFraction: p.cleanFraction, quality: p.quality as HlsObservation["quality"] };
+  const s = scopeObs(o, i === null ? { kind: "cluster" } : { kind: "parcel", index: i });
+  return { ...s, quality: s.quality as HlsObservation["quality"] };
 }
 
-export function HlsPanel({ hls, inter, shapes, selected, onSelect, window, follow, setFollow, followInfo, parcel, onParcel, powerPeriod, outlines, openDrawer, loading }: Props) {
+export function HlsPanel({ hls, inter, shapes, selected, onSelect, window, follow, setFollow, followInfo, selection, parcel, onParcel, powerPeriod, area, outlines, openDrawer, loading }: Props) {
   const scoped = useMemo(() => (hls ? hls.observations.map((o) => scopeObservation(o, parcel)) : []), [hls, parcel]);
   const scopedSel = selected ? scopeObservation(selected, parcel) : null;
   const scopeName = parcel === null ? "the four parcels" : `Parcel ${parcel + 1}`;
@@ -92,19 +77,19 @@ export function HlsPanel({ hls, inter, shapes, selected, onSelect, window, follo
   return (
     <section className="card" aria-labelledby="hls-h" id="fields">
       <div className="card-h">
-        <h2 id="hls-h">Example parcels in General Roca</h2>
+        <h2 id="hls-h">What NASA HLS saw on the examples (2024 season)</h2>
       </div>
       <div className="card-b">
         {loading && <div className="skel" style={{ height: 220 }} aria-label="Loading satellite data" />}
         {!loading && !hls && <p className="note">Satellite data is not available in this build. The rest of the page works without it.</p>}
         {hls && (
           <>
-            <div className="parcel-pick" role="radiogroup" aria-label="Choose an example parcel">
-              <button type="button" role="radio" aria-checked={parcel === null} className="btn" onClick={() => onParcel(null)}>All four (cluster)</button>
-              {[0, 1, 2, 3].map((i) => <button key={i} type="button" role="radio" aria-checked={parcel === i} className="btn" onClick={() => onParcel(i)}>Parcel {i + 1}</button>)}
+            <div className="parcel-pick" role="radiogroup" aria-label="Example shown in the satellite evidence">
+              <button type="button" role="radio" aria-checked={parcel === null} className="btn" onClick={() => onParcel(null)}>All four</button>
+              {[0, 1, 2, 3].map((i) => <button key={i} type="button" role="radio" aria-checked={parcel === i} className="btn" onClick={() => onParcel(i)}>Example P{i + 1}</button>)}
             </div>
             <ImageDateBar obs={scoped} selected={scopedSel} onSelect={(id) => { setFollow(false); onSelect(id); }} follow={follow} setFollow={setFollow} followInfo={followInfo} window={window} />
-            {shapes ? <ParcelMap shapes={shapes} selected={selected} parcel={parcel} onParcel={onParcel} outlines={outlines} /> : <p className="note">The parcel shapes did not load.</p>}
+            {shapes ? <ParcelMap shapes={shapes} area={area} outlines={outlines} mode="nasa" selected={selected} parcel={parcel} onParcel={onParcel} /> : <p className="note">The parcel shapes did not load.</p>}
             {mapAnswer && <p className="answer-line">{mapAnswer}</p>}
             <p className="chart-foot">Four processed example parcels about 3 km southwest of central General Roca. Only these four have satellite readings; other fields on the map have none here.</p>
             <div className="nasa-card" aria-label="NASA data for this selection">
@@ -114,7 +99,12 @@ export function HlsPanel({ hls, inter, shapes, selected, onSelect, window, follo
 
             <h3 className="sub-q">{parcel === null ? "How green were the four parcels through 2024?" : `How green was Parcel ${parcel + 1} through 2024?`}</h3>
             {summary && <p className="answer-line">{summary}</p>}
-            <Trajectory obs={scoped} selected={scopedSel} onSelect={(id) => { setFollow(false); onSelect(id); }} start={hls.meta.season.start} end={hls.meta.season.end} window={[onSeason(window[0]), onSeason(window[1])]} />
+            {selection && (
+              <p className="chart-foot">
+                Your plan's period, {fmtDate(selection.interval.plan[0], true)} to {fmtDate(selection.interval.plan[1], true)}, matches {fmtDate(selection.interval.historical[0], true)} to {fmtDate(selection.interval.historical[1], true)} in the satellite record (same days of the year): {selection.observations.length} image date{selection.observations.length === 1 ? "" : "s"}, {selection.observations.filter((o) => o.quality === "clear").length} clear for {selection.scope}. These are the dates the export lists.
+              </p>
+            )}
+            <Trajectory obs={scoped} selected={scopedSel} onSelect={(id) => { setFollow(false); onSelect(id); }} start={hls.meta.season.start} end={hls.meta.season.end} window={selection ? selection.interval.historical : [onSeason(window[0]), onSeason(window[1])]} />
 
             <details className="more">
               <summary>Winters 2016–2025</summary>
@@ -134,7 +124,7 @@ export function HlsPanel({ hls, inter, shapes, selected, onSelect, window, follo
   );
 }
 
-function Trajectory({ obs, selected, onSelect, start, end, window }: { obs: HlsObservation[]; selected: HlsObservation | null; onSelect: (id: string) => void; start: string; end: string; window: [ISODate, ISODate] }) {
+export function Trajectory({ obs, selected, onSelect, start, end, window }: { obs: HlsObservation[]; selected: HlsObservation | null; onSelect: (id: string) => void; start: string; end: string; window: [ISODate, ISODate] }) {
   // The chart is drawn at the width of its box, so axis text keeps its size and the box never
   // scrolls on wide screens. Below MIN_W it keeps MIN_W and scrolls inside its own box.
   const MIN_W = 520;
@@ -186,7 +176,7 @@ function Trajectory({ obs, selected, onSelect, start, end, window }: { obs: HlsO
             <text x={L - 8} y={sy(v) + 4} textAnchor="end" className="ax">{v.toFixed(1)}</text>
           </g>
         ))}
-        <text x={14} y={top + plotH / 2} className="ax" transform={`rotate(-90 14 ${top + plotH / 2})`} textAnchor="middle">Greenness index (shown 0–0.9)</text>
+        <text x={14} y={top + plotH / 2} className="ax" transform={`rotate(-90 14 ${top + plotH / 2})`} textAnchor="middle">Greenness (NDVI), axis 0–0.9</text>
         <text x={W - R} y={top - 10} textAnchor="end" className="ax">more green plants ↑</text>
         <text x={W - R} y={sy(0) - 6} textAnchor="end" className="ax">↓ little or no green cover</text>
         {months.map((m) => (
@@ -229,23 +219,27 @@ function Trajectory({ obs, selected, onSelect, start, end, window }: { obs: HlsO
           );
         })}
       </svg>
-      <p className="chart-foot">Each dot is one satellite date. Hollow dots: partly cloudy (top) or fully hidden (bottom row). The line breaks where no clear image exists for more than {GAP_DAYS} days.</p>
+      <p className="chart-foot">NDVI can range from −1 to +1; the axis shows 0 to 0.9, where these parcels' clear values fall. A hollow dot or a break is missing data (cloud, shadow), not low greenness. Each dot is one satellite date. Hollow dots: partly cloudy (top) or fully hidden (bottom row). The line breaks where no clear image exists for more than {GAP_DAYS} days.</p>
     </div>
   );
 }
 
 const QWORD: Record<string, string> = { clear: "clear", partial: "partly cloudy", obscured: "no valid image" };
 
-function ImageDateBar({ obs, selected, onSelect, follow, setFollow, followInfo, window }: { window: [ISODate, ISODate]; obs: HlsObservation[]; selected: HlsObservation | null; onSelect: (id: string) => void; follow: boolean; setFollow: (v: boolean) => void; followInfo: { planDate: ISODate; offsetDays: number | null } | null }) {
+export function ImageDateBar({ obs, selected, onSelect, follow, setFollow, followInfo, window }: { window: [ISODate, ISODate]; obs: HlsObservation[]; selected: HlsObservation | null; onSelect: (id: string) => void; follow: boolean; setFollow: (v: boolean) => void; followInfo: { planDate: ISODate; offsetDays: number | null } | null }) {
   const prev = stepClear(obs, selected?.id ?? null, -1);
   const next = stepClear(obs, selected?.id ?? null, 1);
+  // The Plan and Climate views both mount this control; ids must stay unique.
+  const uid = useId();
+  const lid = `imgdate-l${uid}`;
+  const sid = `imgdate-sel${uid}`;
   return (
-    <div className="imgdate" role="group" aria-labelledby="imgdate-l">
+    <div className="imgdate" role="group" aria-labelledby={lid}>
       <div className="imgdate-row">
-        <span id="imgdate-l" className="imgdate-title">Historical image date</span>
+        <span id={lid} className="imgdate-title">Historical image date</span>
         <button type="button" className="btn" onClick={() => prev && onSelect(prev.id)} disabled={!prev} aria-label={prev ? `Previous clear image, ${fmtDate(prev.date, true)}` : "No earlier clear image"}>◀ Previous clear</button>
-        <label className="sr-only" htmlFor="imgdate-sel">Choose an image date</label>
-        <select id="imgdate-sel" className="input" value={selected?.id ?? ""} onChange={(e) => onSelect(e.target.value)}>
+        <label className="sr-only" htmlFor={sid}>Choose an image date</label>
+        <select id={sid} className="input" value={selected?.id ?? ""} onChange={(e) => onSelect(e.target.value)}>
           {obs.map((o) => <option key={o.id} value={o.id}>{fmtDate(o.date, true)} ({QWORD[o.quality]})</option>)}
         </select>
         <button type="button" className="btn" onClick={() => next && onSelect(next.id)} disabled={!next} aria-label={next ? `Next clear image, ${fmtDate(next.date, true)}` : "No later clear image"}>Next clear ▶</button>
@@ -254,8 +248,8 @@ function ImageDateBar({ obs, selected, onSelect, follow, setFollow, followInfo, 
         <input type="checkbox" checked={follow} onChange={(e) => setFollow(e.target.checked)} /> Follow my plan's date (nearest clear 2024 image)
       </label>
       <p className="imgdate-note" aria-live="polite">
-        {selected ? <>Showing a real image taken on <strong>{fmtDate(selected.date, true)}</strong>.</> : "No image selected."}{" "}Images are from the 2024 season. Your plan is for {window[0].slice(0, 4)}; the images show what these parcels looked like in a past year.{" "}
-        {follow && followInfo ? (followInfo.offsetDays === null ? `No clear 2024 image within 20 days of ${fmtDate(followInfo.planDate)}; the image above was kept.` : `Your plan's date is ${fmtDate(followInfo.planDate)}; this is the nearest clear 2024 image, ${followInfo.offsetDays === 0 ? "same day of the year" : `${Math.abs(followInfo.offsetDays)} day${Math.abs(followInfo.offsetDays) === 1 ? "" : "s"} ${followInfo.offsetDays > 0 ? "later" : "earlier"} in the year`}.`) : "Crop and date choices do not change the images; only this control does."}
+        {selected ? <>Real image of <strong>{fmtDate(selected.date, true)}</strong>, a past season (your plan is for {window[0].slice(0, 4)}).</> : "No image selected."}{" "}
+        {follow && followInfo ? (followInfo.offsetDays === null ? `No clear 2024 image within 20 days of ${fmtDate(followInfo.planDate)}; the image above was kept.` : `Your plan's date is ${fmtDate(followInfo.planDate)}; this is the nearest clear 2024 image, ${followInfo.offsetDays === 0 ? "same day of the year" : `${Math.abs(followInfo.offsetDays)} day${Math.abs(followInfo.offsetDays) === 1 ? "" : "s"} ${followInfo.offsetDays > 0 ? "later" : "earlier"} in the year`}.`) : "Your crops and dates do not change it."}
       </p>
     </div>
   );
@@ -266,7 +260,7 @@ function Interannual({ inter }: { inter: HlsInterannual | null }) {
   return (
     <>
       <p className="chart-foot">Same four parcels, 1 June to 31 August of each year. A few clear dates may not represent a whole winter.</p>
-      <div className="tbl-scroll">
+      <div className="tbl-scroll" tabIndex={0}>
         <table className="data">
           <thead><tr><th>Winter</th><th className="r">Satellite dates</th><th className="r">Clear dates</th><th className="r">Typical greenness</th></tr></thead>
           <tbody>

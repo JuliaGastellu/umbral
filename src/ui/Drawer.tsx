@@ -87,7 +87,8 @@ export function Drawer({ open, section, onClose, data, assumptions }: Props) {
           </section>
           <section id="ev-methods">
             <h3>Methods</h3>
-            <p>Umbral compares calendars. The window runs from plot release to the date the soil must be ready (next-crop date minus preparation). A cover must be terminated a termination interval before that date. "Fits" means only that the stated temporal constraints are met: sowing on or after release, termination by the deadline, and the stated number of irrigation turns after sowing. It never implies establishment, growth, biomass or income.</p>
+            <p>Three production systems are handled separately. In an annual rotation (and beds whose plants are removed) the window runs from the date the field is free to the date the soil must be ready (next-crop date minus preparation). In an orchard, or beds whose plants stay, harvest does not free the plot: only the cover window and area you enter are evaluated, and the main crop is treated as the standing crop. Full rules: docs/METHODS.md.</p>
+            <p>In the annual rotation, the window runs from plot release to the date the soil must be ready. A cover must be terminated a termination interval before that date. "Fits" means only that the stated temporal constraints are met: sowing on or after release, termination by the deadline, and the stated number of irrigation turns after sowing. It never implies establishment, growth, biomass or income.</p>
             <p>States: <em>Fits</em>; <em>Needs data</em> (the result depends on a missing input, and the threshold is shown); <em>Doesn't fit even with data</em> (the best case also fails); <em>Doesn't fit</em> (the failing constraint is named). The margin is the smallest slack among the known constraints. There is no default "tight" threshold.</p>
             <p>Irrigation turns come from a reference turn date plus a frequency, ending at the last known turn or at canal closure. They never move with the sowing date. Without a reference date the exact dates are unknown and the count is a range over all phases. "Turns that fit" is a count, not a statement that water is enough.</p>
             <p>Sensitivity shifts each parameter one day at a time (up to 120 d) and reports the first value that changes the status. Plot context never changes the calendar arithmetic; climate never changes the calendar status.</p>
@@ -140,7 +141,7 @@ export function Drawer({ open, section, onClose, data, assumptions }: Props) {
             <h3>HLS observations</h3>
             {hm ? (
               <>
-                <p>Location map: OpenStreetMap standard tiles loaded live with attribution; a current street map, not dated imagery, and never cached by the app. The HLS overlay is placed from the chip's own tile-grid corners (UTM zone 19); grid rotation at this longitude shifts corners by less than half a pixel. Products: {hm.collections.join("; ")}. Searched through CMR STAC without login; files read with Earthdata Login on the author's machine. Season {hm.season.start} to {hm.season.end}: {hm.itemsFound} items found, {hm.itemsProcessed} processed.</p>
+                <p>Maps: a satellite photo (EOX Sentinel-2 cloudless 2024) or OpenStreetMap for finding the place, and the dated HLS image from NASA GIBS for evidence, enlarged without smoothing. Example parcels are drawn with their boundaries from the public provincial parcel layer; the dashed line on the NASA map is the area whose pixels were used. Products: {hm.collections.join("; ")}. Searched through CMR STAC without login; files read with Earthdata Login on the author's machine. Season {hm.season.start} to {hm.season.end}: {hm.itemsFound} items found, {hm.itemsProcessed} processed.</p>
                 <p>Clean-pixel rule: {hm.cleanRule} NDVI scale factor 0.0001, fill −19999 (from the file metadata). Fmask bits (from the file metadata): 7–6 aerosol level, 5 water, 4 snow/ice, 3 cloud shadow, 2 adjacent to cloud, 1 cloud, 0 cirrus. Display classes: clear ≥ 80 % clean pixels, partly masked ≥ 20 %, mostly masked below that (no NDVI plotted). In the chart, lines join clear dates no more than 20 days apart; longer gaps are left open.</p>
                 <p>Valid observations: {clear.length} clear of {obs.length}, in {monthsWithClear.size} calendar months. Gaps between clear observations are visible on the timeline. A few clear observations do not prove that a whole season is represented.</p>
                 <p>Fixed notes: residue protects soil without looking green; volunteer weeds look green; edge pixels mix channels and windbreaks; HLS does not date harvest or release. Historical observations are immutable: changing a strategy never generates a predicted NDVI. Cite HLS as NASA/USGS Landsat and ESA Sentinel-2 (partner-agency data).</p>
@@ -157,6 +158,7 @@ export function Drawer({ open, section, onClose, data, assumptions }: Props) {
                 <p>{area.name}. {area.status} {area.orchardScreen}</p>
                 <p>Each parcel was buffered {area.inwardBufferM} m inward to remove edge pixels (canals, windbreaks, roads). Pixels per parcel after the buffer: {data.hls?.meta.parcelPixels.map((p) => `${p.label} ${p.pixels}`).join(", ") ?? "—"} (cluster {data.hls?.meta.clusterPixels ?? "—"}).</p>
                 <p>{area.outlineNote}</p>
+                <p>Parcels come from the public provincial parcel layer (IDERN WFS geonode:PARCELARIO1; Gerencia de Catastro – Agencia de Recaudación Tributaria, Provincia de Río Negro), downloaded with scripts/fetch_parcelario.py. The app shows the boundaries of the four examples and of the surrounding parcels as served, with no owner or crop attached. The service declares no fees or access constraints, and a 2019 provincial statement announces free and open GIS use; no formal licence text was found. The original file is reproduced by download rather than redistributed in the repository.</p>
               </>
             )}
             {ps && <p>Cadastral parcels are not management fields: one farm can hold several fields, orchards included. The layer has no land use or owner information. Layer statistics: {ps.parcelsInLayer} parcels; SUBRURAL median {ps.subrural.medianHa} ha (P25 {ps.subrural.p25Ha}, P75 {ps.subrural.p75Ha}); {ps.excludedPlateauRural} plateau RURAL parcels excluded.</p>}
@@ -190,6 +192,23 @@ export function Drawer({ open, section, onClose, data, assumptions }: Props) {
               <li><strong>Observed / Calculated / Assumed:</strong> observed values come from a measurement or record; calculated values come from Umbral's rules; assumed values are scenario inputs or parameters without a local source.</li>
               <li><strong>Plot access:</strong> who controls the plot from April to September. If nobody who can decide is involved, Umbral does not apply.</li>
             </ul>
+          </section>
+
+          <section id="ev-registry">
+            <h3>Data sources and their status</h3>
+            <p>Each source answers one question at its own scale. "Integrated" means the app uses its values; "probed" means a subset was produced and checked; "catalog checked" means only the public catalog was queried. Nothing is filled in for a source that could not be read.</p>
+            {data.registry?.origin && <p className="chart-foot">Loaded from: {data.registry.origin}.</p>}
+            {data.registry ? (
+              <ul className="reg-list">
+                {data.registry.entries.map((e) => (
+                  <li key={e.id}>
+                    <strong>{e.name}</strong> <span className="reg-status">{e.status}</span>
+                    <div>{e.question}</div>
+                    <small>{[e.version && `Version: ${e.version}`, e.retrieved && `Retrieved: ${e.retrieved.slice(0, 10)}`, e.variables && `Variables: ${e.variables}`, e.dates && `Dates: ${e.dates}`, e.scope && `Scope: ${e.scope}`, e.quality && `Quality: ${e.quality}`, e.processing && `Processing: ${e.processing}`, e.note].filter(Boolean).join(" · ")}</small>
+                  </li>
+                ))}
+              </ul>
+            ) : <p>The source registry did not load.</p>}
           </section>
 
           <section id="ev-sources">

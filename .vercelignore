@@ -9,3 +9,6 @@ _netrc
 node_modules/
 docs/screenshots/*.tmp
 .playwright-mcp/
+.wrangler/
+.dev.vars*
+worker/.wrangler/

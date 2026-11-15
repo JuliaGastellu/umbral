@@ -68,6 +68,70 @@ export const SOURCES: Record<string, Source> = {
     url: "https://repositorio.inta.gob.ar/handle/20.500.12123/24945", zone: "Cipolletti, Alto Valle (orchard)", year: "2024",
     status: "Vetch sown on 10 Apr 2024 in an almond orchard. Different system; context only.",
   },
+  VANZOLINI: {
+    id: "VANZOLINI", short: "Vanzolini 2011",
+    title: "Vanzolini, J. I. (2011). La vicia villosa como cultivo de cobertura: efectos de corto plazo sobre el suelo y la productividad del maíz bajo riego en el valle bonaerense del Río Colorado. Tesis de Magíster, UNS; ensayos en EEA INTA Hilario Ascasubi",
+    url: "https://repositorio.inta.gob.ar/handle/20.500.12123/6999", zone: "Hilario Ascasubi, Buenos Aires (irrigated)", year: "2011",
+    status: "Abstract read 14 Nov 2026; full thesis not read.",
+  },
+  SUAREZ: {
+    id: "SUAREZ", short: "Suarez et al. 2025",
+    title: "Suarez, Dumon, González, Vega, Muzi, Gajardo (2025). Impacto de la consociación de la Vicia Sp. en el cultivo de avena para pastoreo. IX Jornada de Investigación y Extensión, CURZA-UNCo",
+    url: "https://admin.curza.uncoma.edu.ar/publicaciones/wp-content/uploads/sites/19/2025/08/3-Suarez.pdf", zone: "EEA INTA Valle Inferior del Río Negro", year: "2025",
+    status: "Abstract read 14 Nov 2026 (one page).",
+  },
+  AAPRESID: {
+    id: "AAPRESID", short: "Aapresid VINPA 2025",
+    title: "Aapresid (2025). ¿Maíces de 12 toneladas sin fertilizante? Chacra VINPA, valles irrigados norpatagónicos",
+    url: "https://www.aapresid.org.ar/blog/maices-12-toneladas-fertilizante", zone: "North Patagonian irrigated valleys", year: "2025",
+    status: "Institutional communication read 14 Nov 2026; protocol and data not obtained.",
+  },
+  PEPITA_INTA: {
+    id: "PEPITA_INTA", short: "INTA Alto Valle 2025 (pome fruit)",
+    title: "INTA (2025). Innovación en la formación y el manejo de plantaciones de manzanos y perales: hacia una fruticultura más eficiente y sostenible",
+    url: "https://www.argentina.gob.ar/noticias/innovacion-en-la-formacion-y-el-manejo-de-plantaciones-de-manzanos-y-perales-hacia-una",
+    zone: "INTA EEA Alto Valle (Río Negro and Neuquén)", year: "2025",
+    status: "Read 15 Nov 2026: describes EEA Alto Valle as the heart of Argentine pome-fruit growing. Presence only.",
+  },
+  CAROZO_INTA: {
+    id: "CAROZO_INTA", short: "INTA Alto Valle variety sheets (stone fruit)",
+    title: "Calvo, P. C. et al. Fichas varietales de duraznos, nectarines y ciruelas (INTA EEA Alto Valle)",
+    url: "https://repositorio.inta.gob.ar/xmlui/bitstream/handle/20.500.12123/15852/INTA_CRPatagoniaNorte_EEAAltoValle_Calvo_PC_Fichas_varietales_duraznos_nectarines_ciruelas.pdf?isAllowed=y&sequence=1",
+    zone: "INTA EEA Alto Valle", status: "Cited in the 15 Nov research brief for peach, nectarine and plum; the PDF did not open on re-check (connection reset). Presence only.",
+  },
+  FRUTILLA_INTA: {
+    id: "FRUTILLA_INTA", short: "INTA Patagonia strawberry guide",
+    title: "Miserendino, E. Frutillas: implantación del cultivo en Patagonia (INTA EEA Alto Valle)",
+    url: "https://repositorio.inta.gob.ar/bitstream/handle/20.500.12123/17772/INTA_CRPatagoniaNorte_EEAAltoValle_Miserendino_E_Frutillas_implantaci%C3%B3n_cultivo_Patagonia.pdf?isAllowed=y&sequence=1",
+    zone: "Patagonia (INTA EEA Alto Valle)", status: "Cited in the 15 Nov research brief (a crop kept for about two years); the PDF did not open on re-check. Presence and bed management only.",
+  },
+  PECAN_INTA: {
+    id: "PECAN_INTA", short: "INTA Valle Inferior 2026 (pecan)",
+    title: "INTA (2026). Pecán: estudian la respuesta de las variedades para precisar la aptitud agroclimática",
+    url: "https://www.argentina.gob.ar/noticias/pecan-estudian-la-respuesta-de-las-variedades-para-precisar-la-aptitud-agroclimatica",
+    zone: "Valle Inferior de Río Negro (not Alto Valle)", year: "2026",
+    status: "Read 15 Nov 2026: 18 varieties, about 11 years of data, phenology varies between regions and years. Not a validation for General Roca.",
+  },
+  SARE_PEA: {
+    id: "SARE_PEA", short: "SARE field peas", title: "SARE, Managing Cover Crops Profitably: Field peas",
+    url: "https://www.sare.org/publications/managing-cover-crops-profitably/legume-cover-crops/field-peas/", zone: "United States", status: "Read 15 Nov 2026.",
+  },
+  SARE_BRASSICA: {
+    id: "SARE_BRASSICA", short: "SARE brassicas", title: "SARE, Managing Cover Crops Profitably: Brassicas and mustards (forage radish)",
+    url: "https://www.sare.org/publications/managing-cover-crops-profitably/nonlegume-cover-crops/brassicas-and-mustards/", zone: "United States", status: "Read 15 Nov 2026.",
+  },
+  SARE_BUCKWHEAT: {
+    id: "SARE_BUCKWHEAT", short: "SARE buckwheat", title: "SARE, Managing Cover Crops Profitably: Buckwheat",
+    url: "https://www.sare.org/publications/managing-cover-crops-profitably/nonlegume-cover-crops/buckwheat/", zone: "United States", status: "Read 15 Nov 2026.",
+  },
+  SAREP_BELLBEAN: {
+    id: "SAREP_BELLBEAN", short: "UC SAREP bell bean", title: "UC SAREP Cover Crop Database: Bell bean (Vicia faba, small-seeded)",
+    url: "https://sarep.ucdavis.edu/covercrop/bellbean", zone: "California", status: "Page returned HTTP 403 on 15 Nov 2026; statements come from the research brief and need re-checking.",
+  },
+  SAREP_CLOVER: {
+    id: "SAREP_CLOVER", short: "UC SAREP strawberry clover", title: "UC SAREP Cover Crop Database: Strawberry clover (Trifolium fragiferum)",
+    url: "https://sarep.ucdavis.edu/covercrop/strawberryclover", zone: "California", status: "Page returned HTTP 403 on 15 Nov 2026; statements come from the research brief and need re-checking.",
+  },
   NOALE: {
     id: "NOALE", short: "Noale 2015",
     title: "Noale (2015), Trabajo final, UNLP: ensayos de tomate para industria en Choele Choel",
@@ -147,37 +211,74 @@ export const SOURCES: Record<string, Source> = {
   },
 };
 
-export type Family = "Solanaceae" | "Cucurbitaceae" | "Amaryllidaceae" | "Poaceae" | "Fabaceae";
+export type Family = string;
+
+export type ProductionSystem = "annual" | "orchard" | "beds";
+export type CropGroup = "Vegetables and field crops" | "Pome fruit" | "Stone fruit" | "Nuts" | "Small fruit" | "Citrus" | "Other";
 
 export interface Crop {
   id: string;
   name: string;
   species: string;
   family: Family;
-  reference: string; // reference calendar text, with zone
-  /** When this crop leaves the field (shown under "Main crop harvested"). */
+  /** Every botanical family involved (mixtures or crops of uncertain identity can have several or "unknown"). */
+  families: Family[];
+  group: CropGroup;
+  /** How the crop occupies the field: annual rotation, permanent orchard, or beds that may be kept. */
+  system: ProductionSystem;
+  leaf?: "deciduous" | "evergreen";
+  reference: string;
   harvest: string;
-  /** When this crop goes in (shown under "Next main crop"). */
   planting: string;
-  sourceId: string;
+  /** Evidence that the crop is grown in the region; presence is not a recommendation to plant it. */
+  presence: string;
+  sourceId: string | null;
 }
 
+const NOT_MODELLED = "Dates not modelled for this crop; enter your own management dates.";
+const tree = (id: string, name: string, species: string, family: string, group: CropGroup, presence: string, sourceId: string | null, leaf: "deciduous" | "evergreen" = "deciduous"): Crop => ({
+  id, name, species, family, families: [family], group, system: "orchard", leaf, reference: NOT_MODELLED, harvest: "The trees stay after harvest: there is no field-free date.", planting: NOT_MODELLED, presence, sourceId,
+});
+
 export const CROPS: Crop[] = [
-  { id: "tomato", name: "Tomato (processing)", species: "Solanum lycopersicum", family: "Solanaceae", reference: "Transplant in early October; harvest January–April. Choele Choel, Valle Medio (Noale 2015).", harvest: "Harvest January–April (processing tomato, Choele Choel, Valle Medio; Noale 2015).", planting: "Transplant in early October (processing tomato, Choele Choel, Valle Medio; Noale 2015).", sourceId: "NOALE" },
-  { id: "squash", name: "Squash", species: "Cucurbita maxima", family: "Cucurbitaceae", reference: "Direct sowing October–November. Río Negro garden guide (INTA, press summary).", harvest: "Harvested before winter; no local harvest date found. Enter your own date.", planting: "Direct sowing October–November (Río Negro garden guide, INTA, press summary).", sourceId: "INTA_PRESS" },
-  { id: "maize", name: "Maize", species: "Zea mays", family: "Poaceae", reference: "Optimal sowing 1 Oct to 15 Nov. Valle Inferior, simulation (Reinoso et al.).", harvest: "Harvested in autumn; no local date found. Grain, forage and sweet corn leave the field at different times: enter your own date.", planting: "Sowing 1 Oct to 15 Nov is best (Valle Inferior simulation; Reinoso et al.).", sourceId: "REINOSO" },
-  { id: "onion", name: "Onion", species: "Allium cepa", family: "Amaryllidaceae", reference: "Early sowing March–May. Southern Buenos Aires, external zone (SAGyP 2023).", harvest: "Early onion harvested mid-December to February (southern Buenos Aires, not Río Negro; SAGyP 2023).", planting: "Early onion sown March–May (southern Buenos Aires, not Río Negro; SAGyP 2023).", sourceId: "SAGYP" },
+  { id: "tomato", name: "Tomato (processing)", species: "Solanum lycopersicum", family: "Solanaceae", families: ["Solanaceae"], group: "Vegetables and field crops", system: "annual", reference: "Transplant in early October; harvest January–April. Choele Choel, Valle Medio (Noale 2015).", harvest: "Harvest January–April (processing tomato, Choele Choel, Valle Medio; Noale 2015).", planting: "Transplant in early October (processing tomato, Choele Choel, Valle Medio; Noale 2015).", presence: "Valle Medio source (Noale 2015).", sourceId: "NOALE" },
+  { id: "squash", name: "Squash", species: "Cucurbita maxima", family: "Cucurbitaceae", families: ["Cucurbitaceae"], group: "Vegetables and field crops", system: "annual", reference: "Direct sowing October–November. Río Negro garden guide (INTA, press summary).", harvest: "Harvested before winter; no local harvest date found. Enter your own date.", planting: "Direct sowing October–November (Río Negro garden guide, INTA, press summary).", presence: "Río Negro garden guide (INTA press summary).", sourceId: "INTA_PRESS" },
+  { id: "maize", name: "Maize", species: "Zea mays", family: "Poaceae", families: ["Poaceae"], group: "Vegetables and field crops", system: "annual", reference: "Optimal sowing 1 Oct to 15 Nov. Valle Inferior, simulation (Reinoso et al.).", harvest: "Harvested in autumn; no local date found. Grain, forage and sweet corn leave the field at different times: enter your own date.", planting: "Sowing 1 Oct to 15 Nov is best (Valle Inferior simulation; Reinoso et al.).", presence: "Valle Inferior simulation (Reinoso et al.).", sourceId: "REINOSO" },
+  { id: "onion", name: "Onion", species: "Allium cepa", family: "Amaryllidaceae", families: ["Amaryllidaceae"], group: "Vegetables and field crops", system: "annual", reference: "Early sowing March–May. Southern Buenos Aires, external zone (SAGyP 2023).", harvest: "Early onion harvested mid-December to February (southern Buenos Aires, not Río Negro; SAGyP 2023).", planting: "Early onion sown March–May (southern Buenos Aires, not Río Negro; SAGyP 2023).", presence: "External zone source (SAGyP 2023).", sourceId: "SAGYP" },
+  tree("apple", "Apple", "Malus domestica", "Rosaceae", "Pome fruit", "Grown in the Alto Valle (INTA EEA Alto Valle, 2025).", "PEPITA_INTA"),
+  tree("pear", "Pear", "Pyrus communis", "Rosaceae", "Pome fruit", "Grown in the Alto Valle (INTA EEA Alto Valle, 2025).", "PEPITA_INTA"),
+  tree("peach", "Peach", "Prunus persica", "Rosaceae", "Stone fruit", "INTA Alto Valle variety sheets (cited; PDF not re-opened).", "CAROZO_INTA"),
+  tree("nectarine", "Nectarine", "Prunus persica var. nucipersica", "Rosaceae", "Stone fruit", "INTA Alto Valle variety sheets (cited; PDF not re-opened).", "CAROZO_INTA"),
+  tree("plum", "Plum", "Prunus domestica / P. salicina", "Rosaceae", "Stone fruit", "INTA Alto Valle variety sheets (cited; PDF not re-opened).", "CAROZO_INTA"),
+  tree("cherry", "Cherry", "Prunus avium", "Rosaceae", "Stone fruit", "Regional presence source not verified in this version.", null),
+  tree("apricot", "Apricot", "Prunus armeniaca", "Rosaceae", "Stone fruit", "Regional presence source not verified in this version.", null),
+  tree("almond", "Almond", "Prunus dulcis", "Rosaceae", "Nuts", "Almond orchard trial in Cipolletti (Domini et al., 2024).", "E17"),
+  tree("pecan", "Pecan", "Carya illinoinensis", "Juglandaceae", "Nuts", "Variety study in the Valle Inferior, not the Alto Valle (INTA 2026).", "PECAN_INTA"),
+  tree("walnut", "Walnut", "Juglans regia", "Juglandaceae", "Nuts", "Regional presence source not verified in this version. Not the same crop as pecan.", null),
+  { id: "strawberry", name: "Strawberry", species: "Fragaria × ananassa", family: "Rosaceae", families: ["Rosaceae"], group: "Small fruit", system: "beds", reference: NOT_MODELLED, harvest: "Harvest does not end the crop: plants are often kept for a second season (INTA Patagonia guide, cited).", planting: NOT_MODELLED, presence: "INTA Patagonia strawberry guide (cited; PDF not re-opened).", sourceId: "FRUTILLA_INTA" },
+  tree("orange", "Orange", "Citrus sinensis", "Rutaceae", "Citrus", "Requested; no Alto Valle source verified. Not assumed suitable in General Roca.", null, "evergreen"),
+  tree("mandarin", "Mandarin", "Citrus reticulata", "Rutaceae", "Citrus", "Requested; no Alto Valle source verified. Not assumed suitable in General Roca.", null, "evergreen"),
+  tree("lemon", "Lemon", "Citrus limon", "Rutaceae", "Citrus", "Requested; no Alto Valle source verified. Not assumed suitable in General Roca.", null, "evergreen"),
+  tree("grapefruit", "Grapefruit", "Citrus × paradisi", "Rutaceae", "Citrus", "Requested; no Alto Valle source verified. Not assumed suitable in General Roca.", null, "evergreen"),
 ];
 
+export const CROP_GROUPS: CropGroup[] = ["Vegetables and field crops", "Pome fruit", "Stone fruit", "Nuts", "Small fruit", "Citrus"];
+
+/** "other:Name" keeps the person's crop name; relationships stay unknown. Never falls back to another crop. */
+export function otherCrop(name: string): Crop {
+  return { id: `other:${name}`, name: name || "Other crop", species: "not recorded", family: "unknown", families: ["unknown"], group: "Other", system: "annual", reference: NOT_MODELLED, harvest: NOT_MODELLED, planting: NOT_MODELLED, presence: "Entered by you; not evaluated.", sourceId: null };
+}
+
 export function cropById(id: string): Crop {
-  return CROPS.find((c) => c.id === id) ?? CROPS[0];
+  if (id.startsWith("other:")) return otherCrop(id.slice(6));
+  return CROPS.find((c) => c.id === id) ?? otherCrop(id);
 }
 
 /** Fixed descriptive text. It never estimates disease or claims the cover breaks a cycle. */
 export function familyAlert(previousId: string, nextId: string): string | null {
   const p = cropById(previousId);
   const n = cropById(nextId);
-  if (p.family !== n.family) return null;
+  if (p.family === "unknown" || n.family === "unknown" || p.family !== n.family) return null;
   return `The next crop repeats ${p.family}. A cover adds a different species between both crops. To judge whether it helps with a plant health problem, it is necessary to know what problem occurred and whether the cover can also host it.`;
 }
 
@@ -186,6 +287,10 @@ export interface CoverVariant {
   name: string;
   species: string;
   family: Family;
+  /** Annual covers end within the season; perennial ones do not end by themselves. */
+  habit?: "annual" | "perennial";
+  /** Researched as a candidate; no local experience found. */
+  experimental?: boolean;
   terminationDays: number;
   terminationSource: string; // shown as "scenario assumption, from US guidance for ..."
   terminationSourceId: string | null;
@@ -209,6 +314,8 @@ export const STRATEGIES: StrategyDef[] = [
     variants: [
       { id: "rye", name: "Cereal rye", species: "Secale cereale", family: "Poaceae", terminationDays: 28, terminationSource: "Scenario assumption, from US guidance for small-seeded vegetable crops after rye (3–4 weeks)", terminationSourceId: "SARE_RYE" },
       { id: "oat", name: "Oat", species: "Avena sativa", family: "Poaceae", terminationDays: 21, terminationSource: "Scenario assumption, from US guidance before sensitive crops after oats (about 3 weeks)", terminationSourceId: "SARE_OATS" },
+      { id: "radish", name: "Forage radish", species: "Raphanus sativus", family: "Brassicaceae", habit: "annual", experimental: true, terminationDays: 21, terminationSource: "Assumption without a source for this species", terminationSourceId: null },
+      { id: "buckwheat", name: "Buckwheat", species: "Fagopyrum esculentum", family: "Polygonaceae", habit: "annual", experimental: true, terminationDays: 21, terminationSource: "Assumption without a source for this species", terminationSourceId: null },
     ],
     operations: ["sowing", "termination"],
   },
@@ -216,6 +323,9 @@ export const STRATEGIES: StrategyDef[] = [
     id: "C", name: "Legume cover", short: "Hairy vetch, or vetch with oat", pattern: "dotted",
     variants: [
       { id: "vetch", name: "Hairy vetch", species: "Vicia villosa", family: "Fabaceae", terminationDays: 21, terminationSource: "Scenario assumption without a source: no termination interval for vegetables found", terminationSourceId: null },
+      { id: "pea", name: "Winter field pea", species: "Pisum sativum", family: "Fabaceae", habit: "annual", experimental: true, terminationDays: 21, terminationSource: "Assumption without a source for this species", terminationSourceId: null },
+      { id: "faba", name: "Small-seeded faba bean", species: "Vicia faba", family: "Fabaceae", habit: "annual", experimental: true, terminationDays: 21, terminationSource: "Assumption without a source for this species", terminationSourceId: null },
+      { id: "clover", name: "Strawberry clover", species: "Trifolium fragiferum", family: "Fabaceae", habit: "perennial", experimental: true, terminationDays: 21, terminationSource: "Perennial: does not end by itself; assumption without a source", terminationSourceId: null },
       { id: "vetch-oat", name: "Hairy vetch + oat", species: "Vicia villosa + Avena sativa", family: "Fabaceae", terminationDays: 21, terminationSource: "Scenario assumption, from US guidance for oats (about 3 weeks); no source for the mixture", terminationSourceId: "SARE_OATS" },
     ],
     operations: ["sowing", "termination"],

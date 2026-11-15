@@ -94,9 +94,10 @@
   "cleanRule": "Pixel centre inside a parcel after a 30 m inward buffer; Fmask cloud, adjacent to cloud/shadow, cloud shadow, snow/ice and water bits all 0; aerosol level not 'high'; NDVI not fill (-19999)."
  },
  "files": {
-  "computed": "2026-11-14T19:42:35Z",
+  "computed": "2026-11-15T13:40:35Z",
   "algorithm": "sha256",
   "checksums": {
+   "emit_frcov.json": "f48bee865952ecc8f642df30d8396866a49c6d1b02c3fabbaff193c981b318bf",
    "hls/s_2024-02-01_L30_ndvi.png": "51739fceb4dedd6ea89cdcf8502ed016c1ab5a7ca3df758c36c283bcea5110a0",
    "hls/s_2024-02-01_L30_rgb.png": "51a11effae0046523ac67b982b829e095da6e6952d60b433c665769c674570ef",
    "hls/s_2024-02-01_S30_ndvi.png": "8e4bf068467407259ba09e0494e3a0ad2d390530eda545c2f14aa4134735ab1e",
@@ -256,20 +257,25 @@
    "hls/s_2024-11-27_S30_ndvi.png": "4e4284b44469d8a33bd6ee447296e93f03e49a5c39a5998d7de628c79039e883",
    "hls/s_2024-11-27_S30_rgb.png": "1403f875fbe6c330bfc2862ef1b9847942d961a905938f25f88527d480433b19",
    "hls_interannual.json": "2df27d6fcf47323372b65b82083572dfcf3ecac0c4945496a7015c353c165111",
+   "hls_ndre.json": "8c20bf6fe5a8329e76fbd631aa834108d70fbe7b2da5254871b28309be81325c",
    "hls_season.json": "f01e5107f71846da07df69943d78bd98e05ced4d7004a8f57fd827774fbb94c5",
-   "parcel_outlines.json": "3b087e566bd56f3d084a336db767b3757003000532d3242c5237ff03a00f485a",
+   "parcel_outlines.json": "d3bdb817b5af80bcac93ba30d3ab7c3899cd1615a0fb90a00f94a3e077443b31",
    "parcel_stats.json": "3a16e44ca7a605c26d51ecabd40b5219582491ba73c3497b726c9d69eff0e345",
    "power_daily.json": "3ae3ceb7c45535c4398a061e51de276ddb5e628ba2d9cdfd248b542b332ee92b",
    "power_validation.json": "3a6eb4f4256765a80ca87f302b37146d732b055cc3ca68397daf6240ab1c3904",
+   "sources_registry.json": "5b8813111e46597ddd22df1cbf21f02b5839c9d37a4910da4e31481a9891f93f",
    "station_check.json": "153b0cf88efa64bf6fbd3d9416608e894572adb67eb5cfc2e1e64da3792afb50",
-   "study_area.json": "167a11d2d4a8e67cbfa13a7c515e27407955aad4869d0fe26f62d08529f4f085",
-   "study_parcels.json": "55df14685b7b724a803167adf958e3ee5fcbdc9e0e609fa6e8b1a01a5f536b5d"
+   "study_area.json": "95adca9ffd06aa7dc541db72d7501fcf36400d290614eb8332eeddcc1e6734db",
+   "study_parcels.json": "f54400e91c9bdebae8c82621495ca7847e8ff9a62416fd2b183c0aac5db87a11"
   }
  },
  "requests": {
   "power": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CPRECTOTCORR&community=AG&longitude=-67.58&latitude=-39.03&start=19810101&end=20251231&format=JSON",
   "stationCheck": "NOAA GSOD https://www.ncei.noaa.gov/data/global-summary-of-the-day/access/{year}/87715099999.csv and POWER at the station point (see stationCheck.power.requestUrl)",
   "hls": "CMR STAC https://cmr.earthdata.nasa.gov/stac/LPCLOUD/search (HLSL30_VI_2.0, HLSS30_VI_2.0), windowed reads from LP DAAC; see scripts/hls_trajectory.py",
-  "parcels": "IDERN WFS https://idern.rionegro.gov.ar/geoserver/ows layer geonode:PARCELARIO1 (raw file not published); see scripts/parcels.py and scripts/parcel_outlines.py"
+  "emit": "LP DAAC EMITL2BFRCOV.002 (C4303752957-LPCLOUD) layers PV, NPV, BARE, their UNC and QC for 5 scenes over the study rectangle; windowed authenticated reads; see scripts/emit_frcov.py",
+  "hlsNdre": "CMR STAC HLSS30_VI_2.0 items (2024 season, Sentinel-2 dates only); reflectance B8A, B05 and Fmask read from LP DAAC; see scripts/hls_ndre.py",
+  "catalogChecks": "Public CMR collection and granule searches for IMERG (C2723754864-GES_DISC), SMAP SPL4SMGP v008 (C3480440870-NSIDC_CPRD), ECOSTRESS JET v002/ETAUX v003/JET v003, 14 Nov 2026",
+  "parcels": "IDERN WFS https://idern.rionegro.gov.ar/geoserver/ows layer geonode:PARCELARIO1, TPA in (SUBRURAL, RURAL), BBOX(-67.75, -39.15, -67.35, -38.90), EPSG:4326; downloaded with scripts/fetch_parcelario.py (original file kept in data/raw/, not redistributed); published layers built by scripts/parcels.py and scripts/parcel_layers.py"
  }
 }
